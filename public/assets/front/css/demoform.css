@@ -1,0 +1,162 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Open Sans;
+	font-weight: 300;  
+}
+
+.loginHolder {
+    width: 410px;
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    margin-top: -200px;
+    margin-left: -240px;
+    text-align: center;
+    height: 330px;
+}
+.inpHolder {
+    width: 100% !important;
+    height: 53px !important;
+    padding-bottom: 25px;
+    text-align: left;
+}
+.signinHolder {
+    width: 410px;
+    background: #fff;
+    margin-top: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #7b8b9a;
+    float: left;
+    border: 2px solid #c0c0c0;
+}
+
+.inputsecHolder {
+    width: 85%;
+    margin: 0px auto;
+    position: relative;
+    z-index: 1;
+}
+
+.inputsecHolder  h1 { 
+    color: #25bce9;
+    margin-bottom: 0px;
+    text-align: left;
+	font-size:24px;
+}
+ 
+
+.formFieldLblArea {
+    border: 0px solid;
+    float: left;
+    width: 100%;
+	margin-bottom:20px;
+}
+
+.signinHolder label {
+    padding-bottom: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 2px;
+    width: 120px;
+    padding-top: 2px;
+    cursor: pointer;
+}
+.mendatory {
+    color: red;
+}
+
+
+.inpHolder input[type="text"] {
+    float: left;
+    background: #fff;
+    border: 1px solid #bababa;
+    width: 95%;
+    padding-left: 10px;
+    font: bold 15px Arial, Helvetica, sans-serif;
+    color: #7b8b9a;
+}
+ 
+input[type="text"] {
+    border: 1px solid #B0A89D;
+    font: 12px Arial, Helvetica, sans-serif;
+    padding: 12px 10px!important;
+    color: #666;
+    width: 95%;
+} 
+.bdr_red {
+    border: solid red 1px !important;
+}
+
+
+.arrow_box {
+    border: 0px solid;
+    display: block;
+    float: left;
+    height: 13px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 11px;
+    color: red;
+    text-align: left;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.fleft {
+    float: left!important;
+}
+
+ .login-form span {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.clr {
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.clr a{
+	text-decoration:none;
+}
+
+#flip_1 {
+    font-size: 11px;
+    float: left;
+    line-height: 24px;
+	text-decoration:none;
+}
+.fright {
+    float: right!important;
+} 
+input[type="button"] {
+    background: #C4C4C4;
+    border: none; 
+    color: #666666;
+    cursor: pointer;
+    margin: 0px 0 0 5px;
+    padding: 11px 20px 10px!important;
+}
+input[type="button"], input[type="submit"], input[type="reset"], textarea {
+    -webkit-appearance: none;
+}
+
+.submitbtn {
+    background:#25bce9!important; 
+    color: #fff!important;
+    padding: 8px 30px!important;
+    border: none;
+    cursor: pointer;
+}
+
+
+ 
