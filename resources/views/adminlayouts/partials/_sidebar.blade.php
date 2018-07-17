@@ -4,21 +4,16 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
 		<div class="user-panel">
-		
 			<div class="pull-left image">
-			
-			@php 
-			$profileImage=Auth::guard('admin')->user()->profile_picture;
-			
-			$path = '/uploads/admin/profile/image/'.Auth::guard('admin')->user()->profile_picture; 
-			
-			@endphp
-				@if($profileImage)
-				<img src="{{URL::asset($path) }}" class="user-image" alt="User Image">	
-				@else
-				<img src="{{ URL::asset('images/logo1.png') }}" class="user-image" alt="User Image">
-			@endif
-				
+				@php 
+				$profileImage=Auth::guard('admin')->user()->profile_picture;
+				$path = '/uploads/admin/profile/image/'.Auth::guard('admin')->user()->profile_picture; 
+				@endphp
+					@if($profileImage)
+					<img src="{{URL::asset($path) }}" class="user-image" alt="User Image">	
+					@else
+					<img src="{{ URL::asset('images/logo1.png') }}" class="user-image" alt="User Image">
+				@endif
 			</div>
 			<div class="pull-left info">
 				<p>{{Auth::guard('admin')->user()->fname}} {{Auth::guard('admin')->user()->lname}}</p>
@@ -29,7 +24,7 @@
       
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
+    <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="/admin/home">
@@ -91,7 +86,7 @@
           </ul>
         </li>
 		
-		<li class="treeview {{ (Request::path() == 'admin/review-list' || Request::path() == 'admin/add-review' || Request::path() == 'admin/edit-review' || Route::getCurrentRoute()->getName() == 'live.token'  || Route::getCurrentRoute()->getName() == 'clinic.show') ? 'active' : '' }}"">
+		<li class="treeview {{ (Request::path() == 'admin/review-list' || Request::path() == 'admin/add-review' || Request::path() == 'admin/edit-review' || Route::getCurrentRoute()->getName() == 'live.token'  || Route::getCurrentRoute()->getName() == 'clinic.show') ? 'active' : '' }}">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Review Managements</span>
             <span class="pull-right-container">
@@ -104,24 +99,20 @@
           </ul>
         </li>
 		
-		
-		
-		
-		
-		<li class="treeview {{ (Request::path() == 'admin/coupan-list' || Request::path() == 'admin/add-coupan' || Request::path() == 'admin/edit-coupan' || Route::getCurrentRoute()->getName() == 'live.token'  || Route::getCurrentRoute()->getName() == 'coupan.show') ? 'active' : '' }}"">
-         <a href="#">
+		<li class="treeview {{ (Request::path() == 'admin/coupan-list' || Request::path() == 'admin/add-coupan' || Request::path() == 'admin/edit-coupan' || Route::getCurrentRoute()->getName() == 'live.token'  || Route::getCurrentRoute()->getName() == 'coupan.show') ? 'active' : '' }}">
+			<a href="#">
             <i class="fa fa-folder"></i> <span>Manage Discount And Offers</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="{{ Request::path() == 'admin/coupan-list' || Route::getCurrentRoute()->getName() == 'live.token'  || Route::getCurrentRoute()->getName() == 'coupan.show' ? 'active' : '' }}"><a href="/admin/coupan-list"><i class="fa fa-circle-o"></i>Discount And Offers List</a></li>
-            <li class="{{ Request::path() == 'admin/add-coupan' ? 'active' : '' }}"><a href="/admin/add-coupan"><i class="fa fa-circle-o"></i>Add Discount And Offers</a></li>        
-          </ul>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="{{ Request::path() == 'admin/coupan-list' || Route::getCurrentRoute()->getName() == 'live.token'  || Route::getCurrentRoute()->getName() == 'coupan.show' ? 'active' : '' }}"><a href="/admin/coupan-list"><i class="fa fa-circle-o"></i>Discount And Offers List</a></li>
+				<li class="{{ Request::path() == 'admin/add-coupan' ? 'active' : '' }}"><a href="/admin/add-coupan"><i class="fa fa-circle-o"></i>Add Discount And Offers</a></li>        
+			</ul>
         </li>
 		
-        
+
         <li class="treeview {{ Request::path() == 'admin/wishlist' || Request::path() == 'admin/wishlist' ? 'active' : '' }}">
 			<a href="#">
 				<i class="fa fa-folder"></i> <span>WishList Management</span>
@@ -135,16 +126,16 @@
         </li>
 		
 		<li class="treeview {{ (Request::segment(2) === 'add-cms-page' || Request::segment(2) === 'manage-cms-page') ? 'active' : null }}">
-          <a href="#">
-            <i class="ion ion-clipboard"></i> <span>{{Config::get('settings.cms')}}Content Management</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="{{ Request::segment(2) === 'manage-cms-page' ? 'active' : null }}"><a href="{{route('manage-cms-page')}}"><i class="fa fa-circle-o"></i> Manage {{Config::get('settings.cms')}} page</a></li>
-            <li class="{{ Request::segment(2) === 'add-cms-page' ? 'active' : null }}"><a href="{{route('add-cms-page')}}"><i class="fa fa-circle-o"></i> Add {{Config::get('settings.cms')}} page</a></li>            
-          </ul>
+			<a href="#">
+				<i class="ion ion-clipboard"></i> <span>{{Config::get('settings.cms')}}Content Management</span>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="{{ Request::segment(2) === 'manage-cms-page' ? 'active' : null }}"><a href="{{route('manage-cms-page')}}"><i class="fa fa-circle-o"></i> Manage {{Config::get('settings.cms')}} page</a></li>
+				<li class="{{ Request::segment(2) === 'add-cms-page' ? 'active' : null }}"><a href="{{route('add-cms-page')}}"><i class="fa fa-circle-o"></i> Add {{Config::get('settings.cms')}} page</a></li>            
+			</ul>
         </li>
        
        
@@ -192,19 +183,18 @@
         </li>-->
 		
 		<li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Setting</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin.change-password') }}"><i class="fa fa-circle-o"></i>Reset Password</a></li>
-            <li><a href="{{ route('admin.profile') }}"><i class="fa fa-circle-o"></i>Update Profile</a></li>
-          </ul>
+			<a href="#">
+				<i class="fa fa-folder"></i> <span>Setting</span>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li><a href="{{ route('admin.change-password') }}"><i class="fa fa-circle-o"></i>Reset Password</a></li>
+				<li><a href="{{ route('admin.profile') }}"><i class="fa fa-circle-o"></i>Update Profile</a></li>
+			</ul>
         </li> 
-		
-      </ul>
+    </ul>
 
     </section>
     <!-- /.sidebar -->

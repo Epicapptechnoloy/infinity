@@ -13,7 +13,7 @@
 			<small>Control panel</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+			<li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
 			<li class="active">Discounts And Offers list</li>
 		</ol>
     </section>
@@ -61,34 +61,34 @@
 							@foreach($coupans as $coupan)
 
 							<tr>
-							 <td>{{++$i}}</td>
-							  <td>{{ $coupan->coupon_id}}</td>
-							  <td>{{ucfirst($coupan->name)}}</td>
-							  <td>{{$coupan->code}}</td>               
-							  <td>{{$coupan->discount}}</td>               
-							  <td>{{$coupan->min_total}}</td>              
-							  <td>{{$coupan->total}}</td>               
-							  <td>{{$coupan->date_start}}</td>              
-							  <td>{{$coupan->date_end}}</td>               
-							  <td>{{$coupan->uses_total}}</td>               
-							  <td>{{$coupan->uses_customer}}</td>               
-							  <td>
-								@if($coupan->status == 1)
-								  <span class="label label-success">Active</span>
-								@else
-								  <span class="label label-warning">Inactive</span>
-								@endif
-							  </td> 
-							  <td>
-								<div class="btn-group">
-									<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
-									<ul class ="dropdown-menu" role="menu">
-									  <li><a href="{{ $url = route('admin.coupan.show', [$coupan->coupon_id]) }}">View</a></li>
-									  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{$coupan->coupon_id}}">Delete</a></li>
-									  <li><a href="{{ route('admin.coupan.edit',[$coupan->coupon_id]) }}">Edit</a></li>
-									</ul>
-								</div>
-							  </td>                
+								<td>{{++$i}}</td>
+								<td>{{ $coupan->coupon_id}}</td>
+								<td>{{ucfirst($coupan->name)}}</td>
+								<td>{{$coupan->code}}</td>               
+								<td>{{$coupan->discount}}</td>               
+								<td>{{$coupan->min_total}}</td>              
+								<td>{{$coupan->total}}</td>               
+								<td>{{$coupan->date_start}}</td>              
+								<td>{{$coupan->date_end}}</td>               
+								<td>{{$coupan->uses_total}}</td>               
+								<td>{{$coupan->uses_customer}}</td>               
+								<td>
+									@if($coupan->status == 1)
+										<span class="label label-success">Active</span>
+									@else
+										<span class="label label-warning">Inactive</span>
+									@endif
+								</td> 
+								<td>
+									<div class="btn-group">
+										<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
+										<ul class ="dropdown-menu" role="menu">
+										  <li><a href="{{ $url = route('admin.coupan.show', [$coupan->coupon_id]) }}">View</a></li>
+										  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{$coupan->coupon_id}}">Delete</a></li>
+										  <li><a href="{{ route('admin.coupan.edit',[$coupan->coupon_id]) }}">Edit</a></li>
+										</ul>
+									</div>
+								</td>                
 							</tr>
 						@endforeach
 						@else

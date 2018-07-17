@@ -7,7 +7,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Category list</li>
       </ol>
     </section>
@@ -44,7 +44,7 @@
                 <tr>
 					<td>{{ $category->category_id}}</td>
 					<td>{{ucfirst($category->name)}}</td>
-					<td>{{$category->description}}</td>               
+					<td>{!!$category->description!!}</td>               
 					<td>
 						@if($category->status == 1)
 						  <span class="label label-success">Active</span>

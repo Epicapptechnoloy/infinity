@@ -70,6 +70,7 @@ class ProductController extends Controller
 		$products =  $products->paginate(env('RECORD_PER_PAGE'));   
         $products->appends($request->s,$request->status);	
 		
+		//dd($products);
          return view('admin.products.product_list',array('homeTitle'=>$homeTitle,'products'=>$products,'params'=>$request))
          ->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
     }
@@ -97,6 +98,7 @@ class ProductController extends Controller
 ***return       : @return \Illuminate\Http\Response
 *************/  
     public function AddProduct(Request $request){
+		//dd($request->all());
         $homeTitle = 'Add Product';
       
         $products = new Products();
@@ -105,6 +107,7 @@ class ProductController extends Controller
         $products->sku = $request->sku;
         $products->quantity = $request->quantity;
         $products->price = $request->price;
+        $products->description = $request->description;
         $products->size = $request->size;
         $products->color = $request->color;
         $products->points = $request->points;
@@ -141,11 +144,8 @@ class ProductController extends Controller
     public function customersWishList(Request $request){
         $homeTitle = 'Customers WishList Product';
 		
-	 
-	  
-	  
 		$wishlists = Wishlists::all();
-		//dd($wishlists);
+	
         return view('admin.products.wishlist',array('homeTitle'=>$homeTitle,'wishlists'=>$wishlists)); ;
         
     } 
@@ -183,19 +183,19 @@ class ProductController extends Controller
 	
 	
 	public function editProduct(Request $request){
-		
+		//dd(base64_decode($request->product_id));
 		$homeTitle = 'Edit Product';
 		$categories = Categories::select('category_id', 'name')->where('status', 1)->get();
 		$Products = DB::table('sb_product')
-			->select('sb_product.*','sb_product.status as productStatus','sb_product.name as productName','sb_product.image as productImage','sb_category.*',
+			->select('sb_product.*','sb_product.status as productStatus','sb_product.name as productName','sb_product.image as productImage','sb_product.description as productDescription','sb_category.*',
 			'sb_category.name as CategoryName')
 			->leftJoin('sb_category', 'sb_category.category_id', '=', 'sb_product.category_id')->where('product_id',base64_decode($request->product_id))->first();
-		//dd($Products);
+		//dd($Products->productDescription);
         return view('admin.products.edit-product',array('homeTitle'=>$homeTitle,'Products'=>$Products,'categories'=>$categories)); 
     }
 	
 	public function editProductPost(Request $request){
-     //dd($request->all());
+    
 		$validation = Validator::make($request->all(), [            
             'name'   => 'required',
             'price'   => 'required',
@@ -213,6 +213,7 @@ class ProductController extends Controller
 			$Products->model = $request->model;
 			$Products->sku = $request->sku;
 			$Products->price = $request->price;
+			$Products->description = $request->description;
 			$Products->size = $request->size;
 			$Products->color = $request->color;
 			$Products->points = $request->points;
@@ -230,14 +231,13 @@ class ProductController extends Controller
 						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}
 					$image->move($categoryRootPath, $input['imagename']);
-					//$Orgn = Orgnisation::where('id',$Orgnisation->id)->update(
-						//	 array('logo'=>$input['imagename']));
+					
 						$Products->image = $input['imagename'];					
 				}
-			//dd($Products);
+			
 			$Products->update();
 			DB::commit();
-			
+			//dd($Products);
 			$request->session()->flash('alert-success', 'Product Updated successfully!');
 			return redirect()->route("admin.product-list");
 		}catch(\Illuminate\Database\QueryException $e){
@@ -247,7 +247,7 @@ class ProductController extends Controller
     }
 	
 	public function deleteProduct($product_id,Request $request){
-		//dd($product_id);
+	
         $products = Products::find($product_id);        
         if($products)
 			$products->delete();	

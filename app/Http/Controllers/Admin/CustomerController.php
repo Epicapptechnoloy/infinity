@@ -55,7 +55,7 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
 	
-	/*  public function CustomerList(Request $request) {
+	 /*  public function CustomerList(Request $request) {
         $Countries = Countries::select('country_id', 'country_name')->where('status', 1)->get();
         $States = States::select('id', 'name')->where('status', 1)->get();
         $query = DB::table('users as U')
@@ -85,11 +85,13 @@ class CustomerController extends Controller
 		 if($request->has('export')){
             return $this->_userExport($query);
         }
-         $query =  $query->paginate(env('RECORD_PER_PAGE')); 
-			dd($query);
-		 
-        $Users = $query->paginate(env('RECORD_PER_PAGE'));
-	dd($Users);
+		
+         $Users =  $query->paginate(env('RECORD_PER_PAGE')); 
+			
+		 dd($Users);
+		
+        //$Users = $query->paginate(env('RECORD_PER_PAGE'));
+	//dd($Users);
         return view('admin.customers.customer-list', [
                     'homeTitle' => 'User List',
                     'Countries' => $Countries,
@@ -100,15 +102,11 @@ class CustomerController extends Controller
                 ])->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
     }
 	
-	
 	 */
 	
+	 
 	
-	
-	
-	
-	
-    public function CustomerList(Request $request){ 
+   public function CustomerList(Request $request){ 
 		
 		
         $sort_by = $request->get('sort-by');
@@ -164,6 +162,7 @@ class CustomerController extends Controller
         } 
 
         $customers =  $customers->paginate(env('RECORD_PER_PAGE'));   
+		//dd($customers);
         $customers->appends($request->s,$request->viriefied,$request->status);
 		//dd($customers);
         //initial values for sorting
@@ -175,17 +174,16 @@ class CustomerController extends Controller
 		'order_by' => $order_by))
          ->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
         
-    } 
-    
-/***********
-***Author       : Ajay Kumar
-***Action       : show
-***Description  : This action is use to view the customer 
-***Date         : 03-07-2018
-***Params       : @customer_id
-***return       : @return \Illuminate\Http\Response
-*************/     
-     public function show($id){		 
+    }  
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : show
+	***Description  : This action is use to view the customer 
+	***Date         : 03-07-2018
+	***Params       : @customer_id
+	***return       : @return \Illuminate\Http\Response
+	*************/     
+		 public function show($id){		 
         $customer = User::find(base64_decode($id));
 		
         return view('admin.customers.view-user', [
@@ -233,8 +231,6 @@ class CustomerController extends Controller
 		->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
         
     }
-	
-	
 	
 	
 	

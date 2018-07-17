@@ -9,7 +9,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Add Category</li>
       </ol>
     </section>
@@ -56,6 +56,21 @@
 					</span>
 				@endif
 			</div>
+		  
+		  <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+				<label for="exampleInputreason1">Description</label>
+					<div class="row">
+						<div class="col-xs-6">
+							<textarea rows="4" cols="50" class="form-control input_width" id="description11" name="description"  placeholder="description"></textarea>
+						</div>
+					</div>
+				@if ($errors->has('description'))
+					<span class="help-block">
+						<strong>{{ $errors->first('description') }}</strong>
+					</span>
+				@endif	
+			</div>
+		  
 		  
 			<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 				<label for="exampleInputreason1">Description</label>
@@ -109,7 +124,7 @@
 <script type="text/javascript">
 
 	$(function() {
-		CKEDITOR.replace('description');
+		CKEDITOR.replace('description11');
 		
 		$(".textarea").wysihtml5();
 	});

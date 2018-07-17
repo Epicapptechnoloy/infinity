@@ -14,7 +14,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Order Details</li>
       </ol>
     </section>
@@ -73,7 +73,7 @@
 						@else
 						  <span class="label label-warning">Pending</span>
 						@endif
-						<form action="{{route('admin.order-status')}}" method="post">
+						{{--<form action="{{route('admin.order-status')}}" method="post">
 							{{ csrf_field() }}
 							<input type="hidden" name="orderId" value="{{$viewOrder->order_id}}"/>
 							<input type="hidden" name="productId" value="{{$viewOrder->product_id}}"/>
@@ -85,7 +85,7 @@
 								<option value="3">Deliverd</option>
 								<option value="4">Cancel</option>
 							</select>
-						</form>
+						</form>--}}
 					</td>
                 </tr>
                 @endforeach

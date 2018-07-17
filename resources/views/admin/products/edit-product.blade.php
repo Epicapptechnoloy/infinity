@@ -6,7 +6,10 @@
         Dashboard
         <small>Control panel</small>
     </h1>
-      
+    <ol class="breadcrumb">
+		<li><a href="/admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">Edit Product Details</li>
+    </ol> 
 </section>
     <div class="box">
         <div class="box-header with-border">
@@ -155,7 +158,7 @@
 								<select  class="form-control single " name="category" id="category_id" data-bind="category" >
 								 @if(!empty($categories)) 
 								@foreach($categories as $ct)								
-								  <option value="{{$ct->category_id}}" @if($Products->category_id == $ct->category_id) selected @endif  >{{$ct->name}}</option>
+								 <option value="{{$ct->category_id}}" @if($Products->category_id == $ct->category_id) selected @endif  >{{$ct->name}}</option>
 								@endforeach
 								@endif
 								</select>
@@ -179,8 +182,22 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+						<label for="exampleInputreason1">Description</label>
+							<div class="row">
+								<div class="col-xs-6">
+									<textarea rows="4" cols="50" class="form-control input_width" id="description321" name="description"  placeholder="description">{{$Products->productDescription}}</textarea>
+								</div>
+							</div>
+						@if ($errors->has('description'))
+							<span class="help-block">
+								<strong>{{ $errors->first('description') }}</strong>
+							</span>
+						@endif	
+					</div>
 				
-					 <div class='form-group'>
+					<div class='form-group'>
 						<input type="file" name="productImage" id="fileToUpload" class = 'btn btn-default btn-file' multiple>
 					</div> 
 					
@@ -194,6 +211,8 @@
 								<span class="info-box-icon2 ">
 									@if($Products->image)
 									<img src="{{URL::asset($path) }}" width="15%" id="userImgPreview" class="img-circle" alt=" image">
+									@else
+										No Image
 									@endif
 								</span>	
 							</div>
@@ -209,6 +228,14 @@
 	</div>
 
 <script>
+
+	$(function() {
+		CKEDITOR.replace('description321');
+		$(".textarea").wysihtml5();
+	});
+       
+
+
   $("#signupImgUpload").change(function() {
     readURL(this);
   });

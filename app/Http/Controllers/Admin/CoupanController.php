@@ -75,7 +75,6 @@ class CoupanController extends Controller
     public function AddCoupanForm()
     {        
         $homeTitle ="Add Discount and Offers";
-        
         return view('admin.coupans.add-coupan',array('homeTitle'=>$homeTitle));
     }
     /**
@@ -92,70 +91,69 @@ class CoupanController extends Controller
 		if ($request->isMethod('post')) {
 			DB::beginTransaction();
             try {
-					
-					$coupan->name = $request->name;
-					$coupan->description = $request->description;
-					$coupan->code = $request->code;
-					$coupan->discount = $request->discount;
-					$coupan->min_total = $request->minimum_order;
-					$coupan->total = $request->total_discount;
-					$coupan->type = $request->ctype;
-					$coupan->date_start = date('Y-m-d', strtotime($request->startdate));
-					$coupan->date_end = date('Y-m-d', strtotime($request->enddate));
-					$coupan->uses_total = $request->uses_total;
-					$coupan->uses_customer = $request->uses_per_customer;
-					$coupan->status = $request->status;
-					$image = $request->file('image');
-					if($image){
-						$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-						$categoryRootPath = public_path("/uploads/coupan/image");
-						if(!File::exists($categoryRootPath)) {
-							File::makeDirectory($categoryRootPath, 0777, true, true);                                
-						}
-						$image->move($categoryRootPath, $input['imagename']);
-							$coupan->image = $input['imagename'];					
+				$coupan->name = $request->name;
+				$coupan->description = $request->description;
+				$coupan->code = $request->code;
+				$coupan->discount = $request->discount;
+				$coupan->min_total = $request->minimum_order;
+				$coupan->total = $request->total_discount;
+				$coupan->type = $request->ctype;
+				$coupan->date_start = date('Y-m-d', strtotime($request->startdate));
+				$coupan->date_end = date('Y-m-d', strtotime($request->enddate));
+				$coupan->uses_total = $request->uses_total;
+				$coupan->uses_customer = $request->uses_per_customer;
+				$coupan->status = $request->status;
+				$image = $request->file('image');
+				if($image){
+					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
+					$categoryRootPath = public_path("/uploads/coupan/image");
+					if(!File::exists($categoryRootPath)) {
+						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}
-					$coupan->save();
-					DB::commit();
-					
-					 \Session::flash('alert-success','Coupan has been added successfully');                        
-					return redirect()->route('admin.coupan-list');
-                }
-                catch (\Exception $e) {
-					DB::rollBack();                    
-                    return back()->withInput($request->input())->withErrors([$e->getMessage()]);
-                }
+					$image->move($categoryRootPath, $input['imagename']);
+						$coupan->image = $input['imagename'];					
+				}
+				$coupan->save();
+				DB::commit();
+				 \Session::flash('alert-success','Coupan has been added successfully');                        
+				return redirect()->route('admin.coupan-list');
+			}
+			catch (\Exception $e) {
+				DB::rollBack();                    
+				return back()->withInput($request->input())->withErrors([$e->getMessage()]);
+			}
 		}    
-		
         return view('admin.coupans.add-coupan',array('homeTitle'=>$homeTitle));
     }
     
-/***********
-***Author       : Ajay Kumar
-***Action       : show
-***Description  : This action is use to view the Coupan 
-***Date         : 09-07-2018
-***Params       : @coupan_id
-***return       : @return \Illuminate\Http\Response
-*************/  
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : show
+	***Description  : This action is use to view the Coupan 
+	***Date         : 09-07-2018
+	***Params       : @coupan_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
+	
      public function show($id){
         $coupan = Coupans::find($id);
 		
         return view('admin.coupans.show', [
             'coupan' => $coupan
-         ]);
+        ]);
 
     }
     
-/***********
-***Author       : Ajay Kumar
-***Action       : show
-***Description  : This action is use to edit the Coupan 
-***Date         : 09-07-2018
-***Params       : @coupan_id
-***return       : @return \Illuminate\Http\Response
-*************/  
-     public function edit($id){
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : show
+	***Description  : This action is use to edit the Coupan 
+	***Date         : 09-07-2018
+	***Params       : @coupan_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
+	
+    public function edit($id){
         $coupan = Coupans::find($id);
         return view('admin.coupans.edit-coupan', [
             'coupan' => $coupan
@@ -163,77 +161,75 @@ class CoupanController extends Controller
 
     }
     
-/***********
-***Author       :Ajay Kumar
-***Action       : show
-***Description  : This action is use to update the Coupan 
-***Date         : 09-07-2018
-***Params       : @coupan_id
-***return       : @return \Illuminate\Http\Response
-*************/  
-     public function update(Request $request){
+	/***********
+	***Author       :Ajay Kumar
+	***Action       : show
+	***Description  : This action is use to update the Coupan 
+	***Date         : 09-07-2018
+	***Params       : @coupan_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
+	
+    public function update(Request $request){
 		 
         $coupan = Coupans::find($request->coupan_id);        
           //when form submit
 		if ($request->isMethod('post')) {
 			DB::beginTransaction();
             try {
-					$coupan->name = $request->name;
-					$coupan->description = $request->description;
-					$coupan->code = $request->code;
-					$coupan->discount = $request->discount;
-					$coupan->min_total = $request->minimum_order;
-					$coupan->total = $request->total_discount;
-					$coupan->type = $request->ctype;
-					$coupan->date_start = date('Y-m-d', strtotime($request->startdate));
-					$coupan->date_end = date('Y-m-d', strtotime($request->enddate));
-					$coupan->uses_total = $request->uses_total;
-					$coupan->uses_customer = $request->uses_per_customer;
-					$coupan->status = $request->status;
-					$image = $request->file('image');
-					if($image){
-						$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-						$categoryRootPath = public_path("/uploads/coupan/image");
-						if(!File::exists($categoryRootPath)) {
-							File::makeDirectory($categoryRootPath, 0777, true, true);                                
-						}
-						$image->move($categoryRootPath, $input['imagename']);
-							$coupan->image = $input['imagename'];					
+				$coupan->name = $request->name;
+				$coupan->description = $request->description;
+				$coupan->code = $request->code;
+				$coupan->discount = $request->discount;
+				$coupan->min_total = $request->minimum_order;
+				$coupan->total = $request->total_discount;
+				$coupan->type = $request->ctype;
+				$coupan->date_start = date('Y-m-d', strtotime($request->startdate));
+				$coupan->date_end = date('Y-m-d', strtotime($request->enddate));
+				$coupan->uses_total = $request->uses_total;
+				$coupan->uses_customer = $request->uses_per_customer;
+				$coupan->status = $request->status;
+				$image = $request->file('image');
+				if($image){
+					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
+					$categoryRootPath = public_path("/uploads/coupan/image");
+					if(!File::exists($categoryRootPath)) {
+						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}
-					$coupan->save();
-					DB::commit();
-					\Session::flash('alert-success','Coupan has been updated successfully');                        
-					return redirect()->route('admin.coupan-list');
-                }
-				catch (\Exception $e) {       
-					DB::rollBack();                    
-                    return back()->withInput($request->input())->withErrors([$e->getMessage()]);
-                }
+					$image->move($categoryRootPath, $input['imagename']);
+						$coupan->image = $input['imagename'];					
+				}
+				$coupan->save();
+				DB::commit();
+				\Session::flash('alert-success','Coupan has been updated successfully');                        
+				return redirect()->route('admin.coupan-list');
+			}
+			catch (\Exception $e) {       
+				DB::rollBack();                    
+				return back()->withInput($request->input())->withErrors([$e->getMessage()]);
+			}
 		}    
-		
         return view('admin.coupans.add-coupan',array('homeTitle'=>$homeTitle));
     }
     
         
 
-/***********
-***Author       : Ajay Kumar
-***Action       : destroy
-***Description  : This action is use to view the coupan 
-***Date         : 09-07-2018
-***Params       : @customer_id
-***return       : @return \Illuminate\Http\Response
-*************/  
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : destroy
+	***Description  : This action is use to view the coupan 
+	***Date         : 09-07-2018
+	***Params       : @customer_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
     
-     public function destroy($id,Request $request){
-		 
+    public function destroy($id,Request $request){
+		//dd($id);
         $coupan = Coupans::find($id);        
         if($coupan)
 			$coupan->delete();						
 		\Session::flash('alert-success', 'Coupan deleted successfully');
         return redirect()->route("admin.coupan-list");               
-        
-
     }
 	 
 }

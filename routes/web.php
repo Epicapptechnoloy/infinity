@@ -189,7 +189,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
      Route::post('/cms/process','Admin\CmsController@addcmsprocess')->name('addcmsPost');
      Route::post('/cms/editcmsPost','Admin\CmsController@editcmsPost')->name('editcmsPost');
      Route::get('/manage-cms-page','Admin\CmsController@managecms')->name('manage-cms-page');
-     Route::post('/deletecmspage','Admin\CmsController@deletecmspage')->name('deletecmspage');
+	 
+     Route::get('/deletecmspage/{id}','Admin\CmsController@deletecmspage')->name('deletecmspage');
+	 
      Route::post('/update-cms-page-staus','Admin\CmsController@UpdateCmsStatus')->name('update-cms-status');
      Route::any('/edit-cms-page/{id}','Admin\CmsController@editcmspage')->name('edit-cms-page');
 	

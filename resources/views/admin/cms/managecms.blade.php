@@ -18,7 +18,7 @@
       <!-- Info boxes -->
        <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Manage {{Config::get('settings.cms')}}</h3>
+              <h3 class="box-title">Manage Page{{Config::get('settings.cms')}}</h3>
             </div>
             <!-- /.box-header -->
              @include('adminlayouts.message')
@@ -45,23 +45,26 @@
                     <td>{{$line->title}}</td>
 										<td>{!! substr($line->description,0,100) !!}</td>	
                     <td>{{date('d-M-Y',strtotime($line->updated_at))}}</td>
-                       <td>
-                        @if($line->status)
+                    <td>
+                       @if($line->status)
                              <a class="cmsStatus" status="{{$line->status}}" href="javascript:void(0);" id="status_{{$line->id}}" cms-id="{{$line->id}}"><span class="label label-success">Active</span></a>
                         @else
                               <a class="cmsStatus" status="{{$line->status}}" href="javascript:void(0);" id="status_{{$line->id}}" cms-id="{{$line->id}}"><span class="label label-danger">Inactive</span></a>
                         @endif      
                     </td> 
-                    <td>
                    
-                   <a class='btn btn-success btn-xs btn-default' 
-                   href="{!! route('edit-cms-page',[base64_encode($line->id)]) !!}">Edit</a>                     
-                   
-                   <form action="{{route('deletecmspage')}}" method="POST">
-                     {{ csrf_field() }}
-                     <input type="hidden" value="{{$line->id}}" name="did" >
-                        <button data-toggle="confirmation" data-popout="true" class='btn btn-danger btn-xs btn-default' recordId="{{$line->id}}" type="button" name="remove_cms" value="delete"><span class="fa fa-times"></span> Delete</button>
-                    </form>
+                   <td>
+						<div class="btn-group">
+							<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
+							<ul class ="dropdown-menu" role="menu">
+							
+							  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{$line->id}}">Delete</a></li>
+							  <li><a href="{!! route('edit-cms-page',[base64_encode($line->id)]) !!}">Edit</a></li>
+							  
+							</ul>
+						</div>
+					</td>
+				  
                   
                   </tr>
                   @endforeach
@@ -91,4 +94,22 @@
           <!-- /.box -->
     </section>
     <!-- /.content -->
+	<input type="hidden" id="c_id" />
+	 <script type="text/javascript">
+$(document).ready(function(){
+
+  // open modal
+  $('.confirmDialog').click(function(){
+        var cid = $(this).attr('recordId');       
+        $('#c_id').val(cid);
+        $('#popUpinfo').modal('show');
+  });
+
+  // if user click on the go button
+  $('#SureGo').click(function(){ 
+	  window.location.replace(APP_URL+"/admin/deletecmspage/"+$('#c_id').val());      
+  });    
+});
+
+</script> 
 @endsection

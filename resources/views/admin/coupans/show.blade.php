@@ -18,27 +18,27 @@
                 <div class=" col-md-12 col-lg-12 "> 
                   <table class="table table-user-information">
                     <tbody>
-                      <tr>
+                    <tr>
                         <td>Name</td>
                         <td>{{$coupan->name}}</td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>Code</td>
                         <td>{{ $coupan->code }}</td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>Discount</td>
                         <td>{{ $coupan->discount }}</td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>Minimum Order</td>
                         <td>{{ $coupan->min_total }}</td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>Total Discount</td>
                         <td>{{ $coupan->total }}</td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>Select Type</td>
                         <td>
 							@if($coupan->status ==1 )
@@ -50,36 +50,36 @@
 							@endif
 							
 						</td>
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>Start Date</td>
 						 <td>{!!date("d M Y h:i A",strtotime($coupan->date_start))!!}</td>
                         
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>End Date</td>
 						 <td>{!!date("d M Y h:i A",strtotime($coupan->date_end))!!}</td>
                        
-                      </tr>
-                      <tr>
+                    </tr>
+                    <tr>
                         <td>Uses total</td>
                         <td>{{ $coupan->uses_total }}</td>
-                      </tr>
+                    </tr>
                       
-                      <tr>
+                    <tr>
                         <td>Uses Per Customer</td>
                         <td>{{ $coupan->uses_customer }}</td>
-                      </tr>
+                    </tr>
                       
-                      <tr>
+                    <tr>
                         <td>Status</td>
                         @if($coupan->status ==1 )
                         <td><span class="label label-success">Active</span></td>
                         @else
                         <td><span class="label label-warning">Inactive</span></td>
                         @endif
-                      </tr>                  
-                      <tr>
+                    </tr>                  
+                    <tr>
                         <td>Image</td>
                         
                         <td>
@@ -90,8 +90,8 @@
 							@else
 							N/A
 							@endif
-					   </td>
-                      </tr> 
+						</td>
+                    </tr> 
                                      
                     </tbody>
                   </table>                

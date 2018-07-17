@@ -60,9 +60,7 @@ class OrderController extends Controller
 			->select('sb_order.*','sb_order.created_at as orderDate','users.*',
 				'users.name as userName')
 			->leftJoin('users', 'users.id', '=', 'sb_order.user_id')->get(); 
-			//dd($orders);
 			$homeTitle = 'Order List';
-			
 			return view('admin.orders.order-list',array('homeTitle'=>$homeTitle,'orders'=>$orders,'params'=>$request))->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));                
     }
 	 
@@ -76,7 +74,7 @@ class OrderController extends Controller
 	*************/  
     public function viewOrderDetails(Request $request, $id){
 		$OrderId=base64_decode($id);
-		//dd($OrderId);
+		
 		$homeTitle = 'Order Details';
 		$orderdetails = DB::table('sb_order_details')
 			->select('sb_order_details.*','sb_order_details.delivered_status as orderDetailStatus','sb_order_details.qty as orderDetailQty','sb_product.*',
@@ -89,21 +87,18 @@ class OrderController extends Controller
 	
 	
 	public function viewInvoiceDetails(Request $request, $id){
-		//dd($id);
+		
 		 $OrderId=base64_decode($id);
-		//dd($OrderId);
+		
 		$homeTitle = 'Invoice Details';
 		
 		$invoiceNo = Orders::find(base64_decode($id));
-		
-		//dd($invoiceNo->created_at);
-		
 		
 		$invoiceDetails = DB::table('sb_order_details')
 			->select('sb_order_details.*','sb_order_details.delivered_status as orderDetailStatus','sb_order_details.qty as orderDetailQty','sb_product.*',
 			'sb_product.name as productName')
 			->leftJoin('sb_product', 'sb_product.product_id', '=', 'sb_order_details.product_id')->where('order_id',base64_decode($id))->get();
-		//dd($invoiceDetails);
+		
 		return view('admin.orders.view-invoice-no',array('homeTitle'=>$homeTitle,'invoiceDetails'=>$invoiceDetails,'OrderId'=>$OrderId,'invoiceNo'=>$invoiceNo,'params'=>$request))
 		->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE')); 
     }

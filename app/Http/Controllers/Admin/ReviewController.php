@@ -43,7 +43,7 @@ class ReviewController extends Controller
         $Arr = array();
 		$homeTitle = 'ProductReview'; 
 		$productRating =   Products::all();
-		//dd($productRating);
+		
 		$productReview =   Products::all();
 		
 		$rating=array();
@@ -77,8 +77,6 @@ class ReviewController extends Controller
         $order_by = $request->get('order-by');
 		$userdetails=User::find($id);
 		$productName=Products::find($id);
-		
-		//dd($productName);
 		
 		$Review = DB::table('sb_review AS PR')
 			->select('PR.*','P.*','P.name as ProductName','UT.*',

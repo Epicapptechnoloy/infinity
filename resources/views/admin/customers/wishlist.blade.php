@@ -14,7 +14,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Order list</li>
       </ol>
     </section>
@@ -34,19 +34,21 @@
             <table class="table table-hover" id="customerlisttable">
                 <thead>
 					<tr>
+					  <th>Sr. No</th>
 					  <th>Product Name</th>                   
 					  <th>Model</th>
 					  <th>Price</th>
 					  <th>Order Date</th>
 					  <th>Quantity</th>
 					  <th>Image</th>
-					  <!--<th>Action</th>-->
+					
 					</tr>
                 </thead>
                 <tbody>
 					@if(count($wishList) > 0)
 					@foreach($wishList as $wList)
 					<tr>
+					  <td>{{++$i}}</td>
 					  <td>{{$wList->productName}}</td>
 					  <td>{{$wList->model}}</td>
 					  <td>{{$wList->price}}</td>

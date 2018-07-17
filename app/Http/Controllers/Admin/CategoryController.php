@@ -56,7 +56,8 @@ class CategoryController extends Controller
 			else if ($request->status==2){
 			$categories = $categories->where('status',0);
 			}
-		}   
+		}
+		
 		 //sorting based on status
         if($sort_by == 'status' && $order_by == 'desc'){
             $categories->where('status', 1);
@@ -68,7 +69,7 @@ class CategoryController extends Controller
         $categories->appends($request->s,$request->status);
 		
 		return view('admin.categories.category-list',array('homeTitle'=>$homeTitle,'categories'=>$categories,'params'=>$request, 'sort_by'=> $sort_by , 'order_by' => $order_by))
-			->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
+		->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
 		
         
     }
@@ -97,7 +98,7 @@ class CategoryController extends Controller
 ***return       : @return \Illuminate\Http\Response
 *************/    	
      public function Addcategory(Request $request){
-		//dd($request->all());
+		
         $homeTitle = 'Add Category';
         $categories = new Categories();
         $categories->name = $request->name;
@@ -112,8 +113,7 @@ class CategoryController extends Controller
 						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}
 					$image->move($categoryRootPath, $input['imagename']);
-					//$Orgn = Orgnisation::where('id',$Orgnisation->id)->update(
-						//	 array('logo'=>$input['imagename']));
+					
 						$categories->image = $input['imagename'];					
 				}
         $categories->save();
@@ -138,8 +138,8 @@ class CategoryController extends Controller
 		  $homeTitle = 'Edit Category';
         $category = Categories::find(base64_decode($id)); 
 		
-        $categories = Categories::all();
-        return view('admin.categories.edit',array('homeTitle'=>$homeTitle,'categories'=>$categories,'category'=>$category));        
+        //$categories = Categories::all();
+        return view('admin.categories.edit',array('homeTitle'=>$homeTitle,'category'=>$category));        
     }
     
 /***********
@@ -168,8 +168,7 @@ class CategoryController extends Controller
 						File::delete($categoryRootPath.$categories->image);                                
 					}
 					$image->move($categoryRootPath, $input['imagename']);
-					//$Orgn = Orgnisation::where('id',$Orgnisation->id)->update(
-						//	 array('logo'=>$input['imagename']));
+					
 						$categories->image = $input['imagename'];					
 				}
         $categories->save();

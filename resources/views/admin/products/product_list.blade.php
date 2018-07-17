@@ -8,7 +8,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Product list</li>
       </ol>
     </section>
@@ -29,7 +29,7 @@
 			<table class="table table-hover" id="customerlisttable">
 				<thead>
 					<tr>
-					  <th style="width:05%">P_Id</th>
+					  <th style="width:05%">Sr. No.</th>
 					  <th style="width:10%">Name</th>
 					  <th style="width:10%">SKU</th>
 					  <th style="width:10%">Model</th>
@@ -44,7 +44,7 @@
 					@foreach($products as $product)
 
 					<tr>
-					  <td>{{ $product->product_id}}</td>
+					  <td>{{ ++$i}}</td>
 					  <td>{{ucfirst($product->name)}}</td>
 					  <td>{{$product->sku}}</td>               
 					  <td>{{$product->model}}</td>               

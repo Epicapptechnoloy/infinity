@@ -129,7 +129,23 @@ class CmsController extends Controller
 	***Description  : This action is used to delete of CMS pages
 	***Date         :  13-07-2018
 	*************/
-	public function deletecmspage(Request $request){
+	
+	  public function deletecmspage($id,Request $request){
+		
+        $cms = Cms::find($id);        
+        if($cms)
+			$cms->delete();	
+							
+		\Session::flash('alert-success', 'Cms deleted successfully');
+        return redirect()->route("manage-cms-page");               
+        
+
+    }	
+	
+	
+	
+	
+	/* public function deletecmspage(Request $request){
 		
 		if($request->did){
 			DB::beginTransaction();
@@ -144,7 +160,7 @@ class CmsController extends Controller
 				}
 			
 		}
-	}
+	} */
     
 	/***********
 	***Author       : Ajay kumar

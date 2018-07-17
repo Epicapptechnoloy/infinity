@@ -14,7 +14,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Cart list</li>
       </ol>
     </section>
@@ -34,6 +34,7 @@
               <table class="table table-hover" id="customerlisttable">
                 <thead>
                 <tr>
+				  <th>Sr. No</th>
                   <th>Product Name</th>                   
                   <th>Total Price</th>
                   <th>Model</th>
@@ -41,7 +42,6 @@
                   <th>Quantity</th>
                   <th>Image</th>
                   
-                  <!--<th>Action</th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -49,6 +49,7 @@
 					@if(count($cartList) > 0)
 					@foreach($cartList as $cart)
 					<tr>
+					  <td>{{++$i}}</td>
 					  <td>{{$cart->productName}}</td>
 					  <td>{{$cart->total_price}}</td>
 					  <td>{{$cart->model}}</td>

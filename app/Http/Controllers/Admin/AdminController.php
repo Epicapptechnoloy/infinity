@@ -44,7 +44,7 @@ class AdminController extends Controller
         $Arr = array();
         $homeTitle = 'Admin\'s Dashboard';
         $customers = User::orderBy('id','desc')->limit(5)->get();
-        //$orders= Orders::orderBy('order_id','desc')->limit(5)->get();
+        
         $coupans= Coupans::orderBy('coupon_id','desc')->limit(5)->get();
         $products= Products::orderBy('product_id','desc')->limit(5)->get();
 		$orders = DB::table('sb_order')
@@ -71,27 +71,25 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function updateProfile(Request $request){
-		//dd($request->all());
-	
+		
         $homeTitle = 'Profile';  
 		$admin = Admin::find(Auth::user()->id);
 		
         $title = 'Profile';
-		//$request = new Request();
+		
 		$method = $request->method();
 		
 		if ($request->isMethod('post'))
 		{
 			
 			$data =Input::all();
-			//dd($data);
+			
 			$input = $request->all();
-			//dd($input);			
+					
 			$rules = array(
 				'fname' => 'Required|Min:3|Max:250',
 				'lname' => 'Required|Min:3|Max:250',
-				//'email'     => 'required|email|unique:sb_admin'
-				
+			
 			);
 			$validator = Validator::make($data, $rules);
 			if ($validator->fails())
@@ -116,9 +114,8 @@ class AdminController extends Controller
 						File::makeDirectory($adminRootPath, 0777, true, true);                                
 					}
 					$image->move($adminRootPath, $input['imagename']);
-					//$Orgn = Orgnisation::where('id',$Orgnisation->id)->update(
-						//	 array('logo'=>$input['imagename']));
-						$admin->profile_picture = $input['imagename'];					
+					
+					$admin->profile_picture = $input['imagename'];					
 				}
 				$admin->save();
 				$request->session()->flash('alert-success', 'Profile Updated successfully!');

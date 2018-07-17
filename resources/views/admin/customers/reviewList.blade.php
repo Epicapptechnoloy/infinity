@@ -15,7 +15,7 @@
         <small>Control panel</small>
       </h1>
     <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Review list</li>
     </ol>
     </section>
@@ -36,6 +36,7 @@
             <table class="table table-hover" id="customerlisttable">
                 <thead>
 					<tr>
+					  <th>Sr. No</th>
 					  <th>Product Name</th>                   
 					  <th>Rating</th>
 					  <th>Model</th>
@@ -48,6 +49,7 @@
 					@if(count($reviewList) > 0)
 					@foreach($reviewList as $review)
 					<tr>
+					  <td>{{++$i}}</td>
 					  <td>{{$review->productName}}</td>
 					  <td>{{$review->rating}}</td>
 					  <td>{{$review->model}}</td>
