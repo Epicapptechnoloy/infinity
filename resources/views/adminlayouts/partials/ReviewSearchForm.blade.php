@@ -1,15 +1,11 @@
-    
-	
-	<form role="form" action="{{route('admin.order-list')}}" method="get">
+<form role="form" action="{{route('admin.review-list')}}" method="get">
 	<div class="row">
 		<div class="col-md-3">
 			<div class="form-group">
-				<label>Search :</label>
-					<input value="{{$params->s}}" class="form-control" type="text" name="s" autocomplete="off" placeholder="name, email ..." >
+			  <label>Search :</label>
+				<input value="{{$params->s}}" class="form-control" type="text" name="s"  autocomplete="off" placeholder="product name,..." >
 			</div>
 		</div>
-
-		
 
 		<div class="col-md-2">
 			<div class="form-group">
@@ -19,6 +15,5 @@
 				  </span>
 			</div>
 		</div>
-
 	</div> 
 </form>

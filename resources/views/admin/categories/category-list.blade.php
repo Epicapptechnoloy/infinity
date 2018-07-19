@@ -1,42 +1,42 @@
 @extends('adminlayouts.master')
 @section('content')
 <!-- Default box -->
-<section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li class="active">Category list</li>
-      </ol>
+	<section class="content-header">
+		<h1>
+			Dashboard
+			<small>Control panel</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/admin/home"><i class="fa fa-dashboard"></i>Home</a></li>
+			<li class="active">Category list</li>
+		</ol>
     </section>
 
-      <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Category list</h3>
-			  <!-- form for seraching here-->
-				@include('adminlayouts.partials.CategorySearchForm')
-			<!-- end here-->
-			  
-            </div>
-            <section class="content"> 
+    <div class="box">
+		<div class="box-header with-border">
+		  <h3 class="box-title">Category list</h3>
+		  <!-- form for seraching here-->
+			@include('adminlayouts.partials.CategorySearchForm')
+		<!-- end here-->
+		  
+		</div>
+    <section class="content"> 
            
-            <!-- /.box-header -->
-             @include('adminlayouts.message')
+	<!-- /.box-header -->
+	@include('adminlayouts.message')
             
     
-      <div class="box-body table-responsive no-padding">
+    <div class="box-body table-responsive no-padding">
         <table class="table table-hover" id="customerlisttable">
 			<thead>
-			<tr>
-				<th style="width:10%">Id</th>
-				<th style="width:20%">Name</th>
-				<th style="width:20%">Description</th>
-				<th style="width:20%">Status</th>
-				<th style="width:20%">Image</th>
-				<th style="width:10%">Action</th>
-			</tr>
+				<tr>
+					<th style="width:10%">Id</th>
+					<th style="width:20%">Name</th>
+					<th style="width:20%">Description</th>
+					<th style="width:20%">Status</th>
+					<th style="width:20%">Image</th>
+					<th style="width:10%">Action</th>
+				</tr>
 			</thead>
             <tbody>
 				@if(count($categories) > 0)
@@ -62,16 +62,15 @@
 						@endif
 					</td>
 					<td>
-					<div class="btn-group">
-						<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
-						<ul class ="dropdown-menu" role="menu">
-						
-						  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{base64_encode($category->category_id)}}">Delete</a></li>
-						  <li><a href="{{route('admin.category.edit',[base64_encode($category->category_id)])}}">Edit</a></li>
-						</ul>
-					</div>
+						<div class="btn-group">
+							<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
+							<ul class ="dropdown-menu" role="menu">
+							
+							  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{base64_encode($category->category_id)}}">Delete</a></li>
+							  <li><a href="{{route('admin.category.edit',[base64_encode($category->category_id)])}}">Edit</a></li>
+							</ul>
+						</div>
 					</td>
-					            
                 </tr>
                 @endforeach
 				@else

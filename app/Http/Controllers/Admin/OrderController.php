@@ -42,10 +42,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-		
         $Arr = array();
         $homeTitle = 'Admin\'s Dashboard';
-       
         return view('admin.home',array('homeTitle'=>$homeTitle,'data'=>$Arr));
     }
 
@@ -56,11 +54,26 @@ class OrderController extends Controller
      */
     public function OrderList(Request $request){
 		
-		$orders = DB::table('sb_order')
-			->select('sb_order.*','sb_order.created_at as orderDate','users.*',
-				'users.name as userName')
-			->leftJoin('users', 'users.id', '=', 'sb_order.user_id')->get(); 
-			$homeTitle = 'Order List';
+		$homeTitle = 'Admin|Order list';
+		$sort_by = $request->get('sort-by');
+        $order_by = $request->get('order-by');
+		
+		
+		
+	 $orders = DB::table('sb_order AS OD')
+			->select('OD.*','OD.status as odStatus','OD.created_at as odOrderDate','UT.*',
+			'UT.name as userName')
+			->leftJoin('users AS UT', 'UT.id', '=', 'OD.user_id');
+
+			if(!empty($request->s)){
+				$orders->Where('UT.name', 'like', '%' . $request->s . '%')->orWhere('UT.email', 'like', '%' . $request->s . '%');
+			}
+			
+			
+			$orders = $orders->paginate(env('RECORD_PER_PAGE')); 	            
+			$orders->appends($request->s); 
+			
+		//dd($orders);
 			return view('admin.orders.order-list',array('homeTitle'=>$homeTitle,'orders'=>$orders,'params'=>$request))->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));                
     }
 	 
@@ -73,8 +86,8 @@ class OrderController extends Controller
 	***return       : @return \Illuminate\Http\Response
 	*************/  
     public function viewOrderDetails(Request $request, $id){
-		$OrderId=base64_decode($id);
 		
+		$OrderId=base64_decode($id);
 		$homeTitle = 'Order Details';
 		$orderdetails = DB::table('sb_order_details')
 			->select('sb_order_details.*','sb_order_details.delivered_status as orderDetailStatus','sb_order_details.qty as orderDetailQty','sb_product.*',
@@ -88,17 +101,13 @@ class OrderController extends Controller
 	
 	public function viewInvoiceDetails(Request $request, $id){
 		
-		 $OrderId=base64_decode($id);
-		
+		$OrderId=base64_decode($id);
 		$homeTitle = 'Invoice Details';
-		
 		$invoiceNo = Orders::find(base64_decode($id));
-		
 		$invoiceDetails = DB::table('sb_order_details')
 			->select('sb_order_details.*','sb_order_details.delivered_status as orderDetailStatus','sb_order_details.qty as orderDetailQty','sb_product.*',
 			'sb_product.name as productName')
 			->leftJoin('sb_product', 'sb_product.product_id', '=', 'sb_order_details.product_id')->where('order_id',base64_decode($id))->get();
-		
 		return view('admin.orders.view-invoice-no',array('homeTitle'=>$homeTitle,'invoiceDetails'=>$invoiceDetails,'OrderId'=>$OrderId,'invoiceNo'=>$invoiceNo,'params'=>$request))
 		->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE')); 
     }
@@ -115,7 +124,6 @@ class OrderController extends Controller
 			
 			if($request->isMethod('POST') && !empty($request->status)){
 				$order = OrderDetails::where(['order_id'=>$request->orderId,'product_id'=> $request->productId])->update(array('delivered_status'=>$request->status));
-				
 				\Session::flash('alert-success','Order has been updated successfully');
 				return redirect()->back();
 			}else{

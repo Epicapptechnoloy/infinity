@@ -3,7 +3,7 @@
 		<div class="col-md-3">
 			<div class="form-group">
 			  <label>Search :</label>
-				<input value="{{$params->s}}" class="form-control" type="text" name="s" placeholder="category name..." >
+				<input value="{{$params->s}}" class="form-control" type="text" name="s" autocomplete="off" placeholder="category name..." >
 			</div>
 		</div>
 

@@ -69,10 +69,8 @@ class ProductController extends Controller
         } 
 		$products =  $products->paginate(env('RECORD_PER_PAGE'));   
         $products->appends($request->s,$request->status);	
-		
-		//dd($products);
-         return view('admin.products.product_list',array('homeTitle'=>$homeTitle,'products'=>$products,'params'=>$request))
-         ->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
+        return view('admin.products.product_list',array('homeTitle'=>$homeTitle,'products'=>$products,'params'=>$request))
+        ->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
     }
 
 /***********
@@ -98,9 +96,8 @@ class ProductController extends Controller
 ***return       : @return \Illuminate\Http\Response
 *************/  
     public function AddProduct(Request $request){
-		//dd($request->all());
+		
         $homeTitle = 'Add Product';
-      
         $products = new Products();
         $products->name = $request->name;        
         $products->model = $request->model;        
@@ -113,22 +110,20 @@ class ProductController extends Controller
         $products->points = $request->points;
         $products->weight = $request->weight;
 		$products->category_id = $request->category;
-		 $image = $request->file('image');
-				if($image){
-					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-					$categoryRootPath = public_path("/uploads/product/image");
-					
-					if(!File::exists($categoryRootPath)) {
-						File::makeDirectory($categoryRootPath, 0777, true, true);                                
-					}
-					$image->move($categoryRootPath, $input['imagename']);
-					//$Orgn = Orgnisation::where('id',$Orgnisation->id)->update(
-						//	 array('logo'=>$input['imagename']));
-						$products->image = $input['imagename'];					
+		$image = $request->file('image');
+			if($image){
+				$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
+				$categoryRootPath = public_path("/uploads/product/image");
+				
+				if(!File::exists($categoryRootPath)) {
+					File::makeDirectory($categoryRootPath, 0777, true, true);                                
 				}
-			
+				$image->move($categoryRootPath, $input['imagename']);
+				//$Orgn = Orgnisation::where('id',$Orgnisation->id)->update(
+					//	 array('logo'=>$input['imagename']));
+					$products->image = $input['imagename'];					
+			}
         $products->save();
-		
         $request->session()->flash('alert-success', 'Product was successful added!');
         return redirect()->route("admin.product-list");
         
@@ -157,7 +152,7 @@ class ProductController extends Controller
 	***Params       : category data
 	***return       : @return \Illuminate\Http\Response
 	*************/  
-	  public function removeFromWishlist($cid, $pid){
+	public function removeFromWishlist($cid, $pid){
         $homeTitle = 'Removed Customers WishList Product';      
 		$wishlists = Wishlists::where('product_id',$pid)->where('user_id',$cid)->delete();        
        \Session::flash('alert-success', 'Product was successfulLY removed from wishlist!');

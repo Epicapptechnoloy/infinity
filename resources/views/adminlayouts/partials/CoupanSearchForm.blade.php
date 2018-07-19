@@ -3,7 +3,7 @@
 		<div class="col-md-4">
 			<div class="form-group">
 				<label>Filter by Discounts Or Offers Code :</label>
-				<input value="{{$params->s}}" class="form-control" type="text" name="s" placeholder="Filter by Discounts Or Offers Code ..." >
+				<input value="{{$params->s}}" class="form-control" type="text" name="s" autocomplete="off" placeholder="Filter by Discounts Or Offers Code ..." >
 			</div>
 		</div>
 		<div class="col-md-2">

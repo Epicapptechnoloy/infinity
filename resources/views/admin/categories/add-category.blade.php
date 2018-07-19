@@ -27,7 +27,7 @@
 				<label>Category Name </label>
                 <div class="row">
 				    <div class="col-xs-6">
-						<input name="name" type="text"  class="form-control" placeholder="enter category name" required>
+						<input name="name" type="text"  class="form-control" autocomplete="off" placeholder="enter category name" required>
 					</div>
 				</div>
 			  @if ($errors->has('name'))
@@ -71,22 +71,6 @@
 				@endif	
 			</div>
 		  
-		  
-			<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-				<label for="exampleInputreason1">Description</label>
-					<div class="row">
-						<div class="col-xs-6">
-							<textarea rows="4" cols="50" class="form-control input_width" id="description" name="description"  placeholder="description"></textarea>
-						</div>
-					</div>
-				@if ($errors->has('description'))
-					<span class="help-block">
-						<strong>{{ $errors->first('description') }}</strong>
-					</span>
-				@endif	
-			</div>
-		  
-		
 			<div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} ">
                 <label>Status</label>
                 <div class="row">

@@ -22,6 +22,9 @@
       <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Order's list</h3>
+			  
+			  @include('adminlayouts.partials.OrderSearchForm')
+			  
             </div>
             <section class="content"> 
             <!-- /.box-header -->
@@ -38,6 +41,7 @@
                   <th>Order No.</th>                   
                  
                   <th>User Name</th>
+                  <th>Email</th>
                   <th>Order Date</th>
                  
                   <th>Action</th>
@@ -53,7 +57,8 @@
                   <td>R$S#{{$order->order_id}}</td>
                  
                   <td>{{$order->userName}}</td>
-				 <td>{!!date("d M Y h:i A",strtotime($order->orderDate))!!}</td>
+                  <td>{{$order->email}}</td>
+				 <td>{!!date("d M Y h:i A",strtotime($order->odOrderDate))!!}</td>
                  
 					<td>
 						<div class="btn-group">

@@ -10,12 +10,12 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Category</li>
+        <li class="active">Edit Category</li>
       </ol>
     </section>
       <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Add Category</h3>
+              <h3 class="box-title">Edit Category</h3>
             </div>
             <!-- /.box-header -->
            @include('adminlayouts.message')

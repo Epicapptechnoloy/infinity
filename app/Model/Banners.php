@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Banners extends Model
 {
+	
+	
+	protected $primaryKey = 'banner_id';
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'solpoo_doctor_banners';
+    protected $table = 'sb_banners';
     
     /**
      * The attributes that are mass assignable.
@@ -19,6 +22,6 @@ class Banners extends Model
      * @var array
      */
     protected $fillable = [
-        'doctorId', 'bannerName','bannerImage','bannerText','status','modifyBy',
+        'banner_id', 'bannerName','bannerImage','bannerText','status','modifyBy',
     ];
 }

@@ -135,6 +135,27 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
     Route::POST('/add-category','Admin\CategoryController@Addcategory')->name('admin.add.category');
 	
 	
+	
+	//banner list  
+    Route::GET('/banner-list','Admin\BannerController@bannerList')->name('admin.banner-list');
+        
+	//add banner
+    Route::GET('/add-banner','Admin\BannerController@AddBannerForm')->name('admin.AddBannerForm');
+	
+	//edit-banner    
+    Route::GET('/edit-banner/{id}','Admin\BannerController@edit')->name('admin.banner.edit');
+    
+    //update-banner-save    
+    Route::POST('/update-banner','Admin\BannerController@update')->name('admin.banner.update');
+    
+    //delete-banner    
+    Route::GET('/banner/delete/{id}','Admin\BannerController@destroy')->name('admin.banner.delete');
+    
+	//add banner process
+    Route::POST('/add-banner','Admin\BannerController@Addbanner')->name('admin.add.banner');
+	
+	
+	
 	//add review
     Route::GET('/add-review','Admin\ReviewController@AddReviewForm')->name('admin.AddReviewForm');
 	

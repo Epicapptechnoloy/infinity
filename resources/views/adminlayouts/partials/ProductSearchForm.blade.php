@@ -3,7 +3,7 @@
 		<div class="col-md-3">
 			<div class="form-group">
 			  <label>Search :</label>
-				<input value="{{$params->s}}" class="form-control" type="text" name="s" placeholder="name, model ..." >
+				<input value="{{$params->s}}" class="form-control" type="text" name="s" autocomplete="off" placeholder="name, model ..." >
 			</div>
 		</div>
 
@@ -13,7 +13,7 @@
 				<select   name="status" class="form-control" >
 				<option value="" >Select Status</option>
 				<option value="1" @if ($params->status==1) selected="selected" @endif >Active</option>
-				<option value="2"  @if ($params->status==0) selected="selected" @endif>Inactive</option>          
+				<option value="2"  @if ($params->status==2) selected="selected" @endif>Inactive</option>          
 				</select>                          
 			</div>
 		</div>

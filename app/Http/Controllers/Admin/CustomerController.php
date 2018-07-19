@@ -42,7 +42,6 @@ class CustomerController extends Controller
      */
     public function index()
     {
-		
         $Arr = array();
         $homeTitle = 'Admin\'s Dashboard';
         return view('admin.home',array('homeTitle'=>$homeTitle,'data'=>$Arr));
@@ -54,127 +53,36 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	
-	 /*  public function CustomerList(Request $request) {
+	public function CustomerList(Request $request) {
         $Countries = Countries::select('country_id', 'country_name')->where('status', 1)->get();
         $States = States::select('id', 'name')->where('status', 1)->get();
         $query = DB::table('users as U')
-                ->select('U.id', 'U.name', 'U.email', 'U.status', 'C.country_name', 'S.name as state_name')
+                ->select('U.id', 'U.name', 'U.email','U.number', 'U.status', 'C.country_name', 'S.name as state_name')
                 ->leftJoin('sb_countries as C', 'U.country_id', '=', 'C.country_id')
                 ->leftJoin('sb_states as S', 'U.state_id', '=', 'S.id')
                 ->where('U.status', '!=', 2);
-		
+				
         if ($request->has('s')) {
-           
-            $query->where('U.name', 'like', '%' . $request->s . '%')->orWhere('U.email', 'like', '%' . $request->s . '%')
-                    ->orWhere('U.id', $request->s);
-			//dd($query);		
+            $query->where('U.name', 'like', '%' . $request->s . '%')->orWhere('U.email', 'like', '%' . $request->s . '%');
         }
-		
         if ($request->has('status')) {
             $query->where('U.status', $request->status);
         }
-
-        if ($request->has('country_id')) {
-            $query->where('U.country_id', $request->country_id);
-        }
-
-        if ($request->has('state_id')) {
-            $query->where('U.state_id', $request->state_id);
-        }
-		 if($request->has('export')){
+		if($request->has('export')){
             return $this->_userExport($query);
         }
 		
-         $Users =  $query->paginate(env('RECORD_PER_PAGE')); 
-			
-		 dd($Users);
-		
-        //$Users = $query->paginate(env('RECORD_PER_PAGE'));
-	//dd($Users);
+        $customers =  $query->paginate(env('RECORD_PER_PAGE')); 
         return view('admin.customers.customer-list', [
-                    'homeTitle' => 'User List',
-                    'Countries' => $Countries,
-                    'States' => $States,
-                    'Users' => $Users,
-                    'totalAppUsers' => User::all()->count(),
-                    'params' => $request,
-                ])->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
+			'homeTitle' => 'User List',
+			'Countries' => $Countries,
+			'States' => $States,
+			'customers' => $customers,
+			'totalAppUsers' => User::all()->count(),
+			'params' => $request,
+		])->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
     }
 	
-	 */
-	
-	 
-	
-   public function CustomerList(Request $request){ 
-		
-		
-        $sort_by = $request->get('sort-by');
-        $order_by = $request->get('order-by');
-		
-		//$countries   = Countries::where('status',1)->orderBy('country_name','ASC')->get();
-		
-        $customers = new User();
-        $homeTitle = 'Customer list'; 
-		//$customers=User::all();
-		
-        //dd($customers);
-        if(!empty($request->s)){
-                $customers = $customers->where('name','like', '%'.$request->s.'%')->orwhere('number','like', '%'.$request->s.'%')->orwhere('email','like', '%'.$request->s.'%'); 
-				
-            }
-        if(!empty($request->verified)){
-                    if($request->verified==1){
-                        $customers = $customers->where('isVerified',1);
-                    }
-                    if ($request->verified==2){
-                        $customers = $customers->where('isVerified',Null);
-                    }
-            }    
-        if(!empty($request->status)){
-			if($request->status==1){
-			$customers = $customers->where('status',1);
-			}
-			else if ($request->status==2){
-			$customers = $customers->where('status',0);
-			}
-		}    
-    //sorting based on name
-        if($sort_by == 'name' && $order_by == 'desc'){
-            $customers->orderBy('name','desc');
-        }
-        if($sort_by == 'name' && $order_by == 'asc'){
-            $customers->orderBy('name','asc');
-        }      
-    //sorting based on email
-        if($sort_by == 'email' && $order_by == 'desc'){
-            $customers->orderBy('email','desc');
-        }
-        if($sort_by == 'email' && $order_by == 'asc'){
-            $customers->orderBy('email','asc');
-        }    
-    //sorting based on status
-        if($sort_by == 'status' && $order_by == 'desc'){
-            $customers->where('status', 1);
-        }
-        if($sort_by == 'status' && $order_by == 'asc'){
-            $customers->orderBy('status',0);
-        } 
-
-        $customers =  $customers->paginate(env('RECORD_PER_PAGE'));   
-		//dd($customers);
-        $customers->appends($request->s,$request->viriefied,$request->status);
-		//dd($customers);
-        //initial values for sorting
-		
-        return view('admin.customers.customer-list',array('homeTitle'=>$homeTitle,
-		'customers'=>$customers,
-		'params'=>$request,
-		'sort_by'=> $sort_by , 
-		'order_by' => $order_by))
-         ->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
-        
-    }  
 	/***********
 	***Author       : Ajay Kumar
 	***Action       : show

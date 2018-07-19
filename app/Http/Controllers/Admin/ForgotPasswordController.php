@@ -48,7 +48,7 @@ class ForgotPasswordController extends Controller
     ***return       : @return \Illuminate\Http\Response
     *************/
     public function forgotPasswordForm(Request $request){
-        $homeTitle = "SmartBuy | Forgot password";
+        $homeTitle = "Infinity | Forgot password";
         return view('admin.passwords.email',array('homeTitle'=>$homeTitle));
     }
     
@@ -61,7 +61,8 @@ class ForgotPasswordController extends Controller
     ***return       : @return \Illuminate\Http\Response
     *************/
     public function resetPasswordEmail(Request $request){
-        $homeTitle = "SmartBuy | Forgot password";
+		//dd($request->all());
+        $homeTitle = "Infinity | Forgot password";
         
         $this->validate($request, [
             'email'           => 'required|email',            
@@ -73,38 +74,37 @@ class ForgotPasswordController extends Controller
             DB::beginTransaction();
                 try {					
 						$adm = Admin::findOrFail($admin->id);
+						//dd($adm);
                         $rand = substr(uniqid('', true), -6);
+						//dd($rand);
 						//$user->password = Hash::make($rand);
 						$randomstring = str_random(15);
+						//dd($randomstring);
 						$adm->reset_password_token  = $randomstring;  
-						
-						
-						  if($adm->save()){  
+						//dd($adm);
+						if($adm->save()){  
 						   DB::commit();        
 							\Session::flash('success','Your Reset Password Link has been sent on your email.');
 							$reset_link = \URL::to('/admin/new-password/'.base64_encode($admin->id).'/'.base64_encode($randomstring));
-							 
 							/***********Email sent to reset password******/
 							Mail::send('admin.passwords.forgotpassword', ['user' => $admin,'reset_link'=>$reset_link], function($message) use($admin)
 							{
-								$message->to(trim($admin->email), 'SmartBuy')->subject('Forgot password!');
+								$message->to(trim($admin->email), 'Infinity')->subject('Forgot password!');
 							});
-                        }else{
-							 return back()->withErrors([$e->getMessage()]);
+                        }
+						else{
+							return back()->withErrors([$e->getMessage()]);
 						}
                         //send email end here
-                      
                         return back()->withErrors('success','Your Reset Password Link has been sent on your email.');
                       /*************end here*********************/
-                        
-                        
                     }
-                    catch (\Exception $e) {                    
+                    catch (\Exception $e){                    
                         return back()->withErrors([$e->getMessage()]);
                             DB::rollBack();
                     }            
         }else{
-                return back()->withInput($request->input())->withErrors(['Email not found.']);
+            return back()->withInput($request->input())->withErrors(['Email not found.']);
         }
     }      
     
