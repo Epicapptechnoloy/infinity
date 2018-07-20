@@ -70,6 +70,20 @@
 				<li class="{{ Request::path() == 'admin/add-product' ? 'active' : '' }}"><a href="/admin/add-product"><i class="fa fa-circle-o"></i>Add Product</a></li>
 			</ul>
         </li>
+		
+		<li class="treeview {{ (Request::path() == 'admin/import-list' || Request::path() == 'admin/import-product' || Request::path() == 'admin/import-edit-banner') ? 'active' : '' }}">
+			<a href="#">
+				<i class="fa fa-folder"></i> <span>Import Management</span>
+				<span class="pull-right-container">
+				  <i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="{{ Request::path() == 'admin/import-list' ? 'active' : '' }}"><a href="/admin/import-product"><i class="fa fa-circle-o"></i>Import Product</a></li>
+			</ul>
+        </li>
+		
+		
         
         <li class="treeview {{ (Request::path() == 'admin/category-list' || Request::path() == 'admin/add-category' || Request::path() == 'admin/edit-category' || Route::getCurrentRoute()->getName() == 'live.token'  || Route::getCurrentRoute()->getName() == 'clinic.show') ? 'active' : '' }}">
 			<a href="#">
@@ -180,6 +194,8 @@
 				<li class="{{ Request::path() == 'admin/add-banner' ? 'active' : '' }}"><a href="/admin/add-banner"><i class="fa fa-circle-o"></i>Add Banner</a></li>                       
 			</ul>
         </li>
+		
+		
 		
 		<li class="treeview">
 			<a href="#">

@@ -7,8 +7,14 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
+    'Postmark\\' => array($vendorDir . '/wildbit/laravel-postmark-provider/src', $vendorDir . '/wildbit/postmark-php/src', $vendorDir . '/wildbit/swiftmailer-postmark/src'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
+    'PHPExcel' => array($vendorDir . '/phpoffice/phpexcel/Classes'),
+    'PEAR' => array($vendorDir . '/pear/pear_exception'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'Maatwebsite\\Excel\\' => array($vendorDir . '/maatwebsite/excel/src'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
+    'HTTP_Request2' => array($vendorDir . '/pear/http_request2'),
+    'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
 );

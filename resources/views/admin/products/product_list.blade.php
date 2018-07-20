@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Default box -->
-<section class="content-header">
+	<section class="content-header">
       <h1>
         Dashboard
         <small>Control panel</small>

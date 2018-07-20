@@ -14,6 +14,7 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Edit Product Details</h3>
+			 @include('adminlayouts.message')
         </div>
             <!-- /.box-header -->
       

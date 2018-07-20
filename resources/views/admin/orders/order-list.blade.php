@@ -30,7 +30,7 @@
             <!-- /.box-header -->
         
             <!-- /.box-header -->
-             @include('adminlayouts.message')
+
             
      <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">

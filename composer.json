@@ -12,7 +12,8 @@
         "nesbot/carbon": "^1.22",
         "pear/http_request2": "^2.3",
         "wildbit/laravel-postmark-provider": "^3.0",
-        "wildbit/postmark-php": "^2.5"
+        "wildbit/postmark-php": "^2.5",
+		"maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

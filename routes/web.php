@@ -100,20 +100,29 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
     //Product list 
 	Route::any('/product-list','Admin\ProductController@productList')->name('admin.product-list');
 	
-	//add schedule    	
+	//add product    	
 	Route::GET('/add-product','Admin\ProductController@AddProductForm');
 
-    //add schedule
+    //add product
     Route::POST('/add-product','Admin\ProductController@AddProduct')->name('admin.add.product');
 
-    //edit-schedule    
+    //edit-product    
    
-    
 	Route::GET('view-product/{product_id}','Admin\ProductController@viewProduct')->name('admin.view-product');
 	
 	Route::GET('edit-product/{product_id}','Admin\ProductController@editProduct')->name('editProduct');
 	Route::POST('editProductProcess','Admin\ProductController@editProductPost')->name('editProductProcess');
 	Route::GET('delete-product/{product_id}', 'Admin\ProductController@deleteProduct')->name('deleteProduct');
+	
+	//import product
+	Route::GET('import-product','Admin\ImportController@importProduct')->name('admin.import-product');
+	Route::post('import-product-process','Admin\ImportController@importProductProcess')->name('importProductProcess');
+	
+	Route::GET('download-import-product','Admin\ImportController@downloadImportProduct')->name('downloadImportProduct');
+	
+	//Route::get('import-product',array('as'=>'excel.import','uses'=>'FileController@importExportExcelORCSV'));
+	//Route::post('import-csv-excel',array('as'=>'import-csv-excel','uses'=>'FileController@importFileIntoDB'));
+	//Route::get('download-excel-file/{type}', array('as'=>'excel-file','uses'=>'FileController@downloadExcelFile'));
 	
 	
     //category list  
