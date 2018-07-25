@@ -76,7 +76,7 @@
 			</ul>
         </li>
 		
-		<li class="treeview {{ (Request::path() == 'admin/import-list' || Request::path() == 'admin/import-product' || Request::path() == 'admin/import-edit-banner') ? 'active' : '' }}">
+		<li class="treeview {{ (Request::path() == 'admin/import-product') ? 'active' : '' }}">
 			<a href="#">
 				<i class="fa fa-folder"></i> <span>Import Management</span>
 				<span class="pull-right-container">
@@ -84,7 +84,7 @@
 				</span>
 			</a>
 			<ul class="treeview-menu">
-				<li class="{{ Request::path() == 'admin/import-list' ? 'active' : '' }}"><a href="/admin/import-product"><i class="fa fa-circle-o"></i>Import Product</a></li>
+				<li class="{{ Request::path() == 'admin/import-product' ? 'active' : '' }}"><a href="/admin/import-product"><i class="fa fa-circle-o"></i>Import Product</a></li>
 			</ul>
         </li>
 		
