@@ -17,7 +17,7 @@ Route::GET('/fetch-city','HomeController@fetchCity');
 // Admin Route for new shopping site
 
 Route::GET('/admin','Admin\LoginController@showLoginForm')->name('admin');
-Route::POST('admin/login','Admin\LoginController@login')->name('admin.login');;
+Route::POST('admin/login','Admin\LoginController@login')->name('admin.login');
 Route::GET('admin/logout','Admin\LoginController@logout')->name('admin.logout');
 
 Route::any('/admin/forgot-password', 'Admin\ForgotPasswordController@forgotPasswordForm')->name('admin.password.request');
@@ -37,21 +37,17 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
 	Route::GET('/change-password','Admin\AdminController@changePasswordForm')->name('admin.change-password'); // change password for Admin
 	Route::POST('/save-change-password','Admin\AdminController@savePassword')->name('admin.save-password'); // save change password
 	
-	
   	//user list in Admin panel
 	Route::GET('/users','Admin\CustomerController@CustomerList')->name('admin.customers');
 	
 	//customer view  
     Route::GET('/users/{id}','Admin\CustomerController@show')->name('admin.customer.show');
 	
-	
 	//order view  
     Route::GET('/userOrder/{id}','Admin\CustomerController@showOrder')->name('admin.customerOrder.orderList');
 	
 	// view-Order  
     Route::GET('/user/view-order/{id}','Admin\CustomerController@viewOrderDetails')->name('admin.customer.view-order');
-	
-	
 	
 	//wishList view  
     Route::GET('/userWishlist/{id}','Admin\CustomerController@showWishlist')->name('admin.customerWishlist.wishList');

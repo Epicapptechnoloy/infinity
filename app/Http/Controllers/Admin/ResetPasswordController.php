@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
@@ -56,7 +55,7 @@ class ResetPasswordController extends Controller
     *************/
     public function newPassword(Request $request){
 		
-         $homeTitle = "SmartBuy | New password";
+         $homeTitle = "Infinity | New password";
          $admin = Admin::where('reset_password_token',base64_decode($request->resettoken))->where('id',base64_decode($request->id))-> first();
          if($admin){
 				return view('admin.passwords.new-password',['homeTitle'=>$homeTitle,'admin'=>$admin,'request'=>$request]);
@@ -75,28 +74,22 @@ class ResetPasswordController extends Controller
     *************/
     public function updatePassword(Request $request){
 		
-         $homeTitle = "SmartBuy | New password";
-         //validate the admin login form
+        $homeTitle = "Infinity | New password";
 		   $validation = Validator::make($request->all(), [            
 				'password'  => 'required|min:6|confirmed',            
 			]);
-			//
-			
-			if ($validation->fails()) { 
+			if ($validation->fails()){ 
 				return redirect()->back()->withErrors($validation);   
 			} 
-			//
-		
-         $admin = Admin::where('reset_password_token',base64_decode($request->resettoken))->where('id',base64_decode($request->userid))-> first();
-        
-         if($admin){			 
+        $admin = Admin::where('reset_password_token',base64_decode($request->resettoken))->where('id',base64_decode($request->userid))-> first();
+        if($admin){			 
 				$newPass = Admin::findOrFail($admin->id);
 				$newPass->password = Hash::make($request->password);
 				$newPass->reset_password_token  = '';
 				$newPass->save();
 			\Session::flash('success','Your password has been updated successfully. Please login');
 			 return redirect()->route('admin');
-		 }else{
+		}else{
 			return response()->json(['Link has expired!'], 404); 
 		}
         

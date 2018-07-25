@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -50,7 +49,6 @@ class AdminController extends Controller
 			->select('sb_order.*','sb_order.created_at as orderDate','users.*',
 				'users.name as userName')
 			->leftJoin('users', 'users.id', '=', 'sb_order.user_id')->orderBy('order_id','desc')->limit(5)->get(); 
-		
         return view('admin.home',array('homeTitle'=>$homeTitle,'data'=>$Arr,'customers'=>$customers,'orders'=>$orders,
 		'coupans'=>$coupans,'products'=>$products,'totalOrders'=>Orders::all()->count(),
 		'totalProducts'=>Products::all()->count(),'totalUser'=>User::all()->count()))
@@ -86,7 +84,6 @@ class AdminController extends Controller
 	
 	
     public function updateProfile(Request $request){
-		
         $homeTitle = 'Profile';  
 		$admin = Admin::find(Auth::user()->id);
         $title = 'Profile';
@@ -138,7 +135,7 @@ class AdminController extends Controller
     *************/
 	
     public function changePasswordForm(Request $request){            
-         $homeTitle = "SmartBuy | Update password";
+         $homeTitle = "Infinity | Update password";
 		 $admin = Admin::find(Auth::user());
 	   return view('admin.update-password',array('homeTitle'=>$homeTitle,'admin'=>$admin));        
     }
@@ -152,7 +149,7 @@ class AdminController extends Controller
     ***return       : @return \Illuminate\Http\Response
     *************/
     public function savePassword(Request $request){
-        $homeTitle = "Raascals | Update password";
+        $homeTitle = "Infinity | Update password";
         $admin = Auth::user();        
         if(Hash::check($request->current_password, $admin->password)){		
 			   $validation = Validator::make($request->all(), [            

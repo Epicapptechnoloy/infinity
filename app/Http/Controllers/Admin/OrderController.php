@@ -14,12 +14,9 @@ use App\Model\Products;
 use App\Model\Settings;
 use App\Model\Countries;
 use App\Model\States;
-
-
 use App\Model\Blogs;
 use DB;
 use carbon\Carbon;
-
 use File;
 use App\Model\ProductImage;
 class OrderController extends Controller
@@ -58,22 +55,16 @@ class OrderController extends Controller
 		$sort_by = $request->get('sort-by');
         $order_by = $request->get('order-by');
 		
-		
-		
-	 $orders = DB::table('sb_order AS OD')
-			->select('OD.*','OD.status as odStatus','OD.created_at as odOrderDate','UT.*',
-			'UT.name as userName')
-			->leftJoin('users AS UT', 'UT.id', '=', 'OD.user_id');
+		$orders = DB::table('sb_order AS OD')
+		->select('OD.*','OD.status as odStatus','OD.created_at as odOrderDate','UT.*',
+		'UT.name as userName')
+		->leftJoin('users AS UT', 'UT.id', '=', 'OD.user_id');
 
 			if(!empty($request->s)){
-				$orders->Where('UT.name', 'like', '%' . $request->s . '%')->orWhere('UT.email', 'like', '%' . $request->s . '%');
+					$orders->Where('UT.name', 'like', '%' . $request->s . '%')->orWhere('UT.email', 'like', '%' . $request->s . '%');
 			}
-			
-			
-			$orders = $orders->paginate(env('RECORD_PER_PAGE')); 	            
+		    $orders = $orders->paginate(env('RECORD_PER_PAGE')); 	            
 			$orders->appends($request->s); 
-			
-		//dd($orders);
 			return view('admin.orders.order-list',array('homeTitle'=>$homeTitle,'orders'=>$orders,'params'=>$request))->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));                
     }
 	 
@@ -98,7 +89,14 @@ class OrderController extends Controller
         
     }
 	
-	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : viewInvoiceDetails
+	***Description  : This action is use to update the order status
+	***Date         : 10-07-2018
+	***Params       : @product_id
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
 	public function viewInvoiceDetails(Request $request, $id){
 		
 		$OrderId=base64_decode($id);
@@ -133,13 +131,13 @@ class OrderController extends Controller
 		}
 		
 	/***********
-***Author       : Ajay Kumar
-***Action       : destroy
-***Description  : This action is use to delete category 
-***Date         : 09-07-2018
-***Params       : @category_id
-***return       : @return \Illuminate\Http\Response
-*************/  
+	***Author       : Ajay Kumar
+	***Action       : destroy
+	***Description  : This action is use to delete category 
+	***Date         : 09-07-2018
+	***Params       : @category_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
     
     public function destroy($id,Request $request){
 		

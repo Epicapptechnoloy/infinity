@@ -17,7 +17,6 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{ URL::asset('assets/dist/css/skins/_all-skins.min.css') }}">
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -28,42 +27,39 @@
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
-
-  <header class="main-header">
-    <nav class="navbar navbar-static-top">
-      <div class="container"><img alt="logo" class="img-logo-w3 pull-left" id="img-logo-w3" src="/images/logo-s.png" style="width:40px;padding-right:5px;margin-top:5px;">
-        <div class="navbar-header">		
-          <a href="/" class="navbar-brand"><b>Raascals </b>Application</a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-bars"></i>
-          </button>
-        </div>         
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-  </header>
-  <!-- Full Width Column -->
-  
-  <div class="content-wrapper" style="background-color: rgba(2, 95, 183, 0.6);" >
-    <div class="container">
-       @yield('content')
-    </div>
-    <!-- /.container -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 1.0.0
-      </div>
-      <strong>Copyright &copy; 2017-2018 <a href="http://www.raascals.com/">Raascals Pvt. Ltd.</a>.</strong> All rights
-      reserved.
-    </div>
-    <!-- /.container -->
-  </footer>
+	<header class="main-header">
+		<nav class="navbar navbar-static-top">
+			<div class="container"><img alt="logo" class="img-logo-w3 pull-left" id="img-logo-w3" src="/images/logo-s.png" style="width:40px;padding-right:5px;margin-top:5px;">
+				<div class="navbar-header">		
+					<a href="/" class="navbar-brand"><b>Infinity </b>Application</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+				</div>         
+			</div>
+		<!-- /.container-fluid -->
+		</nav>
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper" style="background-color: rgba(2, 95, 183, 0.6);" >
+		<div class="container">
+			@yield('content')
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.content-wrapper -->
+	<footer class="main-footer">
+		<div class="container">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> 1.0.0
+			</div>
+			<strong>Copyright &copy; 2017-2018 <a href="#">Infinity Pvt. Ltd.</a>.</strong> All rights
+			reserved.
+		</div>
+		<!-- /.container -->
+	</footer>
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery 2.2.3 -->
 <script src="{{ URL::asset('assets/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- Bootstrap 3.3.6 -->

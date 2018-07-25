@@ -33,7 +33,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container"><img alt="logo" class="img-logo-w3 pull-left" id="img-logo-w3" src="/images/logo-s.png" style="width:40px;padding-right:5px;margin-top:5px;">
         <div class="navbar-header">		
-          <a href="/" class="navbar-brand"><b>SmartBuy </b>Application</a>
+          <a href="/" class="navbar-brand"><b>Infinity </b>Application</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -57,7 +57,7 @@
       <div class="pull-right hidden-xs">
         <b>Version</b> 1.0.0
       </div>
-      <strong>Copyright &copy; 2014-2017 <a href="http://www.solpoo.com/">SolPoo Pvt. Ltd.</a>.</strong> All rights
+      <strong>Copyright &copy; 2014-2017 <a href="#">Infinity Pvt. Ltd.</a>.</strong> All rights
       reserved.
     </div>
     <!-- /.container -->

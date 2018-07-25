@@ -188,7 +188,7 @@ class ProductController extends Controller
 	***Action       : editProduct
 	***Description  : This action is use to edit  product
 	***Date         : 05-07-2018
-	***Params       : category data
+	***Params       : product data
 	***return       : @return \Illuminate\Http\Response
 	*************/  
 	public function editProduct(Request $request){
@@ -202,6 +202,18 @@ class ProductController extends Controller
         return view('admin.products.edit-product',array('homeTitle'=>$homeTitle,'Products'=>$Products,'categories'=>$categories)); 
     }
 	
+	
+	
+	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : editProductPost
+	***Description  : This action is use to edit  product
+	***Date         : 05-07-2018
+	***Params       : product data
+	***return       : @return \Illuminate\Http\Response
+	*************/  
+	
 	public function editProductPost(Request $request){
 		$validation = Validator::make($request->all(), [            
             'name'   => 'required',
@@ -212,7 +224,6 @@ class ProductController extends Controller
 		if ($validation->fails()){ 
             return redirect()->back()->withErrors($validation)->withInput($request->all()); 
         }
-		
 		try{
 			DB::beginTransaction();
 			$Products =Products::where('product_id',$request->productId)->first();

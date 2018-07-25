@@ -82,11 +82,11 @@ class CategoryController extends Controller
 	***Params       : null
 	***return       : @return \Illuminate\Http\Response
 	*************/    	
-		 public function AddCategoryForm(Request $request){
-			$homeTitle = 'Add Category';
-			$categories = Categories::all();
-			return view('admin.categories.add-category',array('homeTitle'=>$homeTitle,'categories'=>$categories)); 
-		}
+	public function AddCategoryForm(Request $request){
+		$homeTitle = 'Add Category';
+		$categories = Categories::all();
+		return view('admin.categories.add-category',array('homeTitle'=>$homeTitle,'categories'=>$categories)); 
+	}
     
 	/***********
 	***Author       : Ajay Kumar
@@ -96,31 +96,31 @@ class CategoryController extends Controller
 	***Params       : category data
 	***return       : @return \Illuminate\Http\Response
 	*************/    	
-		 public function Addcategory(Request $request){
-			
-			$homeTitle = 'Add Category';
-			$categories = new Categories();
-			$categories->name = $request->name;
-			$categories->description = $request->description;
-			$categories->parent_id = $request->category;
-			$image = $request->file('cat_images');
-					if($image){
-						
-						$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-						$categoryRootPath = public_path("/assets/upload/images/category");					
-						if(!File::exists($categoryRootPath)) {
-							File::makeDirectory($categoryRootPath, 0777, true, true);                                
-						}
-						$image->move($categoryRootPath, $input['imagename']);
-						
-							$categories->image = $input['imagename'];					
+	public function Addcategory(Request $request){
+		
+		$homeTitle = 'Add Category';
+		$categories = new Categories();
+		$categories->name = $request->name;
+		$categories->description = $request->description;
+		$categories->parent_id = $request->category;
+		$image = $request->file('cat_images');
+				if($image){
+					
+					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
+					$categoryRootPath = public_path("/assets/upload/images/category");					
+					if(!File::exists($categoryRootPath)) {
+						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}
-			$categories->save();
-			
-			$request->session()->flash('alert-success', 'Category was successful added!');
-					return redirect()->route("admin.category-list");               
-			
-		}
+					$image->move($categoryRootPath, $input['imagename']);
+					
+						$categories->image = $input['imagename'];					
+				}
+		$categories->save();
+		
+		$request->session()->flash('alert-success', 'Category was successful added!');
+				return redirect()->route("admin.category-list");               
+		
+	}
 
 
 	/***********
@@ -132,13 +132,13 @@ class CategoryController extends Controller
 	***return       : @return \Illuminate\Http\Response
 	*************/  
 		
-		 public function edit($id){
-			
-			$homeTitle = 'Edit Category';
-			$category = Categories::find(base64_decode($id)); 
-			
-			return view('admin.categories.edit',array('homeTitle'=>$homeTitle,'category'=>$category));        
-		}
+	public function edit($id){
+		
+		$homeTitle = 'Edit Category';
+		$category = Categories::find(base64_decode($id)); 
+		
+		return view('admin.categories.edit',array('homeTitle'=>$homeTitle,'category'=>$category));        
+	}
     
 	/***********
 	***Author       : Ajay Kumar
@@ -148,32 +148,32 @@ class CategoryController extends Controller
 	***Params       : category data
 	***return       : @return \Illuminate\Http\Response
 	*************/    	
-		 public function update(Request $request){
-			$homeTitle = 'Add Category';
-			$categories = Categories::find($request->categoryId);
-			$categories->name = $request->name;
-			$categories->description = $request->description;
-			$categories->parent_id = $request->category;
-			$categories->status = $request->status;
-			$image = $request->file('cat_images');
-					if($image){
-						$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-						$categoryRootPath = public_path("/assets/upload/images/category");					
-						if(!File::exists($categoryRootPath)) {
-							File::makeDirectory($categoryRootPath, 0777, true, true);                                
-						}
-						if(!File::exists($categoryRootPath.$categories->image)) {
-							File::delete($categoryRootPath.$categories->image);                                
-						}
-						$image->move($categoryRootPath, $input['imagename']);
-						
-							$categories->image = $input['imagename'];					
+	public function update(Request $request){
+		$homeTitle = 'Add Category';
+		$categories = Categories::find($request->categoryId);
+		$categories->name = $request->name;
+		$categories->description = $request->description;
+		$categories->parent_id = $request->category;
+		$categories->status = $request->status;
+		$image = $request->file('cat_images');
+				if($image){
+					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
+					$categoryRootPath = public_path("/assets/upload/images/category");					
+					if(!File::exists($categoryRootPath)) {
+						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}
-			$categories->save();
-			$request->session()->flash('alert-success', 'Category was successful updated!');
-					return redirect()->route("admin.category-list");               
-			
-		}
+					if(!File::exists($categoryRootPath.$categories->image)) {
+						File::delete($categoryRootPath.$categories->image);                                
+					}
+					$image->move($categoryRootPath, $input['imagename']);
+					
+						$categories->image = $input['imagename'];					
+				}
+		$categories->save();
+		$request->session()->flash('alert-success', 'Category was successful updated!');
+				return redirect()->route("admin.category-list");               
+		
+	}
     
 	/***********
 	***Author       : Ajay Kumar

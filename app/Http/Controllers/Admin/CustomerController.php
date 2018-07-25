@@ -12,14 +12,12 @@ use App\Model\Admin;
 use App\Model\Orders;
 use App\Model\Products;
 use App\Model\Settings;
-
 use App\Model\States;
 use App\Model\Cities;
 use App\Model\Blogs;
 use App\Model\Wishlists;
 use DB;
 use carbon\Carbon;
-
 use File;
 use App\Model\ProductImage;
 class CustomerController extends Controller
@@ -134,6 +132,14 @@ class CustomerController extends Controller
     }
 	
 	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : showWishlist
+	***Description  : This action is use to view  cart 
+	***Date         : 10-07-2018
+	***Params       : @wishlist_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
 	
 	public function showWishlist(Request $request,$id){
 		$UserId=base64_decode($id);
@@ -145,6 +151,14 @@ class CustomerController extends Controller
 		->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));   
     }
 	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : showCart
+	***Description  : This action is use to view  cart 
+	***Date         : 10-07-2018
+	***Params       : @cart_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
 	
 	public function showCart(Request $request,$id){
 		$UserId=base64_decode($id);
@@ -156,6 +170,17 @@ class CustomerController extends Controller
 		->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));   
     }
 	
+	
+	
+	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : showReview
+	***Description  : This action is use to view the review 
+	***Date         : 03-07-2018
+	***Params       : @review_id
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
 	
 	public function showReview(Request $request,$id){
 		$UserId=base64_decode($id);
@@ -189,7 +214,7 @@ class CustomerController extends Controller
 	***Author       : Rajiv kumar
 	***Action       : customerFeatureUpdate
 	***Description  : make customer featrued or unfeature
-	***Date         : 13-01-2018
+	***Date         : 13-07-2018
 	***Params       : customer id,featurestatus
 	***return       : customer update status 
 	*************/    
@@ -228,7 +253,7 @@ class CustomerController extends Controller
 	***Author       : Rajiv kumar
 	***Action       : customerStatusUpdate
 	***Description  : make customer active or inactive
-	***Date         : 13-01-2017
+	***Date         : 13-07-2017
 	***Params       : customer id,customerStatus
 	***return       : customer update status 
 	*************/
@@ -268,7 +293,7 @@ class CustomerController extends Controller
 	***Author       : Rajiv Kumar
 	***Action       : newCustomer
 	***Description  : This action is use to add newCustomer
-	***Date         : 07-01-2018
+	***Date         :13-07-2018
 	***Params       : null
 	***return       : @return \Illuminate\Http\Response
 	*************/      
@@ -283,7 +308,7 @@ class CustomerController extends Controller
 	***Author       : Ajay kumar
 	***Action       : addNewCustomer
 	***Description  : make add new customer
-	***Date         : 13-01-2017
+	***Date         : 13-07-2017
 	***Params       : customer date
 	***return       : customer 
 	*************/     

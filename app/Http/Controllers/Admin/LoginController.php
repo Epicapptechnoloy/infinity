@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +11,6 @@ use Hash;
 use Session;
 use carbon\Carbon;
 use App\Model\Admin;
-
 class LoginController extends Controller
 {
     /*
@@ -64,21 +61,15 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
     public function login(Request $request){ 
-       //validate the admin login form
-       $validation = Validator::make($request->all(), [            
+        $validation = Validator::make($request->all(), [            
             'email'     => 'required|email',
             'password'  => 'required|min:5',            
         ]);
-        //
-        
         if ($validation->fails()) { 
             return redirect()->back()->withErrors($validation)->withInput($request->only('email', 'remember'));   
         } 
-        //
         $admin = Admin::Where('email',$request->email)->first();
-      
         if($admin){
             if (Hash::check($request->password, $admin->password)) {
                 Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember);
@@ -88,14 +79,10 @@ class LoginController extends Controller
                 return redirect()->back()->withErrors(['Wrong password.'])->withInput($request->only('email', 'remember')); 
             }
         }
-        
-
-      // if unsuccessful, then redirect back to the login with the form data
-      return redirect()->back()->withInput($request->only('email', 'remember'));
+    return redirect()->back()->withInput($request->only('email', 'remember'));
        
     }
     
-
     /**
      * Log the user out of the application.
      *

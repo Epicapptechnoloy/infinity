@@ -153,10 +153,8 @@ class ReviewController extends Controller
 					$Review->comments = $request->comments;
 					$Review->product_id = $request->product;
 					$Review->user_id = \Auth::guard('admin')->user()->id;
-					
 					$Review->save();				
 					DB::commit();
-				
 					$request->session()->flash('alert-success', 'Review was successful added!');
 					return redirect()->route("admin.review-list");
 				}catch(\Illuminate\Database\QueryException $e){
@@ -175,7 +173,6 @@ class ReviewController extends Controller
 	***Params       : @review_id
 	***return       : @return \Illuminate\Http\Response
 	*************/ 
-		
 		
 	public function editReviewDetails(Request $request){
 		$productreviewId=$request->productreviewId;
@@ -243,10 +240,8 @@ class ReviewController extends Controller
 	*************/  
     
     public function edit($id){
-		
-		  $homeTitle = 'Edit Category';
+		$homeTitle = 'Edit Category';
         $category = Categories::find(base64_decode($id)); 
-		
         $categories = Categories::all();
         return view('admin.categories.edit',array('homeTitle'=>$homeTitle,'categories'=>$categories,'category'=>$category));        
     }
@@ -258,7 +253,8 @@ class ReviewController extends Controller
 	***Date         : 07-21-2018
 	***Params       : category data
 	***return       : @return \Illuminate\Http\Response
-	*************/    	
+	*************/   
+ 	
     public function update(Request $request){
         $homeTitle = 'Add Category';
         $categories = Categories::find($request->categoryId);
@@ -298,7 +294,6 @@ class ReviewController extends Controller
         $category = Categories::find(base64_decode($id));        
         if($category)
 			$category->delete();	
-							
 		\Session::flash('alert-success', 'Category deleted successfully');
         return redirect()->route("admin.category-list");               
         
