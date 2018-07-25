@@ -61,7 +61,7 @@ class ForgotPasswordController extends Controller
     ***return       : @return \Illuminate\Http\Response
     *************/
     public function resetPasswordEmail(Request $request){
-		//dd($request->all());
+		
         $homeTitle = "Infinity | Forgot password";
         
         $this->validate($request, [
@@ -74,14 +74,14 @@ class ForgotPasswordController extends Controller
             DB::beginTransaction();
                 try {					
 						$adm = Admin::findOrFail($admin->id);
-						//dd($adm);
+						
                         $rand = substr(uniqid('', true), -6);
-						//dd($rand);
-						//$user->password = Hash::make($rand);
+						
+						
 						$randomstring = str_random(15);
-						//dd($randomstring);
+						
 						$adm->reset_password_token  = $randomstring;  
-						//dd($adm);
+						
 						if($adm->save()){  
 						   DB::commit();        
 							\Session::flash('success','Your Reset Password Link has been sent on your email.');

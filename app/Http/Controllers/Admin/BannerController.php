@@ -117,7 +117,7 @@ class BannerController extends Controller
     
      public function edit($id){
 		
-		  $homeTitle = 'Edit Banner';
+		$homeTitle = 'Edit Banner';
         $banner = Banners::find(base64_decode($id)); 
 		
         return view('admin.banner.edit-banner',array('homeTitle'=>$homeTitle,'banner'=>$banner));        

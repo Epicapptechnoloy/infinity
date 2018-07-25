@@ -1,9 +1,10 @@
-<form role="form" action="{{route('admin.review-list')}}" method="get">
+    
+	<form role="form" action="{{route('admin.wishlist')}}" method="get">
 	<div class="row">
 		<div class="col-md-3">
 			<div class="form-group">
-			  <label>Search :</label>
-				<input value="{{$params->s}}" class="form-control" type="text" name="s"  autocomplete="off" placeholder="search by product name,..." >
+				<label>Search :</label>
+					<input value="{{$params->s}}" class="form-control" type="text" name="s" autocomplete="off" placeholder="search by user name $ product name ..." >
 			</div>
 		</div>
 

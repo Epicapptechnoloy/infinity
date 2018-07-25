@@ -42,10 +42,17 @@ class ReviewController extends Controller
     public function index(Request $request){
         $Arr = array();
 		$homeTitle = 'ProductReview'; 
+		$sort_by = $request->get('sort-by');
+        $order_by = $request->get('order-by');
+		
+		$productReview = DB::table('sb_review as R')
+                ->select('R.review_id', 'U.name as userName','P.name as productName','P.product_id as productId')
+                ->leftJoin('sb_product as P', 'R.product_id', '=', 'P.product_id')
+                ->leftJoin('users as U', 'R.user_id', '=', 'U.id');
+        if ($request->has('s')) {
+            $productReview->where('P.name', 'like', '%' . $request->s . '%');
+        } 
 		$productRating =   Products::all();
-		
-		$productReview =   Products::all();
-		
 		$rating=array();
 		foreach($productRating as $p_rating =>$value){
 			
@@ -56,19 +63,28 @@ class ReviewController extends Controller
                 ->avg('rating');
 		}
 		
-		 foreach($rating As $key =>$value){
+		foreach($rating As $key =>$value){
 			if(is_null($value)){
 				$rating[$key]= "No Rating";
 			}
 		} 
 		
-		return view('admin.review.review_list',array('homeTitle'=>$homeTitle,'rating'=>$rating,'productReview'=>$productReview))
+		$productReview =  $productReview->paginate(env('RECORD_PER_PAGE')); 
+		return view('admin.review.review_list',array('homeTitle'=>$homeTitle,'rating'=>$rating,'productReview'=>$productReview,'params'=>$request))
 			->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
 		
 		
     }
 	
-    
+    /***********
+	***Author       : Ajay Kumar
+	***Action       : viewReview
+	***Description  : This action is use to show the review
+	***Date         : 21-07-2018
+	***Params       : null
+	***return       : @return \Illuminate\Http\Response
+	*************/   
+	
 	public function viewReview(Request $request){
 		
 		$id=base64_decode($request->id);
@@ -77,7 +93,6 @@ class ReviewController extends Controller
         $order_by = $request->get('order-by');
 		$userdetails=User::find($id);
 		$productName=Products::find($id);
-		
 		$Review = DB::table('sb_review AS PR')
 			->select('PR.*','P.*','P.name as ProductName','UT.*',
 			'UT.name as UserName')
@@ -98,29 +113,27 @@ class ReviewController extends Controller
     }
 	
 	
-	
-    	
 	/***********
 	***Author       : Ajay Kumar
 	***Action       : AddReviewForm
 	***Description  : This action is use to show the category foerm
-	***Date         : 07-07-2018
+	***Date         : 21-07-2018
 	***Params       : null
 	***return       : @return \Illuminate\Http\Response
 	*************/    
 	
-		 public function AddReviewForm(Request $request){
-			$homeTitle = 'Add Review';
-			$product = Products::all();
-			return view('admin.review.add-review',array('homeTitle'=>$homeTitle,'product'=>$product)); 
-		}
+	public function AddReviewForm(Request $request){
+		$homeTitle = 'Add Review';
+		$product = Products::all();
+		return view('admin.review.add-review',array('homeTitle'=>$homeTitle,'product'=>$product)); 
+	}
     
 	
 	/***********
 	***Author       : Ajay Kumar
 	***Action       : AddCategoryForm
 	***Description  : This action is use to save the global category for product
-	***Date         : 05-12-2017
+	***Date         : 21-07-2017
 	***Params       : category data
 	***return       : @return \Illuminate\Http\Response
 	*************/    
@@ -154,54 +167,70 @@ class ReviewController extends Controller
 		} 
 
 
-		public function editReviewDetails(Request $request){
-			$productreviewId=$request->productreviewId;
-			$homeTitle = 'Edit Review';
-			$productReview = Review::where('review_id',base64_decode($request->id))->first();
-			return view('admin.review.edit-review',array('homeTitle'=>$homeTitle,'productreviewId'=>$productreviewId,'productReview'=>$productReview)); 
-		}
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : editReviewForm
+	***Description  : This action is use to edit review form 
+	***Date         : 21-07-2018
+	***Params       : @review_id
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
+		
+		
+	public function editReviewDetails(Request $request){
+		$productreviewId=$request->productreviewId;
+		$homeTitle = 'Edit Review';
+		$productReview = Review::where('review_id',base64_decode($request->id))->first();
+		return view('admin.review.edit-review',array('homeTitle'=>$homeTitle,'productreviewId'=>$productreviewId,'productReview'=>$productReview)); 
+	}
 	
-		public function editReviewPost(Request $request){
-			
-			$validation = Validator::make($request->all(), [            
-				'comments'   => 'required',
-			]);
-			if ($validation->fails()) { 
-				return redirect()->back()->withErrors($validation)->withInput($request->all()); 
-			}
-			try{
-				DB::beginTransaction();
-				$ProductReview = Review::where('review_id',$request->reviewId)->first();
-				$ProductReview->rating = $request->rating;
-				$ProductReview->comments = $request->comments;
-				$ProductReview->update();
-				DB::commit(); 
-				$request->session()->flash('alert-success', 'Review Updated successfully!');
-				return redirect()->route("admin.view.review",['id' =>$request->productreviewId]);
-			}catch(\Illuminate\Database\QueryException $e){
-				DB::rollBack();
-				return redirect()->back()->withErrors(['Oops ! some thing is wrong.'])->withInput($request->all());
-			} 
-		}
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : editReviewPost
+	***Description  : This action is use to edit review 
+	***Date         : 21-07-2018
+	***Params       : @review_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
 	
-		/***********
-		***Author       : Ajay Kumar
-		***Action       : deleteReview
-		***Description  : This action is use to delete category 
-		***Date         : 07-01-2018
-		***Params       : @review_id
-		***return       : @return \Illuminate\Http\Response
-		*************/  
-	
-		public function deleteReview(Request $request,$id){
-			
-			$ProductReview = Review::where('review_id',base64_decode($id))->delete(); 
-			$request->session()->flash('alert-success', 'Record has been  deleted successfully!');
-			return redirect()->back();
+	public function editReviewPost(Request $request){
+		
+		$validation = Validator::make($request->all(), [            
+			'comments'   => 'required',
+		]);
+		if ($validation->fails()) { 
+			return redirect()->back()->withErrors($validation)->withInput($request->all()); 
 		}
+		try{
+			DB::beginTransaction();
+			$ProductReview = Review::where('review_id',$request->reviewId)->first();
+			$ProductReview->rating = $request->rating;
+			$ProductReview->comments = $request->comments;
+			$ProductReview->update();
+			DB::commit(); 
+			$request->session()->flash('alert-success', 'Review Updated successfully!');
+			return redirect()->route("admin.view.review",['id' =>$request->productreviewId]);
+		}catch(\Illuminate\Database\QueryException $e){
+			DB::rollBack();
+			return redirect()->back()->withErrors(['Oops ! some thing is wrong.'])->withInput($request->all());
+		} 
+	}
+	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : deleteReview
+	***Description  : This action is use to delete category 
+	***Date         : 21-07-2018
+	***Params       : @review_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
 
-
-     
+	public function deleteReview(Request $request,$id){
+		
+		$ProductReview = Review::where('review_id',base64_decode($id))->delete(); 
+		$request->session()->flash('alert-success', 'Record has been  deleted successfully!');
+		return redirect()->back();
+	}
 
 
 	/***********
@@ -213,7 +242,7 @@ class ReviewController extends Controller
 	***return       : @return \Illuminate\Http\Response
 	*************/  
     
-     public function edit($id){
+    public function edit($id){
 		
 		  $homeTitle = 'Edit Category';
         $category = Categories::find(base64_decode($id)); 
@@ -226,7 +255,7 @@ class ReviewController extends Controller
 	***Author       : Ajay Kumar
 	***Action       : AddCategoryForm
 	***Description  : This action is use to save the global category for product
-	***Date         : 05-12-2017
+	***Date         : 07-21-2018
 	***Params       : category data
 	***return       : @return \Illuminate\Http\Response
 	*************/    	
@@ -260,12 +289,12 @@ class ReviewController extends Controller
 	***Author       : Ajay Kumar
 	***Action       : destroy
 	***Description  : This action is use to delete category 
-	***Date         : 07-01-2018
+	***Date         : 21-07-2018
 	***Params       : @category_id
 	***return       : @return \Illuminate\Http\Response
 	*************/  
     
-     public function destroy($id,Request $request){
+    public function destroy($id,Request $request){
         $category = Categories::find(base64_decode($id));        
         if($category)
 			$category->delete();	

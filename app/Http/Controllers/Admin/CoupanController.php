@@ -54,7 +54,7 @@ class CoupanController extends Controller
 			$coupans = $coupans->where('status',0);
 			}
 		}   
-		 //sorting based on status
+		
         if($sort_by == 'status' && $order_by == 'desc'){
             $coupans->where('status', 1);
         }
@@ -67,11 +67,7 @@ class CoupanController extends Controller
 			->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function AddCoupanForm()
     {        
         $homeTitle ="Add Discount and Offers";
@@ -87,7 +83,7 @@ class CoupanController extends Controller
     {   
 		
 		$coupan = new Coupans();
-         //when form submit
+         
 		if ($request->isMethod('post')) {
 			DB::beginTransaction();
             try {
@@ -224,7 +220,7 @@ class CoupanController extends Controller
 	*************/  
     
     public function destroy($id,Request $request){
-		//dd($id);
+		
         $coupan = Coupans::find($id);        
         if($coupan)
 			$coupan->delete();						

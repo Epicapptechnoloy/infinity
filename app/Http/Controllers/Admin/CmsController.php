@@ -38,20 +38,19 @@ class CmsController extends Controller
             'title'      => 'required|string'           
         ]);
          DB::beginTransaction();
-         try {
-                        $cms 				= new cms();
-                        $cms->title      	= $request->title;
-                        $cms->description   = $request->description;
-                        $cms->save();
-                       
-                        \Session::flash('alert-success','Page has been created successfully.');                        
-                        DB::commit();
-                        return redirect()->route('manage-cms-page');
-                }
-                catch (\Exception $e) {
-                    DB::rollBack();
-                    return back()->withInput($request->input())->withErrors([$e->getMessage()]);    
-                }
+		try {
+				$cms 				= new cms();
+				$cms->title      	= $request->title;
+				$cms->description   = $request->description;
+				$cms->save();
+				\Session::flash('alert-success','Page has been created successfully.');                        
+				DB::commit();
+				return redirect()->route('manage-cms-page');
+			}
+			catch (\Exception $e) {
+				DB::rollBack();
+				return back()->withInput($request->input())->withErrors([$e->getMessage()]);    
+			}
        }
        
     /***********
@@ -63,41 +62,40 @@ class CmsController extends Controller
 	***return       : void(0) 
 	*************/    
     public function editcmspage(Request $request){
-	  $cms = Cms::where('id',base64_decode($request->id))->first();
-	  //dd($cms);
-      return view('admin.cms.edit-cms-page',
-                  array(
+		$cms = Cms::where('id',base64_decode($request->id))->first();
+			return view('admin.cms.edit-cms-page',
+                array(
                         'params'=>$request,
                         'cms'=>$cms
-                        )         
+                    )         
 				);
        }
 
       
-      public function editcmsPost(Request $request){
+    public function editcmsPost(Request $request){
 		  $this->validate($request, [                        
             "title"             => "required"           
       ]);
        DB::beginTransaction();
        try {
-                        $Cms = Cms::where('id',$request->cms_id)->first();                     
-                        $Cms->title          = $request->title;
-                        $Cms->description     = $request->description;
-                        $Cms->save();
-                        \Session::flash('alert-success','Content has been updated successfully.');                        
-                       
-                        DB::commit();
-                        return redirect()->route('manage-cms-page',[base64_encode($Cms->id)]);
-                }
-                catch (\Exception $e) {
-                    DB::rollBack();
-                    return back()->withInput($request->input())->withErrors([$e->getMessage()]);
-                        
-                }
+				$Cms = Cms::where('id',$request->cms_id)->first();                     
+				$Cms->title          = $request->title;
+				$Cms->description     = $request->description;
+				$Cms->save();
+				\Session::flash('alert-success','Content has been updated successfully.');                        
+			   
+				DB::commit();
+				return redirect()->route('manage-cms-page',[base64_encode($Cms->id)]);
+			}
+			catch (\Exception $e) {
+				DB::rollBack();
+				return back()->withInput($request->input())->withErrors([$e->getMessage()]);
+					
+			}
        
        
         
-       }
+    }
        
 	/***********
 	***Author       : Ajay kumar
@@ -143,24 +141,6 @@ class CmsController extends Controller
     }	
 	
 	
-	
-	
-	/* public function deletecmspage(Request $request){
-		
-		if($request->did){
-			DB::beginTransaction();
-			try {
-				$cms = Cms::where('id',$request->did)->first();
-				$cms->delete();
-				DB::commit();    
-				return redirect(route('manage-cms-page'));
-				}catch (\Exception $e){
-					DB::rollBack();
-					return back()->withError([$e->getMessage()]);
-				}
-			
-		}
-	} */
     
 	/***********
 	***Author       : Ajay kumar

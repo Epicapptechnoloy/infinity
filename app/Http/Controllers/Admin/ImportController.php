@@ -89,16 +89,14 @@ class ImportController extends Controller
 							$data['weight'] = $row[$i]['weight'];
 						
 							if(!empty($data)){
-								
 								$insertData = DB::table('sb_product')->insert($data);
-									if ($insertData) {
-										$flag=true;
-										
-									}else {  
-										$flag=false;
-										
-							   
-									}
+								if ($insertData) {
+									$flag=true;
+									
+								}else {  
+									$flag=false;
+									
+								}
 							}
 						}
 					}

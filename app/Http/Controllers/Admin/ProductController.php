@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +14,6 @@ use App\Model\Countries;
 use App\Model\States;
 use App\Model\Events;
 use App\Model\Categories;
-
 use App\Model\Wishlists;
 use App\Model\Blogs;
 use DB;
@@ -43,10 +41,8 @@ class ProductController extends Controller
      */
     public function productList(Request $request)
     {
-		
         $sort_by = $request->get('sort-by');
         $order_by = $request->get('order-by');
-            
 		$products = new Products();
         $homeTitle = 'Product List'; 
         if(!empty($request->s)){
@@ -60,7 +56,6 @@ class ProductController extends Controller
 			$products = $products->where('status',0);
 			}
 		}   
-		 //sorting based on status
         if($sort_by == 'status' && $order_by == 'desc'){
             $products->where('status', 1);
         }
@@ -73,30 +68,29 @@ class ProductController extends Controller
         ->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
     }
 
-/***********
-***Author       : Ajay Kumar
-***Action       : AddProductForm
-***Description  : This action is use to show the product form
-***Date         : 04-07-2018
-***Params       : param
-***return       : @return \Illuminate\Http\Response
-*************/  
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : AddProductForm
+	***Description  : This action is use to show the product form
+	***Date         : 04-07-2018
+	***Params       : param
+	***return       : @return \Illuminate\Http\Response
+	*************/  
     public function AddProductForm(Request $request){
         $homeTitle = 'Add Product';
         $categories = Categories::all();
         return view('admin.products.add-product',array('homeTitle'=>$homeTitle,'categories'=>$categories)); 
     }
     
-/***********
-***Author       : Ajay Kumar
-***Action       : AddProduct
-***Description  : This action is use to save the global product
-***Date         : 05-07-2018
-***Params       : category data
-***return       : @return \Illuminate\Http\Response
-*************/  
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : AddProduct
+	***Description  : This action is use to save the global product
+	***Date         : 05-07-2018
+	***Params       : category data
+	***return       : @return \Illuminate\Http\Response
+	*************/  
     public function AddProduct(Request $request){
-		
         $homeTitle = 'Add Product';
         $products = new Products();
         $products->name = $request->name;        
@@ -119,31 +113,39 @@ class ProductController extends Controller
 					File::makeDirectory($categoryRootPath, 0777, true, true);                                
 				}
 				$image->move($categoryRootPath, $input['imagename']);
-				//$Orgn = Orgnisation::where('id',$Orgnisation->id)->update(
-					//	 array('logo'=>$input['imagename']));
+				
 					$products->image = $input['imagename'];					
 			}
         $products->save();
         $request->session()->flash('alert-success', 'Product was successful added!');
         return redirect()->route("admin.product-list");
-        
-    }                                                                          
- /***********
-***Author       : Ajay Kumar
-***Action       : customersWishList
-***Description  : This action is use to view cstomer wishlist product
-***Date         : 05-07-2018
-***Params       : category data
-***return       : @return \Illuminate\Http\Response
-*************/  
+    }      
+	
+	 /***********
+	***Author       : Ajay Kumar
+	***Action       : customersWishList
+	***Description  : This action is use to view cstomer wishlist product
+	***Date         : 05-07-2018
+	***Params       : category data
+	***return       : @return \Illuminate\Http\Response
+	*************/  
+	
     public function customersWishList(Request $request){
         $homeTitle = 'Customers WishList Product';
-		
-		$wishlists = Wishlists::all();
-	
-        return view('admin.products.wishlist',array('homeTitle'=>$homeTitle,'wishlists'=>$wishlists)); ;
-        
+		$sort_by = $request->get('sort-by');
+        $order_by = $request->get('order-by');
+		$wishlists = DB::table('sb_customer_wishlist as W')
+                ->select('W.id','W.created_at as wishlistDate', 'U.name as userName','U.id as user_id','P.name as productName','P.product_id')
+                ->leftJoin('users as U', 'W.user_id', '=', 'U.id')
+                ->leftJoin('sb_product as P', 'W.product_id', '=', 'P.product_id');
+		if ($request->has('s')) {
+            $wishlists->where('U.name', 'like', '%' . $request->s . '%')->orWhere('P.name', 'like', '%' . $request->s . '%');
+        }
+		$wishlists =  $wishlists->paginate(env('RECORD_PER_PAGE')); 		
+        return view('admin.products.wishlist',array('homeTitle'=>$homeTitle,'wishlists'=>$wishlists,'params' => $request))
+        ->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
     } 
+	
 	 /***********
 	***Author       : Ajay Kumar
 	***Action       : removeFromWishlist
@@ -159,9 +161,16 @@ class ProductController extends Controller
                return redirect()->route("admin.wishlist");
       
     }
-
-
-
+	
+	
+	 /***********
+	***Author       : Ajay Kumar
+	***Action       : viewProduct
+	***Description  : This action is use to removed wishlist product
+	***Date         : 05-07-2018
+	***Params       : category data
+	***return       : @return \Illuminate\Http\Response
+	*************/  
 	public function viewProduct(Request $request){
 		$homeTitle = 'View Product'; 
 		$sort_by = $request->get('sort-by');
@@ -170,27 +179,30 @@ class ProductController extends Controller
 				->select('sb_product.*','sb_product.status as productStatus','sb_product.name as productName','sb_product.image as productImage','sb_category.*',
 				'sb_category.name as CategoryName')
 				->leftJoin('sb_category', 'sb_category.category_id', '=', 'sb_product.category_id')->where('product_id',base64_decode($request->product_id))->first(); 
-			
-			
         return view('admin.products.show',array('homeTitle'=>$homeTitle,'Product'=>$Product));
     }
  
 	
-	
+	 /***********
+	***Author       : Ajay Kumar
+	***Action       : editProduct
+	***Description  : This action is use to edit  product
+	***Date         : 05-07-2018
+	***Params       : category data
+	***return       : @return \Illuminate\Http\Response
+	*************/  
 	public function editProduct(Request $request){
-		//dd(base64_decode($request->product_id));
 		$homeTitle = 'Edit Product';
 		$categories = Categories::select('category_id', 'name')->where('status', 1)->get();
 		$Products = DB::table('sb_product')
 			->select('sb_product.*','sb_product.status as productStatus','sb_product.name as productName','sb_product.image as productImage','sb_product.description as productDescription','sb_category.*',
 			'sb_category.name as CategoryName')
+			
 			->leftJoin('sb_category', 'sb_category.category_id', '=', 'sb_product.category_id')->where('product_id',base64_decode($request->product_id))->first();
-		//dd($Products->productDescription);
         return view('admin.products.edit-product',array('homeTitle'=>$homeTitle,'Products'=>$Products,'categories'=>$categories)); 
     }
 	
 	public function editProductPost(Request $request){
-    
 		$validation = Validator::make($request->all(), [            
             'name'   => 'required',
             'price'   => 'required',
@@ -216,23 +228,20 @@ class ProductController extends Controller
 			$Products->category_id = $request->category;
 			$Products->quantity = $request->quantity;
 			$Products->status = $request->status;
-			
-			 $image = $request->file('productImage');
-				if($image){
-					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-					$categoryRootPath = public_path("/uploads/product/image");
-					
-					if(!File::exists($categoryRootPath)) {
-						File::makeDirectory($categoryRootPath, 0777, true, true);                                
-					}
-					$image->move($categoryRootPath, $input['imagename']);
-					
-						$Products->image = $input['imagename'];					
+			$image = $request->file('productImage');
+			if($image){
+				$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
+				$categoryRootPath = public_path("/uploads/product/image");
+				
+				if(!File::exists($categoryRootPath)) {
+					File::makeDirectory($categoryRootPath, 0777, true, true);                                
 				}
-			
+				$image->move($categoryRootPath, $input['imagename']);
+				
+					$Products->image = $input['imagename'];					
+			}
 			$Products->update();
 			DB::commit();
-			//dd($Products);
 			$request->session()->flash('alert-success', 'Product Updated successfully!');
 			return redirect()->route("admin.product-list");
 		}catch(\Illuminate\Database\QueryException $e){
@@ -241,8 +250,16 @@ class ProductController extends Controller
 		} 
     }
 	
-	public function deleteProduct($product_id,Request $request){
 	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : deleteProduct
+	***Description  : This action is use to removed  product
+	***Date         : 05-07-2018
+	***Params       : category data
+	***return       : @return \Illuminate\Http\Response
+	*************/  
+	public function deleteProduct($product_id,Request $request){
         $products = Products::find($product_id);        
         if($products)
 			$products->delete();	
@@ -250,8 +267,6 @@ class ProductController extends Controller
 		\Session::flash('alert-success', 'Product deleted successfully');
         return redirect()->route("admin.product-list");               
         
-
     }	
-	
 	
 }
