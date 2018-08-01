@@ -44,7 +44,7 @@
 .main-menu > li {
   display: inline-block;
   margin: 0 18px;
-  padding: 17px 0;
+  padding: 28px 0;
   position: relative;
   transition: all 0.3s ease 0s;
 }
@@ -92,7 +92,7 @@
 .mega-menu-area {
   background: #ffffff none repeat scroll 0 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
-  left:0 !important;
+  right:0 !important;
   padding: 45px 35px;
   position: absolute;
   text-align: left;

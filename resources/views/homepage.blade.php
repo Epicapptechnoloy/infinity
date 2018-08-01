@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
+<!-- LOGIN MODEL --> 
+
+<!-- END LOGIN MODEL -->
 
 
+	<!-- FULL PAGE SLIDER -->
+	<div class="sldrfullpge"> 
 
-   <!-- FULL PAGE SLIDER -->
-	<div class="sldrfullpge">  
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -20,33 +23,24 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-				   <img src="{{ asset('assets/front/images/demo-slder-2.jpg') }} " alt="" style="width:100%;">
-				  
-				   
+				    <img src="{{ asset('assets/front/images/big-slider/T-Shirts.jpg') }} " alt="" style="width:100%;">
 				</div>
 
 				<div class="item">
-				    <img src="{{ asset('assets/front/images/demo-slder-1.jpg') }} " alt="" style="width:100%;">
-				    
+					<img src="{{ asset('assets/front/images/big-slider/Mobile Cover.jpg') }} " alt="" style="width:100%;">
 				</div>
 
 				<div class="item">
-					<img src="{{ asset('assets/front/images/demo-slder-3.jpg') }} " alt="" style="width:100%;">
+					<img src="{{ asset('assets/front/images/big-slider/Mugs.jpg') }} " alt="" style="width:100%;">
 				</div>
 				
 				<div class="item">
-					<img src="{{ asset('assets/front/images/demo-slder-4.jpg') }} " alt="" style="width:100%;">
-					
-				</div>
+					<img src="{{ asset('assets/front/images/big-slider/Screen Printing.jpg') }} " alt="" style="width:100%;">
+				</div> 
 
 				<div class="item">
-					<img src="{{ asset('assets/front/images/demo-slder-2.jpg') }} " alt="" style="width:100%;">
-					
-				</div>
-				<div class="item">
-					<img src="{{ asset('assets/front/images/demo-slder-5.jpg') }} " alt="" style="width:100%;">
-					
-				</div> 	 				
+					<img src="{{ asset('assets/front/images/big-slider/Desktop Items.jpg') }} " alt="" style="width:100%;">
+				</div>				
 			</div>
 
 			<!-- Left and right controls -->
@@ -60,10 +54,9 @@
 			</a>
 		</div>
 	</div>
-    <!-- END FULL PAGE SLIDER --> 
-	 
-
-    <!--- TITLE HEADING --->
+	<!-- END FULL PAGE SLIDER -->
+	
+	<!--- TITLE HEADING --->
 	<div class="container pd-15">
 		<div class="row"> 
 		    <div class="col-md-12 tileHead">
@@ -84,8 +77,7 @@
                     <div class="item orange">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-								<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="" style="width:100%;">
-                                
+								<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="">
                             </a> 
                         </div>  
                     </div>
@@ -94,7 +86,6 @@
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
 								<img src="{{ asset('assets/front/images/demo-carausale-2.jpg') }} " alt="">
-                                
                             </a> 
                         </div> 
                     </div>
@@ -103,7 +94,6 @@
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
 								<img src="{{ asset('assets/front/images/demo-carausale-3.jpg') }} " alt="">
-                                
                             </a> 
                         </div> 
                     </div>
@@ -111,16 +101,14 @@
                     <div class="item forestGreen">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-4.jpg') }} " alt="" >
-                                
+								<img src="{{ asset('assets/front/images/demo-carausale-4.jpg') }} " alt="">
                             </a> 
                         </div> 
                     </div>
                     <div class="item dodgerBlue">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-3.jpg') }} " alt="" >
-                               
+                                <img src="{{ asset('assets/front/images/demo-carausale-3.jpg') }}" alt="" />
                             </a> 
                         </div> 
                     </div>
@@ -128,16 +116,14 @@
                     <div class="item skyBlue">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="" >
-                               
+								<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="">
                             </a> 
                         </div> 
                     </div>
                     <div class="item zombieGreen">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="" >
-                             
+								<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="">
                             </a> 
                         </div> 
                     </div>
@@ -145,8 +131,8 @@
                     <div class="item violet">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-3.jpg') }} " alt="" >
-                               
+								<img src="{{ asset('assets/front/images/demo-carausale-3.jpg') }} " alt="">
+                                
                             </a> 
                         </div> 
                     </div>
@@ -154,8 +140,7 @@
                     <div class="item steelGray">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-2.jpg') }} " alt="" >
-                               
+								<img src="{{ asset('assets/front/images/demo-carausale-2.jpg') }} " alt="">
                             </a> 
                         </div> 
                     </div>
@@ -163,8 +148,7 @@
                     <div class="item dodgerBlue">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-4.jpg') }} " alt="" >
-                               
+								<img src="{{ asset('assets/front/images/demo-carausale-4.jpg') }} " alt="">
                             </a> 
                         </div> 
                     </div>
@@ -172,8 +156,7 @@
                     <div class="item darkCyan">
                         <div class="product-image-action item">
                             <a href="javascript:void(0);">
-							<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="" >
-                               
+								<img src="{{ asset('assets/front/images/demo-carausale-1.jpg') }} " alt="">
                             </a> 
                         </div> 
                     </div>
@@ -182,7 +165,6 @@
         </div>
     </div>
     <!---/carausale--->
-
 
     <!--- TITLE HEADING --->
 	<div class="container pd-15">
@@ -200,7 +182,7 @@
 			<div class="col-md-6 col-sm-6 col-12 bx">
 				<div class="tilethumb"><a href="" class="htilebtn txt-upper fsemibold"> T-Shirts</a>
 					<a href="javascript:void(0);" class="scaleImg">
-						<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023106-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023106-1.jpg" alt="T-Shirts">
+					<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023106-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023106-1.jpg" alt="T-Shirts">
 					</a>
 				</div>
 			</div>
@@ -209,25 +191,23 @@
 					<div class="col-md-12 col-sm-12 col-12 bx">
 						<div class="tilethumb">
 							<a href="javascript:void(0);" class="scaleImg">
-								<div class="htilebtn txt-upper fsemibold"> Mobile Covers</div>
-								<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023225-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023225-1.jpg" alt="Mobile Covers">
+							<div class="htilebtn txt-upper fsemibold"> Mobile Covers</div>
+							<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023225-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023225-1.jpg" alt="Mobile Covers">
 							</a>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6 bx">
 						<div class="tilethumb spacepro scaleImg"> 
 							<a href="" class="htilebtn txt-upper fsemibold"> Backpacks </a>
-								<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180411154134-1.jpg&quot;);">
-								</div> 
-								<img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180411154134-1.jpg" alt="">
-							 
+							<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180411154134-1.jpg&quot;);">
+							</div> 
+							<img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180411154134-1.jpg" alt="">
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6 bx">
 						<div class="tilethumb spacepro scaleImg"> 
-								<a href="javascript:void(0);" class="htilebtn txt-upper fsemibold"> Boxers </a>
-								<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180207170652-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180207170652-1.jpg" alt="">
-							 
+							<a href="javascript:void(0);" class="htilebtn txt-upper fsemibold"> Boxers </a>
+							<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180207170652-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180207170652-1.jpg" alt="">
 						</div>
 					</div>
 				</div>
@@ -247,8 +227,8 @@
 					<div class="col-md-12 col-sm-12 col-12 bx">
 						<div class="tilethumb spacepro scaleImg">
 							<a href="javascript:void(0);">
-								<div class="htilebtn txt-upper fsemibold"> Notebooks </div>
-								<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023825-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023825-1.jpg" alt=""></a>
+							<div class="htilebtn txt-upper fsemibold"> Notebooks </div>
+							<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023825-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180206023825-1.jpg" alt=""></a>
 						</div>
 					</div>
 				</div>
@@ -256,33 +236,25 @@
 			<div class="col-md-6 col-sm-6 col-12 bx">
 				<div class="tilethumb"><a href="" class="htilebtn txt-upper fsemibold"> T-Shirt Dresses</a>
 					<a href="javascript:void(0);" class="scaleImg">
-						<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180424100954-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180424100954-1.jpg" alt="">
+					<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180424100954-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180424100954-1.jpg" alt="">
 					</a>
 				</div>
 			</div>
-			<div class="col-md-6 col-sm-6 col-12 bx">
-				<div class="tilethumb"><a href="javascript:void(0);" class="htilebtn txt-upper fsemibold"> Duffle Bags</a>
-					<a href="javascript:void(0);" class="scaleImg">
-						<div class="imgContainer" style="background-image: url(&quot;/static/images/Duffle-bag-tile.jpg&quot;);"></div> 
-						<img src="{{ asset('assets/front/images/Duffle-bag-tile.jpg') }} " alt="" >
-						
-					</a>
-				</div>
-			</div>
+			
 			<div class="col-md-6 col-sm-6 col-12 bx clearfixdesk">
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-12 bx">
 						<div class="tilethumb">
 							<a href="javascript:void(0);" class="scaleImg">
-								<div class="htilebtn txt-upper fsemibold"> Stickers </div>
-								<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180223150648-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180223150648-1.jpg" alt="">
+							<div class="htilebtn txt-upper fsemibold"> Stickers </div>
+							<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180223150648-1.jpg&quot;);"></div> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180223150648-1.jpg" alt="">
 							</a>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6 col-6 bx">
 						<div class="tilethumb spacepro2">
 							<a href="javascript:void(0);" class="scaleImg">
-								<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180323160332-1.jpg&quot;);"></div> <span class="htilebtn txt-upper fsemibold"> Tote Bags </span> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180323160332-1.jpg" alt="">
+							<div class="imgContainer" style="background-image: url(&quot;https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180323160332-1.jpg&quot;);"></div> <span class="htilebtn txt-upper fsemibold"> Tote Bags </span> <img src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/category/20180323160332-1.jpg" alt="">
 							</a>
 						</div>
 					</div>
@@ -320,5 +292,4 @@
 		</div> 
 	</div>
  
-    
 @endsection

@@ -3,7 +3,7 @@
 	
 		<head>
 		
-			<title>Raascals | Home</title>  
+			<title>Infinity | Home</title>  
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700" rel="stylesheet"> 
 			<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"> 
 			<link href="https://fonts.googleapis.com/css?family=Catamaran:300,400,500,600,700,800|Lato:300,400,700,900" rel="stylesheet"> 
@@ -18,6 +18,10 @@
 			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/owl.theme.css') }}"> 
 			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/responsive.css') }}">
 			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/header-menu.css') }}">
+			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/aos.css') }}">
+			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/jquery.simpleGallery.css') }}">
+			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/jquery.simpleLens.css') }}">
+			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/developer.css') }}">
             
 
 
@@ -41,15 +45,20 @@
 			<script src="{{ URL::asset('assets/front/js/detail.slider.js') }}"></script>
 			
 			<script src="{{ URL::asset('assets/front/js/resCarousel.js') }}"></script>
+			<script src="{{ URL::asset('assets/front/js/aos.js') }}"></script>
+			<script src="{{ URL::asset('assets/front/js/jquery.simpleGallery.js') }}"></script>
+			<script src="{{ URL::asset('assets/front/js/jquery.simpleLens.js') }}"></script>
+			<script type="text/javascript" src="{{ URL::asset('assets/front/custome/jquery.validate.min.js') }}"></script>
+			<script type="text/javascript" src="{{ URL::asset('assets/front/custome/validate.settings.js') }}"></script>
+			<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 			
-			
-		   
 			<script> new WOW().init();</script>
 			
 	    </head>
 	<body>
 	    <!--<div class="wrapper">-->
-
+		<div class="bodypageloader" style="display:none;"></div>
+		
 		@include('layouts.partials.front.header')
 		
 		@include('layouts.model')

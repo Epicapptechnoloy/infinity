@@ -1,7 +1,8 @@
-<footer>
-		 <!-- BACK TO TOP  -->
 
-<div class="btntoTop active" style="display: block;"></div>
+<footer>
+<!-- BACK TO TOP  -->
+
+<div class="btntoTop active" style="display: none;"></div>
 <!-- END BACK TO TOP  -->
 
 
@@ -10,8 +11,7 @@
     <div class="_bK hidden-xs">
         <div class="container pd-15">
             <div class="row noMg logorow"> 
-				    <div class="col-md-1 col-sm-2 pd-15">  <img src="{{ asset('assets/front/images/logo-footer.png') }} " alt="">
-					</div>
+				    <div class="col-md-1 col-sm-2 pd-15"><img src="{{ asset('assets/front/img/Infinity_Changed.png') }}" alt="" /></div>
                     <br>
                     <br> 
             </div>
@@ -85,9 +85,8 @@
                         <li>
                             <h4>DOWNLOAD THE APP</h4>
                             <div>
-								
-                                <a target="_blank" href="http://play.google.com/store/apps/details?id=com.RAASCALS.RAASCALS&amp;hl=en"><img src="{{ asset('assets/front/images/app_android_v1.png') }}" alt="No-Img" width="100px"></a>
-                                <a rel="nofollow" target="_blank" href="https://itunes.apple.com/in/app/RAASCALS/id1100190514?mt=8"><img src="{{ asset('assets/front/images/app_ios_v1.png') }}" width="100px"></a>
+                                <a target="_blank" href="http://play.google.com/store/apps/details?id=com.Infinity.Infinity&amp;hl=en"><img src="{{ asset('assets/front/img/app_android_v1.png') }}" alt="No-Img" width="100px"></a>
+                                <a rel="nofollow" target="_blank" href="https://itunes.apple.com/in/app/Infinity/id1100190514?mt=8"><img src="{{ asset('assets/front/img/app_ios_v1.png') }}" width="100px"></a>
                             </div>
                         </li>
                     </ul>
@@ -96,8 +95,7 @@
                     <br class="visible-xs">
                     <br class="visible-xs">
                     <h4 class="100secure">100% Secure Payment</h4>
-					
-                    <div class="row textcenter"><img class="_bM" src="{{ asset('assets/front/images/secure_payments_neww.png') }}" alt="No-Img"></div>
+                    <div class="row textcenter"><img class="_bM" src="{{ asset('assets/front/img/secure_payments_neww.png') }}" alt="No-Img"></div>
                 </div>
             </section>
             <section class="col-xs-12 noPdSm">
@@ -118,8 +116,8 @@
                                 <div class="pHolder">
                                     <br>
                                     <br>
-                                    <h1 style="font-size:24px;">RAASCALS THE NEW AGE ONLINE SHOPPING EXPERIENCE.</h1>
-                                    <p>Founded in 2012, RAASCALS is a lifestyle fashion brand that makes creative, distinctive fashion for the trendy, contemporary Indian. RAASCALS was created on the principle of creating impact through innovation, honesty and thoughtfulness.</p>
+                                    <h1 style="font-size:24px;">Infinity THE NEW AGE ONLINE SHOPPING EXPERIENCE.</h1>
+                                    <p>Founded in 2012, Infinity is a lifestyle fashion brand that makes creative, distinctive fashion for the trendy, contemporary Indian. Infinity was created on the principle of creating impact through innovation, honesty and thoughtfulness.</p>
                                     <br>
                                     <p>With a team of 400 members, and 2mn products sold till date. We like to experiment freely, which allows us to balance creativity and relatability, and our innovative designs. Our range of products is always fresh and up-to-date, and we clock sales of over 1 lakh products a month. Our innovation focus extends to our operations as well. We are vertically integrated, manufacture our own products, and cut out the middleman wherever possible. This direct-to-consumer model allows us to create high-quality fashion at affordable prices. A thoughtful brand, we actively attempt to minimize our environmental footprint and maximize our social impact. These efforts are integrated right into our day-to-day operations, from rainwater harvesting to paper packaging to employee benefits. To create an accessible, affordable and thoughtful experience of online shopping in India.</p>
                                     <br>
@@ -148,7 +146,7 @@
                                     <p>Our <a href="#"> backpacks </a> and duffle bags are made of durable and light-weight material that makes it perfect for all of your scenes, from gyms, trekking, to daily use for college or work and maintain a great style statement while giving you amazing functionality and are perfect for those mini getaways away from the city that keep us rejuvenated! These are come in classy colors, are duffle bags are made of faux leather, leather like material, that gives a classy look while being environment and animal friendly, the others are made of water resistant rubberized nylon, and one see-through backpack that has been an absolute hit with all of our audiences! These come in some vibrant bright neon colours as well as subtle and classy shades like grey and some with cute prints on them so you can choose your favourites according to your style and all of this at super pocket-friendly rates.</p>
                                     <br>
                                     <h2 style="font-size:18px;">OUR PHILOSOPHY</h2>
-                                    <p>We believe in creating the kind of fashion, that makes you stand out as they are in line with the latest local and global trends of the industry, but also at the same time offer value for money functionality, with quality materials and comfortable and flattering prints. We try to look into the psyche of our customers, and try to get inspired by the conversations and experiences around us while creating our graphics, to ensure that they are relatable. We believe in constant and consistent innovation to ensure that our fans get nothing short of the bets at affordable rates! While most people do not know, we do not outsource the manufacturing of our products, everything from the conception of the designs to the manufacture and the styling that you see on the photographs of the banners and product pages of our website all happen in house! We go from yarn to product and since we 're vertically integrated and bring fashion from us directly to your doorstep without any middlemen that also further ensures reliability because for us it is not just about the money but about building the trust and credibility in our fans about our brand. We also make sure to decrease the impact on environment and are building initiatives that will help us with the same, for now by optimizing our processes to use only as much as we need from nature, rain water harvesting and recycling the water from our RO water facility, because we believe that the spirit of RAASCALS is about creating an impact by breaking conventions and having a different perspective!</p>
+                                    <p>We believe in creating the kind of fashion, that makes you stand out as they are in line with the latest local and global trends of the industry, but also at the same time offer value for money functionality, with quality materials and comfortable and flattering prints. We try to look into the psyche of our customers, and try to get inspired by the conversations and experiences around us while creating our graphics, to ensure that they are relatable. We believe in constant and consistent innovation to ensure that our fans get nothing short of the bets at affordable rates! While most people do not know, we do not outsource the manufacturing of our products, everything from the conception of the designs to the manufacture and the styling that you see on the photographs of the banners and product pages of our website all happen in house! We go from yarn to product and since we 're vertically integrated and bring fashion from us directly to your doorstep without any middlemen that also further ensures reliability because for us it is not just about the money but about building the trust and credibility in our fans about our brand. We also make sure to decrease the impact on environment and are building initiatives that will help us with the same, for now by optimizing our processes to use only as much as we need from nature, rain water harvesting and recycling the water from our RO water facility, because we believe that the spirit of Infinity is about creating an impact by breaking conventions and having a different perspective!</p>
                                     <br>
                                 </div>
                             </div>
@@ -174,26 +172,26 @@
                                         <li class="_eO"><a href="/iphone-7-back-covers-cases" class="" title="Buy iPhone 7 Covers &amp; Cases Online India">iPhone 7 Cases</a></li>
                                         <li class="_eO"><a href="/iphone-7-logo-cut-back-covers-cases" class="" title="Buy iPhone 7 Logo Cut Back Covers &amp; Cases Online India">iPhone 7 Logo Cut Cases</a></li>
                                         <li class="_eO"><a href="/iphone-7-plus-logo-cut-back-covers-cases" class="" title="Buy iPhone 7 Plus Logo Cut Back Covers &amp; Cases Online India">iPhone 7 Plus Logo Cut Cases</a></li>
-                                        <li class="_eO"><a href="/iphone-6-back-covers-cases" class="" title="Buy iPhone 6 Cases Online India - RAASCALS.com">iPhone 6 Cases</a></li>
-                                        <li class="_eO"><a href="/iphone-6s-back-covers-cases" class="" title="Buy iPhone 6s Cases Online India - RAASCALS.com">iPhone 6s Cases</a></li>
-                                        <li class="_eO"><a href="/iphone-se-back-covers-cases" class="" title="Buy iPhone SE Cases Online India - RAASCALS.com">iPhone SE Cases</a></li>
-                                        <li class="_eO"><a href="/iphone-5-5s-back-covers-cases" class="" title="Buy iPhone 5/5S Cases Online India - RAASCALS.com">iPhone 5/5S Cases</a></li>
-                                        <li class="_eO"><a href="/xiaomi-redmi-4-back-covers-cases" class="" title="Xiaomi Redmi 4 Cases - RAASCALS.com">Xiaomi Redmi 4</a></li>
-                                        <li class="_eO"><a href="/xiaomi-redmi-note-3-back-covers-cases" class="" title="Buy Redmi Note 3 Cases Online India - RAASCALS.com">Redmi Note 3 Covers</a></li>
-                                        <li class="_eO"><a href="/xiaomi-redmi-note-4-back-covers-cases" class="" title="Buy Redmi Note 4 Cases Online India - RAASCALS.com">Redmi Note 4 Covers</a></li>
+                                        <li class="_eO"><a href="/iphone-6-back-covers-cases" class="" title="Buy iPhone 6 Cases Online India - Infinity.com">iPhone 6 Cases</a></li>
+                                        <li class="_eO"><a href="/iphone-6s-back-covers-cases" class="" title="Buy iPhone 6s Cases Online India - Infinity.com">iPhone 6s Cases</a></li>
+                                        <li class="_eO"><a href="/iphone-se-back-covers-cases" class="" title="Buy iPhone SE Cases Online India - Infinity.com">iPhone SE Cases</a></li>
+                                        <li class="_eO"><a href="/iphone-5-5s-back-covers-cases" class="" title="Buy iPhone 5/5S Cases Online India - Infinity.com">iPhone 5/5S Cases</a></li>
+                                        <li class="_eO"><a href="/xiaomi-redmi-4-back-covers-cases" class="" title="Xiaomi Redmi 4 Cases - Infinity.com">Xiaomi Redmi 4</a></li>
+                                        <li class="_eO"><a href="/xiaomi-redmi-note-3-back-covers-cases" class="" title="Buy Redmi Note 3 Cases Online India - Infinity.com">Redmi Note 3 Covers</a></li>
+                                        <li class="_eO"><a href="/xiaomi-redmi-note-4-back-covers-cases" class="" title="Buy Redmi Note 4 Cases Online India - Infinity.com">Redmi Note 4 Covers</a></li>
                                         <li class="_eO"><a href="/samsung-galaxy-j7-max-back-covers-cases" class="" title="Buy Samsung Galaxy J7 Max Covers &amp; Cases Online India">Samsung Galaxy J7 Max Covers</a></li>
                                         <li class="_eO"><a href="/samsung-galaxy-s8-plus-back-covers-cases" class="" title="Buy Samsung Galaxy S8 Plus Covers &amp; Cases Online India">Samsung Galaxy S8 Plus Covers</a></li>
                                         <li class="_eO"><a href="/samsung-galaxy-s8-back-covers-cases" class="" title="Buy Samsung Galaxy S8 Covers &amp; Cases Online India">Samsung Galaxy S8 Covers</a></li>
                                         <li class="_eO"><a href="/samsung-galaxy-c9-pro-back-covers" class="" title="Buy Samsung Galaxy C9 Pro Covers &amp; Cases Online India">Samsung Galaxy C9 Pro Covers</a></li>
                                         <li class="_eO"><a href="/samsung-galaxy-s7-back-covers-cases" class="" title="Buy Samsung Galaxy S7 Cases">Samsung Galaxy S7 Covers</a></li>
-                                        <li class="_eO"><a href="/samsung-galaxy-j7-back-covers-cases" class="" title="Buy Samsung Galaxy J7 Cases Online India - RAASCALS.com">Samsung Galaxy J7 Covers</a></li>
-                                        <li class="_eO"><a href="/oneplus-5-back-covers-cases" class="" title="Buy OnePlus 5 Cases Online India - RAASCALS.com">OnePlus 5 Covers</a></li>
-                                        <li class="_eO"><a href="/one-plus-3-back-cover-cases" class="" title="Buy Oneplus 3 Covers Online India - RAASCALS.com">OnePlus 3 Cases</a></li>
-                                        <li class="_eO"><a href="/oneplus-3t-back-covers-cases" class="" title="Buy OnePlus 3T Covers &amp; Cases Online India - RAASCALS.com">OnePlus 3T Covers</a></li>
-                                        <li class="_eO"><a href="/moto-g5s-plus-back-covers-cases" class="" title="Buy Moto G5s Plus Cases Online India - RAASCALS.com">Moto G5s Plus Back Covers</a></li>
-                                        <li class="_eO"><a href="/moto-g5s-back-covers-cases" class="" title="Buy Moto G5s Cases Online India - RAASCALS.com">Moto G5s Back Covers</a></li>
-                                        <li class="_eO"><a href="/moto-g5-plus-back-covers-cases" class="" title="Buy Moto G5 Plus Cases Online India - RAASCALS.com">Moto G5 Plus Back Covers</a></li>
-                                        <li class="_eO"><a href="/moto-e4-plus-back-covers-cases" class="" title="Buy Moto E4 Plus Cases Online India - RAASCALS.com">Moto E4 Plus Back Covers</a></li>
+                                        <li class="_eO"><a href="/samsung-galaxy-j7-back-covers-cases" class="" title="Buy Samsung Galaxy J7 Cases Online India - Infinity.com">Samsung Galaxy J7 Covers</a></li>
+                                        <li class="_eO"><a href="/oneplus-5-back-covers-cases" class="" title="Buy OnePlus 5 Cases Online India - Infinity.com">OnePlus 5 Covers</a></li>
+                                        <li class="_eO"><a href="/one-plus-3-back-cover-cases" class="" title="Buy Oneplus 3 Covers Online India - Infinity.com">OnePlus 3 Cases</a></li>
+                                        <li class="_eO"><a href="/oneplus-3t-back-covers-cases" class="" title="Buy OnePlus 3T Covers &amp; Cases Online India - Infinity.com">OnePlus 3T Covers</a></li>
+                                        <li class="_eO"><a href="/moto-g5s-plus-back-covers-cases" class="" title="Buy Moto G5s Plus Cases Online India - Infinity.com">Moto G5s Plus Back Covers</a></li>
+                                        <li class="_eO"><a href="/moto-g5s-back-covers-cases" class="" title="Buy Moto G5s Cases Online India - Infinity.com">Moto G5s Back Covers</a></li>
+                                        <li class="_eO"><a href="/moto-g5-plus-back-covers-cases" class="" title="Buy Moto G5 Plus Cases Online India - Infinity.com">Moto G5 Plus Back Covers</a></li>
+                                        <li class="_eO"><a href="/moto-e4-plus-back-covers-cases" class="" title="Buy Moto E4 Plus Cases Online India - Infinity.com">Moto E4 Plus Back Covers</a></li>
                                         <li class="_eO"><a href="/moto-m-back-covers-cases" class="" title="Buy Moto M Cases &amp; Covers Online India">Moto M Back Covers</a></li>
                                         <li class="_eO"><a href="/oppo-f1s-back-cover-cases" class="" title="Buy Oppo F1s Back Covers &amp; Cases Online India">Oppo F1s Covers</a></li>
                                         <li class="_eO"><a href="/vivo-v7-plus-back-covers-cases" class="" title="Buy Vivo V7 Plus Cases Online India">Vivo V7 Plus Back Covers</a></li>
@@ -203,60 +201,60 @@
                                 </div>
                                 <div class="col-xs-3 noPdLeft noPdXs">
                                     <ul>
-                                        <h4 class="fc-white" title="">Men"s Fashion</h4>
-                                        <li><a href="#" class="seperate-li" title=" ">Top Wear</a></li>
-                                        <li><a href="#" >T Shirts for Men</a></li>
-                                        <li><a href="#">Men"s T-shirts - Full Sleeve</a></li>
-                                        <li><a href="#">Henley &amp; Polo T-Shirts</a></li>
-                                        <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                        <li><a href="#">Bomber Jackets</a></li>
-                                        <li><a href="#">Men"s Vests - Sleeve Less T shirts</a></li>
-                                        <li><a href="#">Shirts for Men</a></li>
-                                        <li><a href="#" class="seperate-li">Bottom Wear</a></li>
-                                        <li><a href="#">Men"s Joggers - Fleece &amp; Denim</a></li>
-                                        <li><a href="#">Men"s Jeans &amp; Denim</a></li>
-                                        <li><a href="#">Pajamas</a></li>
-                                        <li><a href="#">Boxer Shorts for Men</a></li>
-                                        <li><a href="#">Shorts for Men</a></li>
+                                        <h4 class="fc-white" title="#">Men"s Fashion</h4>
+                                        <li><a href="/top-wear-for-men" class="seperate-li" title="Top Wear for Men Online India - Infinity.com">Top Wear</a></li>
+                                        <li><a href="/men-t-shirts" class="" title="Buy T-shirts for Men Online India - Infinity.com">T Shirts for Men</a></li>
+                                        <li><a href="/men-full-sleeve-t-shirts" class="" title="Buy Full Sleeve T-Shirts for Men Online India - Infinity.com">Men"s T-shirts - Full Sleeve</a></li>
+                                        <li><a href="/henley-and-polo-t-shirt-for-men-collection" class="" title="Henley &amp; Polo T-Shirts Online India - Infinity.com">Henley &amp; Polo T-Shirts</a></li>
+                                        <li><a href="/men-hoodies-sweatshirts" class="" title="Buy Sweatshirts &amp; Zipper jackets for Men Online India - Infinity.com">Hoodies &amp; Sweatshirts</a></li>
+                                        <li><a href="/men-jackets" class="" title="Buy Bomber jackets for Men Online India - Infinity.com">Bomber Jackets</a></li>
+                                        <li><a href="/men-vests" class="" title="Buy Casual Vests for men Online India - Infinity.com">Men"s Vests - Sleeve Less T shirts</a></li>
+                                        <li><a href="/men-shirts" class="" title="Buy Mens Casual Shirts Online India - Infinity.com">Shirts for Men</a></li>
+                                        <li><a href="/men-bottom-wear-collection" class="seperate-li" title="Bottom Wear for Men Online India - Infinity.com">Bottom Wear</a></li>
+                                        <li><a href="/men-joggers" class="" title="Buy Jogger pants for men Online India - Infinity.com">Men"s Joggers - Fleece &amp; Denim</a></li>
+                                        <li><a href="/men-jeans-denims" class="" title="Buy Denim Joggers Jeans for men Online India - Infinity.com">Men"s Jeans &amp; Denim</a></li>
+                                        <li><a href="/men-pajamas" class="" title="Men&quot;s Pajamas Online India - Infinity.com">Pajamas</a></li>
+                                        <li><a href="/men-boxer-shorts" class="" title="Men&quot;s Boxers Online India - Infinity.com">Boxer Shorts for Men</a></li>
+                                        <li><a href="/men-shorts" class="" title="Men's Shorts Online India - Infinity.com">Shorts for Men</a></li>
                                         <li class="seperate-li">Featured</li>
-                                        <li><a href="#">Top Wear</a></li>
-                                        <li><a href="#">T Shirts for Men</a></li>
-                                        <li><a href="#">Men"s T-shirts - Full Sleeve</a></li>
-                                        <li><a href="#">Henley &amp; Polo T-Shirts</a></li>
-                                        <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                        <li><a href="#">Bomber Jackets</a></li>
-                                        <li><a href="#">Men"s Vests - Sleeve Less T shirts</a></li>
-                                        <li><a href="/men-shirts" title="Buy Mens Casual Shirts Online India - RAASCALS.com">Shirts for Men</a></li>
-                                        <li><a href="/men-bottom-wear-collection" title="Bottom Wear for Men Online India - RAASCALS.com">Bottom Wear</a></li>
-                                        <li><a href="/men-joggers" title="Buy Jogger pants for men Online India - RAASCALS.com">Men"s Joggers - Fleece &amp; Denim</a></li>
-                                        <li><a href="/men-jeans-denims" title="Buy Denim Joggers Jeans for men Online India - RAASCALS.com">Men"s Jeans &amp; Denim</a></li>
-                                        <li><a href="/men-pajamas" title="Men&quot;s Pajamas Online India - RAASCALS.com">Pajamas</a></li>
-                                        <li><a href="/men-boxer-shorts" title="Men&quot;s Boxers Online India - RAASCALS.com">Boxer Shorts for Men</a></li>
-                                        <li><a href="/men-shorts" title="Men's Shorts Online India - RAASCALS.com">Shorts for Men</a></li>
+                                        <li><a href="/top-wear-for-men" title="Top Wear for Men Online India - Infinity.com">Top Wear</a></li>
+                                        <li><a href="/men-t-shirts" title="Buy T-shirts for Men Online India - Infinity.com">T Shirts for Men</a></li>
+                                        <li><a href="/men-full-sleeve-t-shirts" title="Buy Full Sleeve T-Shirts for Men Online India - Infinity.com">Men"s T-shirts - Full Sleeve</a></li>
+                                        <li><a href="/henley-and-polo-t-shirt-for-men-collection" title="Henley &amp; Polo T-Shirts Online India - Infinity.com">Henley &amp; Polo T-Shirts</a></li>
+                                        <li><a href="/men-hoodies-sweatshirts" title="Buy Sweatshirts &amp; Zipper jackets for Men Online India - Infinity.com">Hoodies &amp; Sweatshirts</a></li>
+                                        <li><a href="/men-jackets" title="Buy Bomber jackets for Men Online India - Infinity.com">Bomber Jackets</a></li>
+                                        <li><a href="/men-vests" title="Buy Casual Vests for men Online India - Infinity.com">Men"s Vests - Sleeve Less T shirts</a></li>
+                                        <li><a href="/men-shirts" title="Buy Mens Casual Shirts Online India - Infinity.com">Shirts for Men</a></li>
+                                        <li><a href="/men-bottom-wear-collection" title="Bottom Wear for Men Online India - Infinity.com">Bottom Wear</a></li>
+                                        <li><a href="/men-joggers" title="Buy Jogger pants for men Online India - Infinity.com">Men"s Joggers - Fleece &amp; Denim</a></li>
+                                        <li><a href="/men-jeans-denims" title="Buy Denim Joggers Jeans for men Online India - Infinity.com">Men"s Jeans &amp; Denim</a></li>
+                                        <li><a href="/men-pajamas" title="Men&quot;s Pajamas Online India - Infinity.com">Pajamas</a></li>
+                                        <li><a href="/men-boxer-shorts" title="Men&quot;s Boxers Online India - Infinity.com">Boxer Shorts for Men</a></li>
+                                        <li><a href="/men-shorts" title="Men's Shorts Online India - Infinity.com">Shorts for Men</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-xs-3 noPdLeft noPdXs">
                                     <ul>
-                                        <h4 class="fc-white" title="">Women"s Clothing</h4>
-                                        <li><a href="/top-wear-for-women" class="seperate-li" title="Top Wear for Women Online India - RAASCALS.com">Top Wear</a></li>
-                                        <li><a href="/women-t-shirts" class="" title="Buy Tops for Women Online India - RAASCALS.com">Women"s Tops</a></li>
-                                        <li><a href="/women-3-4-full-sleeve-t-shirts" class="" title="Buy 3/4 &amp; Full Sleeve T-Shirts Online India - RAASCALS.com">Women"s Tops - Long Sleeve</a></li>
-                                        <li><a href="/women-dresses" class="" title="Buy Dresses for Women Online India - RAASCALS.com">Women"s Dresses</a></li>
-                                        <li><a href="/women-crop-tops" class="" title="Buy Women&quot;s Crop Tops Online India - RAASCALS.com">Crop Tops</a></li>
-                                        <li><a href="/women-tank-tops" class="" title="Buy Women&quot;s Tank Tops Online India - RAASCALS.com">Tank Tops</a></li>
-                                        <li><a href="/women-hoodies-sweatshirts" class="" title="Buy Hoodies &amp; Sweatshirts for Women Online India - RAASCALS.com">Women"s Hoodies &amp; Sweatshirts</a></li>
-                                        <li><a href="/women-jackets" class="" title="Buy Jackets for Women Online India - RAASCALS.com">Bomber Jackets</a></li>
-                                        <li><a href="/women-shirts" class="" title="Buy Casual Shirts for Women Online India - RAASCALS.com">Women"s Casual Shirts</a></li>
-                                        <li><a href="/bottom-wear-for-women" class="seperate-li" title="Buy Bottom Wear for Women Online India - RAASCALS.com">Women"s Bottom Wear</a></li>
-                                        <li><a href="/women-joggers-sweatpants" class="" title="Buy Sweatpants and Jogger Jeans for Women Online India - RAASCALS.com">Women"s Joggers</a></li>
-                                        <li><a href="/women-jeans-denims" class="" title="Buy Denim Joggers Jeans for Women Online India - RAASCALS.com">Women"s Jeans &amp; Denim</a></li>
-                                        <li><a href="/women-pajamas" class="" title="Buy Pyjamas for Women Online India - RAASCALS.com">Women's Pajamas</a></li>
-                                        <li><a href="/women-shorts" class="" title="Shorts for Women Online India - RAASCALS.com">Women's Shorts</a></li>
-                                        <li><a href="/women-boxer-shorts" class="" title="Buy Boxers Shorts for Women Online India - RAASCALS.com">Women's Boxers</a></li>
-                                        <li><a href="/bags" class="seperate-li" title="Bags, Gym Bags India - RAASCALS.com">BAGS</a></li>
-                                        <li><a href="/backpacks" class="" title="Backpacks, Bags Online India - RAASCALS.com">Backpacks</a></li>
-                                        <li><a href="/duffle-bags" class="" title="Duffle Bags Online India - RAASCALS.com">Duffle Bags</a></li>
-                                        <li><a href="/snapbacks-hip-hop-cap" class="" title="Hip Hop Cap Online India - RAASCALS.com">Caps</a></li>
+                                        <h4 class="fc-white" title="#">Women"s Clothing</h4>
+                                        <li><a href="/top-wear-for-women" class="seperate-li" title="Top Wear for Women Online India - Infinity.com">Top Wear</a></li>
+                                        <li><a href="/women-t-shirts" class="" title="Buy Tops for Women Online India - Infinity.com">Women"s Tops</a></li>
+                                        <li><a href="/women-3-4-full-sleeve-t-shirts" class="" title="Buy 3/4 &amp; Full Sleeve T-Shirts Online India - Infinity.com">Women"s Tops - Long Sleeve</a></li>
+                                        <li><a href="/women-dresses" class="" title="Buy Dresses for Women Online India - Infinity.com">Women"s Dresses</a></li>
+                                        <li><a href="/women-crop-tops" class="" title="Buy Women&quot;s Crop Tops Online India - Infinity.com">Crop Tops</a></li>
+                                        <li><a href="/women-tank-tops" class="" title="Buy Women&quot;s Tank Tops Online India - Infinity.com">Tank Tops</a></li>
+                                        <li><a href="/women-hoodies-sweatshirts" class="" title="Buy Hoodies &amp; Sweatshirts for Women Online India - Infinity.com">Women"s Hoodies &amp; Sweatshirts</a></li>
+                                        <li><a href="/women-jackets" class="" title="Buy Jackets for Women Online India - Infinity.com">Bomber Jackets</a></li>
+                                        <li><a href="/women-shirts" class="" title="Buy Casual Shirts for Women Online India - Infinity.com">Women"s Casual Shirts</a></li>
+                                        <li><a href="/bottom-wear-for-women" class="seperate-li" title="Buy Bottom Wear for Women Online India - Infinity.com">Women"s Bottom Wear</a></li>
+                                        <li><a href="/women-joggers-sweatpants" class="" title="Buy Sweatpants and Jogger Jeans for Women Online India - Infinity.com">Women"s Joggers</a></li>
+                                        <li><a href="/women-jeans-denims" class="" title="Buy Denim Joggers Jeans for Women Online India - Infinity.com">Women"s Jeans &amp; Denim</a></li>
+                                        <li><a href="/women-pajamas" class="" title="Buy Pyjamas for Women Online India - Infinity.com">Women's Pajamas</a></li>
+                                        <li><a href="/women-shorts" class="" title="Shorts for Women Online India - Infinity.com">Women's Shorts</a></li>
+                                        <li><a href="/women-boxer-shorts" class="" title="Buy Boxers Shorts for Women Online India - Infinity.com">Women's Boxers</a></li>
+                                        <li><a href="/bags" class="seperate-li" title="Bags, Gym Bags India - Infinity.com">BAGS</a></li>
+                                        <li><a href="/backpacks" class="" title="Backpacks, Bags Online India - Infinity.com">Backpacks</a></li>
+                                        <li><a href="/duffle-bags" class="" title="Duffle Bags Online India - Infinity.com">Duffle Bags</a></li>
+                                        <li><a href="/snapbacks-hip-hop-cap" class="" title="Hip Hop Cap Online India - Infinity.com">Caps</a></li>
                                         <li class="seperate-li">Featured</li>
                                         <li><a href="/women-plus-size-clothing" title="Buy Plus Size Clothing for Women Clothing Online India">XXXL Clothes</a></li>
                                         <li><a href="/factory-outlet-women" title="Buy Factory Outlet for Women Online">Factory Outlet Store</a></li>
@@ -264,12 +262,12 @@
                                 </div>
                                 <div class="col-xs-3 noPdLeft noPdXs">
                                     <ul>
-                                        <h4 class="fc-white" title="">Official Branded Merchandise - Movie, Comics &amp; More</h4>
-                                        <li><a href="/avengers-t-shirts-online-merchandise" class="" title="Buy Avenger T-Shirts Online India - RAASCALS.com">Avenger T Shirts</a></li>
-                                        <li><a href="/marvel-t-shirts-merchandise" class="" title="Buy Marvel T Shirts Online India - RAASCALS.com">Marvel T-Shirts</a></li>
+                                        <h4 class="fc-white" title="#">Official Branded Merchandise - Movie, Comics &amp; More</h4>
+                                        <li><a href="/avengers-t-shirts-online-merchandise" class="" title="Buy Avenger T-Shirts Online India - Infinity.com">Avenger T Shirts</a></li>
+                                        <li><a href="/marvel-t-shirts-merchandise" class="" title="Buy Marvel T Shirts Online India - Infinity.com">Marvel T-Shirts</a></li>
                                         <li><a href="/captain-america-t-shirt-online" class="" title="Buy Official Captain America T Shirt">Captain Amercia T shirts</a></li>
-                                        <h4 class="fc-white" title="">RAASCALS Specials</h4>
-                                        <li><a href="/posters" class="" title="Posters Online India - RAASCALS.com">Posters</a></li>
+                                        <h4 class="fc-white" title="#">Infinity Specials</h4>
+                                        <li><a href="/posters" class="" title="Posters Online India - Infinity.com">Posters</a></li>
                                         <br>
                                         <h4 class="fc-white"><a href="/fanbook"> Fanbook</a></h4>
                                         <h4 class="fc-white"><a href="/campaign/delights-coupons-discounts-offers-sale"> Delights</a></h4></ul>
@@ -292,10 +290,9 @@
 				<a href="#">Privacy Policy</a>
 				<a href="#">T&amp;C</a></div>
             <div class="row _eL"><span class="secure100">100% secure payment</span></div>
-			
-            <div class="row noMg"><img width="100%" src="{{ asset('assets/front/images/secure_payments_neww.png') }}" alt=""></div>
+            <div class="row noMg"><img width="100%" src="{{ asset('assets/front/img/secure_payments_neww.png') }}" alt=""></div>
         </div>
     </div>
-</div>    
-    <!-- END FOOTER -->
-		</footer>
+</div>
+</footer>    
+<!-- END FOOTER -->

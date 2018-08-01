@@ -10,11 +10,30 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
 Route::get('/home', 'HomeController@index');
+
 Route::GET('/fetch-state','HomeController@fetchState');
 Route::GET('/fetch-city','HomeController@fetchCity');
 
 // Admin Route for new shopping site
+
+Route::GET('/login','Front\LoginController@login')->name('user.login');
+
+Route::POST('/login','Front\LoginController@loginProcess');
+
+Route::POST('/signup-process','Front\LoginController@signupProcess')->name('user.signupProcess');
+
+Route::POST('/ajax-handler-auth','Front\AjaxController@ajaxhandlerAction');
+
+Route::GET('/user/logout','Front\LoginController@logout')->name('user.logout');
+
+Route::group(['middleware' => ['auth:frontUser']], function() {  
+
+});	
+
 
 Route::GET('/admin','Admin\LoginController@showLoginForm')->name('admin');
 Route::POST('admin/login','Admin\LoginController@login')->name('admin.login');
@@ -115,12 +134,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
 	Route::post('import-product-process','Admin\ImportController@importProductProcess')->name('importProductProcess');
 	
 	Route::GET('download-import-product','Admin\ImportController@downloadImportProduct')->name('downloadImportProduct');
-	
-	//Route::get('import-product',array('as'=>'excel.import','uses'=>'FileController@importExportExcelORCSV'));
-	//Route::post('import-csv-excel',array('as'=>'import-csv-excel','uses'=>'FileController@importFileIntoDB'));
-	//Route::get('download-excel-file/{type}', array('as'=>'excel-file','uses'=>'FileController@downloadExcelFile'));
-	
-	
+
     //category list  
     Route::GET('/category-list','Admin\CategoryController@categoryList')->name('admin.category-list');
         
