@@ -5,6 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Socialite;
+use Auth;
+use Exception;
+
+use App\Http\Requests;
+
+use App\SocialAccountService;
+
+
 class LoginController extends Controller
 {
     /*
@@ -36,4 +45,49 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+	
+	
+	public function redirectToFacebook()
+    {
+		//dd(Socialite::driver('facebook')->redirect());
+        return Socialite::driver('facebook')->redirect();
+    }
+	
+	
+	public function handleFacebookCallback()
+    {
+        try {
+            $user = Socialite::driver('facebook')->user();
+        } catch (Exception $e) {
+            return redirect('auth/facebook');
+        }
+        $authUser = $this->findOrCreateUser($user);
+
+        Auth::login($authUser, true);
+
+        return redirect()->route('home');
+    }
+
+	
+	
+    private function findOrCreateUser($facebookUser)
+    {
+        $authUser = User::where('facebook_id', $facebookUser->id)->first();
+
+        if ($authUser){
+            return $authUser;
+        }
+
+        return User::create([
+            'name' => $facebookUser->name,
+            'email' => $facebookUser->email,
+            'facebook_id' => $facebookUser->id,
+            'oauth_provider' => $facebookUser->avatar
+        ]);
+    }
+	
+	
+	
+	
+	
 }

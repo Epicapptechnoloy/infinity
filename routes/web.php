@@ -13,7 +13,7 @@
 
 
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::GET('/fetch-state','HomeController@fetchState');
 Route::GET('/fetch-city','HomeController@fetchCity');
@@ -26,9 +26,22 @@ Route::POST('/login','Front\LoginController@loginProcess');
 
 Route::POST('/signup-process','Front\LoginController@signupProcess')->name('user.signupProcess');
 
+
+Route::match(array('GET','POST'),'/forgot-password','Front\ForgetPasswordController@forgotPasswordProcess')->name('user.forgotPassword');
+
+Route::GET('/resetPassword/{token}','Front\ResetPasswordController@userResetPassword')->name('user.reset-password');
+
+Route::POST('/process-reset-password','Front\ResetPasswordController@proccessResetPassword')->name('process-reset-password');
+
 Route::POST('/ajax-handler-auth','Front\AjaxController@ajaxhandlerAction');
 
 Route::GET('/user/logout','Front\LoginController@logout')->name('user.logout');
+
+Route::get('/auth/facebook', 'Auth\LoginController@redirectToFacebook');
+Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
+Route::get('auth/google', 'Auth\AuthController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\AuthController@handleGoogleCallback');
 
 Route::group(['middleware' => ['auth:frontUser']], function() {  
 
@@ -262,11 +275,11 @@ Route::GET('/register','Customer\CustomerController@showLoginForm');
 Route::GET('/auth-process','Customer\CustomerController@showLoginForm')->name('login');
 Route::POST('/ProcessRegistration','Customer\CustomerController@ProcessRegistration')->name('ProcessRegistration');
 Route::POST('/ProcessLogin','Customer\CustomerController@ProcessLogin')->name('ProcessLogin');
-Route::GET('/logout','Customer\CustomerController@logout')->name('logout');
-Route::POST('/forgotpassword','Customer\CustomerController@postResetLinkEmail')->name('forgotpassword');
-Route::GET('/forgotpassword','Customer\CustomerController@showLoginForm');
-Route::get('/reset-password/{token}','Customer\CustomerController@resetPassword');
-Route::POST('/process-reset-password','Customer\CustomerController@proccessResetPassword');
+//Route::GET('/logout','Customer\CustomerController@logout')->name('logout');
+//Route::POST('/forgotpassword','Customer\CustomerController@postResetLinkEmail')->name('forgotpassword');
+//Route::GET('/forgotpassword','Customer\CustomerController@showLoginForm');
+//Route::get('/reset-password/{token}','Customer\CustomerController@resetPassword');
+//Route::POST('/process-reset-password','Customer\CustomerController@proccessResetPassword');
 
 
 // profile routes

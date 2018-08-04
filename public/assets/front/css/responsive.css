@@ -476,3 +476,78 @@
 .notification-content .app_donwld{float:right;display: inline-block;
     padding-left: 20px;}
 /* ACCOUNT PAGE BANNER */
+
+/* RESET PASSWORD PAGE */
+ 
+.content.viewContainer.sldrfullpge{padding: 50px 0px 30px 0px;}
+.loginbox .tab-content {
+    background: #f1f1f2;
+    margin-top: 15px;
+    padding: 30px;
+    border: 1px solid #d1d3d4;
+}
+.tab-content>.active {
+    display: block;
+}
+.loginregisterheading {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+	font-weight: 600;
+}
+.h30 {
+    height: 30px;
+}
+
+.borderline {
+    width: 100%;
+    position: relative;
+}
+.borderline:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,.05);
+    height: 1px;
+    top: 50%;
+    margin-top: -1px;
+    left: 0;
+}
+.loginregister .btn{
+    border-radius: 10px;
+    line-height: 30px;
+    padding: 4px auto;
+    padding-top: 4px;
+    padding-bottom: 3px;
+	background-color: #37bdae;
+    border-color: #37bdae;
+}
+.loginregister .form-control{
+	border-radius: 10px;
+    line-height: 30px;
+    padding: 4px auto;
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+.loginregister .form-control {
+    color: #58595b;
+}
+ 
+.loginregister .form-control {
+    padding: .5rem .75rem;
+    font-size: inherit;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+/* RESET PASSWORD PAGE END */
+
+
+

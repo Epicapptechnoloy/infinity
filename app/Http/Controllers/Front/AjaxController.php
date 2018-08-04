@@ -56,7 +56,22 @@ class AjaxController extends Controller
 						} else {
 							$returnArr = true;
 						}
-						break;     
+						break;    
+
+					case 'validateEmailForgotPwd':
+					
+						$userEmail=$request->emai11;
+					
+						$response = User::where('email',$userEmail)->first();
+						
+						if ($response) {
+							$returnArr = true;
+						} else {
+							$returnArr = array("*Email do not match with our records.");
+							
+						}
+						break;
+						
 				}
 				
 			}catch(\Illuminate\Database\QueryException $e){

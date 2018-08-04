@@ -7,13 +7,14 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
+        "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "maatwebsite/excel": "~2.1.0",
         "mobiledetect/mobiledetectlib": "^2.8",
         "nesbot/carbon": "^1.22",
         "pear/http_request2": "^2.3",
         "wildbit/laravel-postmark-provider": "^3.0",
-        "wildbit/postmark-php": "^2.5",
-		"maatwebsite/excel": "~2.1.0"
+        "wildbit/postmark-php": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
