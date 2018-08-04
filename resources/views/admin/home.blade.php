@@ -122,7 +122,10 @@
 			<!-- /.table-responsive -->
 		</div>
 		<!-- /.box-body -->
-		
+		<div class="box-footer clearfix">
+			<!--<a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>-->
+			<a href="{{ route('admin.customers') }}" class="btn btn-sm btn-default btn-flat pull-right">View All Users</a>
+		</div>    
 		<!-- /.box-footer -->
     </div>
                    
