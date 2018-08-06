@@ -22,8 +22,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email','password','pass', 'number','country_id','state_id','city','zipcode','api_token','gender','otp','isVerified','status'
-		,'remember_token','address','is_login', 'email_verify_status', 'lastlogin'
+        'name','first_name','last_name', 'email','password','pass', 'number','country_id','state_id','city','zipcode','api_token','gender','otp','isVerified','status'
+		,'remember_token','address','facebook_id','google_id','oauth_provider','is_login', 'email_verify_status', 'lastlogin','created_at','updated_at'
     ];
     
  

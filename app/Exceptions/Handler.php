@@ -42,9 +42,31 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+        if($this->isHttpException($e))
+			{
+				
+				switch (intval($e->getStatusCode())) {
+					// not found
+					case 404:
+						
+						return \Response::view('errors.404',array('homeTitle'=>'Page not found'),404);
+						break;
+					// internal error
+					case 500:
+						return \Response::view('errors.500',array('homeTitle'=>'Internal error'),500);
+						break;
+
+					default:
+						return $this->renderHttpException($e);
+						break;
+				}
+			}
+			else
+			{
+				return parent::render($request, $e);
+			}
     }
 
     /**
@@ -61,14 +83,15 @@ class Handler extends ExceptionHandler
         }
         $guard = array_get($exception->guards(),0);
         switch($guard){
-            case 'doctor': 
-            return redirect()->guest(route('doctor.login'));
+            case 'admin': 
+            return redirect()->guest(route('admin'));
             break;
-            case 'superadmin':
-            return redirect()->guest(route('superadmin/login'));
+			case 'frontUser': 
+            return redirect()->guest(route('user.login'));
             break;
+			
             default:
-            return redirect()->guest(route('doctor.login'));
+            return redirect()->guest(route('user.login'));
             break;
         }
         

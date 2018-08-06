@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function ($view) { 
-            $action = app('request')->route()->getAction();
+            //$action = app('request')->route()->getAction();
             $currentAction = \Route::currentRouteAction();
             if($currentAction != null){
                 list($controller, $method) = explode('@', $currentAction);

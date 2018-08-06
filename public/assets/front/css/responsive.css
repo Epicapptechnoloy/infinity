@@ -550,4 +550,31 @@
 /* RESET PASSWORD PAGE END */
 
 
+/*REGISTRATION SUCCESFULLY STRAT PAGE */
+.successView{text-align:center;}
+.successView h1 {
+    font-family: Open Sans;
+    color: #333;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 50px;
+}
+.successView p{ 
+		font-size:14px; 
+		color: #6e7073;
+		font-family: "Montserrat",sans-serif;
+		font-weight:500;
+}
+.successView span a{
+	    font-size:14px; 
+		color: #6e7073;
+		font-family: "Montserrat",sans-serif;
+		font-weight:600;
+		color: #4490ca;
+		margin:10px 0 !important;
+		display:block;
+		text-decoration:underline !important;
+}
+.successImg img{width:90px;}
 
+/* REGISTRATION SUCCESFULLY END PAGE */

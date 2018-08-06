@@ -20,11 +20,16 @@ Route::GET('/fetch-city','HomeController@fetchCity');
 
 // Admin Route for new shopping site
 
+/* Routs for static page start here */
+Route::GET('/success','Front\StaticController@success')->name('success');
+/* Routs for static page end here */
+
+
 Route::GET('/login','Front\LoginController@login')->name('user.login');
 
 Route::POST('/login','Front\LoginController@loginProcess');
 
-Route::POST('/signup-process','Front\LoginController@signupProcess')->name('user.signupProcess');
+Route::POST('/signup-process','Front\RegisterController@signupProcess')->name('user.signupProcess');
 
 
 Route::match(array('GET','POST'),'/forgot-password','Front\ForgetPasswordController@forgotPasswordProcess')->name('user.forgotPassword');
