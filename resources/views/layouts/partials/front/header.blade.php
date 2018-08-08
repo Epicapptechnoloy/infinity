@@ -85,122 +85,12 @@
 						<div class="col-md-1 pd-15">
 							<div class="brand-logo">
 								
-								<a href="index.html"><img src="{{ asset('assets/front/img/Infinity_Changed.png') }}" alt="brand-logo" /></a>
+								<a href="/"><img src="{{ asset('assets/front/img/Infinity_Changed.png') }}" alt="brand-logo" /></a>
 							</div>
 						</div>
 						<!-- primary-menu -->
-						<div class="col-md-12 pd-15 responsive_none">
-							<nav id="primary-menu">
-								<ul class="main-menu text-center pull-right">
-								
-									<li><a href="index.html">Home</a> </li>
-									 
-									
-									<li class="mega-parent"><a href="shop.html">Customised Gifts </a>
-										<div class="mega-menu-area clearfix bg_menu_">
-											<div class="mega-menu-link f-left">
-												<ul class="single-mega-item">
-													<li class="menu-title">GIFT ITEMS</li>
-													<li><a href="shop.html">Pen</a></li>
-													<li><a href="shop.html">Stone Plates</a></li>
-													<li><a href="shop.html">Cushion Covers</a></li>
-													<li><a href="shop.html">Towels & Bathrobes</a></li>
-													<li><a href="shop.html">Shot Glasses</a></li>
-													<li><a href="shop.html">Gift Tags</a></li>
-													<li><a href="shop.html">Sagan Envelopes</a></li>
-												</ul>
-												<ul class="single-mega-item">
-													<li class="menu-title">CORPORATE</li>
-													<li><a href="shop.html">Diary & Calenders</a></li>
-													<li><a href="shop.html">Trophies</a></li>
-													<li><a href="shop.html"> Pens & Keychains</a></li> 							
-													<li><a href="shop.html">Pendrive</a></li>
-													<li><a href="shop.html">Desktop Items</a></li>
-													<li><a href="shop.html">Pendrive</a></li>    
-													<li><a href="shop.html">Laptop Bags</a></li> 
-												</ul>
-												
-												<ul class="single-mega-item">
-													<li class="menu-title">LEATHER ITEMS</li>
-													<li><a href="shop.html">Key Chains</a></li>
-													<li><a href="shop.html">Folders & Wallets</a></li>
-													<li><a href="shop.html">Bags</a></li> 
-													<li class="menu-title">Mugs</li>
-													<li><a href="shop.html">Magic</a></li>
-													<li><a href="shop.html">Coloured</a></li>
-												</ul>
-												
-											</div>
-											<!---<div class="mega-menu-photo f-left">
-												<a href="javascript:void(0);">
-													<img src="img/block_menu.jpg" alt="mega menu image">
-												</a>
-											</div>--->
-										</div>
-									</li>
-									<li class="mega-parent"><a href="javascript:void(0);">Mobile Covers </a>
-										<div class="mega-menu-area mega-menu-area-2 clearfix" style="padding-top:15px !important;">
-											<div class="mega-menu-link mega-menu-link-2  f-left">
-												<ul class="single-mega-item">
-													<li><a href="shop.html">Apple</a></li>
-													<li><a href="shop.html">Samsung</a></li>
-													<li><a href="shop.html">Xiaomi</a></li>
-													<li><a href="shop.html">Vivo</a></li>
-													<li><a href="shop.html">Sony</a></li>
-													<li><a href="shop.html">OnePlus</a></li>
-													<li><a href="shop.html">Motorola </a></li>
-													<li><a href="shop.html">Micromax </a></li> 
-												</ul>										
-												<ul class="single-mega-item">
-													<li><a href="shop.html">Lenovo  </a></li> 
-													<li><a href="shop.html">LeEco </a></li> 
-													<li><a href="shop.html">Huawei </a></li> 
-													<li><a href="shop.html">HTC </a></li> 
-													<li><a href="shop.html">Gionee </a></li> 
-													<li><a href="shop.html">Coolpad </a></li> 
-													<li><a href="shop.html">Coolpad </a></li> 
-													<li><a href="shop.html">Gionee </a></li> 
-												</ul> 	 
-											</div>
-										</div>
-									</li>
-									<li><a href="#">T-Shirts  </a>
-										<ul class="dropdwn men_t_shirt">
-											<li>
-												<a href="shop.html">Men</a> 
-											</li>
-											<li>
-												<a href="shop.html#">Women</a>
-											</li>
-											<li>
-												<a href="shop.html">Sets</a>
-											</li> 
-										</ul>
-									</li>
-									<li>
-										<a href="shop.html">Office Stationary</a>
-									</li>
-									<li>
-										<a href="Personalized.html">Paintings  </a>
-										<!--<ul class="dropdwn men_t_shirt">
-											<li><a href="cover-print.html">Mobile Covers</a></li>
-											<li><a href="Personalized-mugs.html">Mugs</a></li>
-											<li><a href="Personalized-tshirt.html">T-Shirts</a></li> 
-											<li><a href="stone-plate.html">Stone Plates</a></li> 
-											<li><a href="towbels&bathrobes.html">Towels & Bathrobes</a></li> 
-										</ul>	--->								
+						@include('front.market.category-filter')
 										
-									</li>
-									
-									<li>
-										<a href="#">Daily Offers  </a>
-									</li>		
-									<li>
-										<a href="#">Other Products  </a>
-									</li>								
-								</ul>
-							</nav>
-						</div>				
 						 <!-- primary-menu --> 
 					</div>
 				</div>

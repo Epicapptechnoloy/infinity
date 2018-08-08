@@ -101,13 +101,15 @@ class CategoryController extends Controller
 		$homeTitle = 'Add Category';
 		$categories = new Categories();
 		$categories->name = $request->name;
+		$categories->status = $request->status;
 		$categories->description = $request->description;
-		$categories->parent_id = $request->category;
+		
 		$image = $request->file('cat_images');
 				if($image){
 					
 					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-					$categoryRootPath = public_path("/assets/upload/images/category");					
+					$categoryRootPath = public_path("/uploads/category/image");
+									
 					if(!File::exists($categoryRootPath)) {
 						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}
@@ -153,12 +155,12 @@ class CategoryController extends Controller
 		$categories = Categories::find($request->categoryId);
 		$categories->name = $request->name;
 		$categories->description = $request->description;
-		$categories->parent_id = $request->category;
+		
 		$categories->status = $request->status;
 		$image = $request->file('cat_images');
 				if($image){
 					$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
-					$categoryRootPath = public_path("/assets/upload/images/category");					
+					$categoryRootPath = public_path("/uploads/category/image");				
 					if(!File::exists($categoryRootPath)) {
 						File::makeDirectory($categoryRootPath, 0777, true, true);                                
 					}

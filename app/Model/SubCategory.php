@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class Categories extends Authenticatable
+class SubCategory extends Authenticatable
 {
    
     /**
@@ -12,16 +12,16 @@ class Categories extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'sb_category';
+    protected $table = 'sb_sub_category';
     
-    protected $primaryKey ='category_id';
+    protected $primaryKey ='sub_category_id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'category_id', 'name','description','image','top'
+        'sub_category_id','category_id', 'name','description','image','top'
     ];
     
     /**

@@ -13,6 +13,7 @@ use App\Model\Settings;
 use App\Model\Countries;
 use App\Model\States;
 use App\Model\Events;
+use App\Model\SubCategory;
 use App\Model\Categories;
 use App\Model\Wishlists;
 use App\Model\Blogs;
@@ -91,6 +92,7 @@ class ProductController extends Controller
 	***return       : @return \Illuminate\Http\Response
 	*************/  
     public function AddProduct(Request $request){
+		
         $homeTitle = 'Add Product';
         $products = new Products();
         $products->name = $request->name;        
@@ -104,6 +106,8 @@ class ProductController extends Controller
         $products->points = $request->points;
         $products->weight = $request->weight;
 		$products->category_id = $request->category;
+		$products->sub_category_id = $request->sub_category_id;
+		$products->status = $request->status;
 		$image = $request->file('image');
 			if($image){
 				$input['imagename'] = rand(1,999).time().'.'.$image->getClientOriginalExtension();
@@ -194,11 +198,17 @@ class ProductController extends Controller
 	public function editProduct(Request $request){
 		$homeTitle = 'Edit Product';
 		$categories = Categories::select('category_id', 'name')->where('status', 1)->get();
+		$subcategories = SubCategory::select('sub_category_id', 'name')->where('status', 1)->get();
+		
 		$Products = DB::table('sb_product')
-			->select('sb_product.*','sb_product.status as productStatus','sb_product.name as productName','sb_product.image as productImage','sb_product.description as productDescription','sb_category.*',
-			'sb_category.name as CategoryName')
+			->select('sb_product.*','sb_product.status as productStatus','sb_product.name as productName','sb_product.image as productImage',
+			'sb_product.description as productDescription','sb_category.*',
+			'sb_category.name as CategoryName','sb_sub_category.*',
+			'sb_sub_category.name as SubCategoryName')
+			->leftJoin('sb_category', 'sb_category.category_id', '=', 'sb_product.category_id')
+			->leftJoin('sb_sub_category', 'sb_sub_category.sub_category_id', '=', 'sb_product.sub_category_id')
+			->where('product_id',base64_decode($request->product_id))->first();
 			
-			->leftJoin('sb_category', 'sb_category.category_id', '=', 'sb_product.category_id')->where('product_id',base64_decode($request->product_id))->first();
         return view('admin.products.edit-product',array('homeTitle'=>$homeTitle,'Products'=>$Products,'categories'=>$categories)); 
     }
 	
@@ -278,6 +288,34 @@ class ProductController extends Controller
 		\Session::flash('alert-success', 'Product deleted successfully');
         return redirect()->route("admin.product-list");               
         
-    }	
-	
+    }
+
+
+
+	public function getSubCategoryList(Request $request){
+		
+		$validation = Validator::make($request->all(), [
+			'category_id'   => 'required'
+		]);
+		
+		if ($validation->fails()) { 
+           return json_encode($request->all());die;    
+        }else{
+			$subCategoryList=SubCategory::where(['category_id'=>$request->category_id])->get()->toArray();
+			//echo"</pre>"; print_r($subCategoryList); die;
+			$res = array();
+			$i = 0;
+			foreach($subCategoryList as $subCategory){
+				$res[$i]['sub_category_id'] = $subCategory['sub_category_id'];
+				$res[$i]['name'] = $subCategory['name'];
+				$i++;
+			}
+			
+			return json_encode($res); die;  
+		}
+		
+		
+    }
+
+
 }

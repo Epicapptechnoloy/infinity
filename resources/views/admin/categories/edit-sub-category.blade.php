@@ -21,15 +21,15 @@
            @include('adminlayouts.message')
 		  
 		<section class="content"> 
-		<form role="form" action="{{route('admin.category.update')}}" method="post"  enctype="multipart/form-data">
+		<form role="form" action="{{route('admin.sub-category.update')}}" method="post"  enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="hidden" name="categoryId" value="{{$category->category_id}}"/>
+            <input type="hidden" name="categoryId" value="{{!empty($subcategories->sub_category_id)? $subcategories->sub_category_id:''}}"/>
 			<div class="box-body">
 		    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label>Category Name </label>
+                <label>Sub Category Name </label>
                     <div class="row">
 				        <div class="col-xs-6">
-                            <input name="name" type="text"  class="form-control" value="{{$category->name}}" placeholder="enter category name" required>
+                            <input name="name" type="text"  class="form-control" value="{{!empty($subcategories->name) ? $subcategories->name:''}}" placeholder="enter category name" required>
                         </div>
 				    </div>
                     @if ($errors->has('name'))
@@ -38,14 +38,43 @@
                     </span>
                   @endif
 			</div>
-          
+			
+			<div class="form-group{{ $errors->has('category') ? ' has-error' : '' }} ">
+				<label>Select category</label>
+				<div class="row">
+					<div class="col-xs-6">
+						<select class="form-control" name="category" id="category" required>
+							<option value="0">Select Category</option>
+							
+							@if(!empty($categories))
+								
+								@foreach($categories as $category)
+							
+								@php $Id = $category->category_id @endphp
+								
+								<option value="{{$category->category_id}}" @if ($subcategories->category_id == $Id) selected="selected" @endif>{{$category->name}}
+								</option>
+								@endforeach
+							@endif	
+						</select>
+					</div>
+				</div>
+				@if ($errors->has('category'))
+					<span class="help-block">
+						<strong>{{ $errors->first('category') }}</strong>
+					</span>
+				@endif
+			</div>
+		  
 			<div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} ">
 			    <label>Status</label>
 				<div class="row">
 					<div class="col-xs-6">
 						<select class="form-control" name="status" id="status" >
-							<option value="1" {{ ($category->status == 1) ? 'selected=selected' : '' }}>active</option>
-							<option value="0" {{ ($category->status == 0) ? 'selected=selected' : '' }}>Inactive</option>                  
+						
+							<option value="1" <?php if(!empty($subcategories) && isset($subcategories))  ($subcategories->status == 1) ? 'selected=selected' : '' ?>>active</option>
+							<option value="0" <?php if(!empty($subcategories) && isset($subcategories))  ($subcategories->status == 0) ? 'selected=selected' : '' ?>>Inactive</option>
+							                
 						</select>
 						@if ($errors->has('status'))
 						<span class="help-block">
@@ -60,7 +89,7 @@
 				<label for="exampleInputreason1">Description</label>
 					<div class="row">
 						<div class="col-xs-6">
-							<textarea rows="4" cols="50" class="form-control input_width" id="cKediter" name="description"  placeholder="description">{!!$category->description!!}</textarea>
+							<textarea rows="4" cols="50" class="form-control input_width" id="cKediter" name="description"  placeholder="description">{{ !empty($subcategories->description)?$subcategories->description:''}}</textarea>
 						</div>
 					</div>
 				@if ($errors->has('description'))

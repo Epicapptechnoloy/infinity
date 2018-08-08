@@ -166,11 +166,12 @@
 						</div>
 					</div>
 					
+					
 					<div class="form-group{{ $errors->has('category') ? ' has-error' : '' }} ">
 						<label>Select Category</label>
 						<div class="row">
 						<div class="col-xs-6">
-						<select class="form-control" name="category" id="category" >
+						<select class="form-control" name="category" id="category_id" >
 							<option value="0">Select Category</option>
 							@foreach($categories as $category)
 							@php $Id = $category->category_id @endphp
@@ -185,7 +186,18 @@
 							</span>
 						@endif
 					</div>
-				  
+					
+					<div id="sub-category-div" class="form-group{{ $errors->has('sub_category_id') ? ' has-error' : '' }} ">
+						<label>Sub Category</label>
+						<div class="row">
+							<div class="col-xs-6">
+								<select class="form-control" name="sub_category_id" id="sub_category_id" >
+								</select>
+							  
+							</div>
+						</div>
+					</div>
+
 					<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 						<label for="exampleInputreason1">Description</label>
 							<div class="row">
@@ -245,5 +257,47 @@
 			showInputs: false
 		});
 	});  
-	</script>     
+	</script> 
+
+   <script>
+	$(document).ready(function(){
+		$('#category_id').change(function(){				
+			var category_id = $(this).val();		
+			$.ajax({			
+				url: '/get-sub-category-list',			
+				type: 'POST',			
+				dataType: 'json',			
+				data: {			
+					category_id: category_id,
+					_token: function() {
+						return $("input[name='_token']").val();
+					},
+				},
+				
+				beforeSend: function() {
+					$(".bodypageloader").show();
+				},
+				success: function(response) {
+					$(".bodypageloader").hide();
+					$('#sub_category_id').html('');
+					$('#sub_category_id').append('<option value="">Sub Category</option>');
+					if(response != ''){
+						$.each(response, function (i, item) {
+							$('#sub_category_id').append($('<option>', { 
+								value: item.sub_category_id,
+								text : item.name
+							}));
+						});
+					}else{
+						$('#sub_category_id').append('<option value="">No Eligible Sub Category</option>');
+					}
+					$('#sub-category-div').css('display','block');
+				},
+				error:function(err) {
+					$(".bodypageloader").hide();
+				}
+			});
+		});
+	});
+</script>
 @endsection

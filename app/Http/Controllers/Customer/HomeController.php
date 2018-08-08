@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
 	public function home(Request $request)
     {
-        $homeTitle = 'Raascals';
+        $homeTitle = 'Infinity';
 		$products=Products::all();
 		$feature = array();
 		$promotin=array();

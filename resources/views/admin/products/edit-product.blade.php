@@ -1,23 +1,21 @@
 @extends('adminlayouts.master')
 @section('content')
 <!-- Default box -->
-<section class="content-header">
-    <h1>
-        Dashboard
-        <small>Control panel</small>
-    </h1>
-    <ol class="breadcrumb">
-		<li><a href="/admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Edit Product Details</li>
-    </ol> 
-</section>
+	<section class="content-header">
+		<h1>
+			Dashboard
+			<small>Control panel</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Edit Product Details</li>
+		</ol> 
+	</section>
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Edit Product Details</h3>
-			 
         </div>
-            <!-- /.box-header -->
-      
+        <!-- /.box-header -->
         <section class="content"> 
             <form role="form" action="{{route('editProductProcess')}}" method="post" enctype="multipart/form-data" >
 			<input type="hidden" name="productId" value="{{$Products->product_id}}">
@@ -155,14 +153,29 @@
 					<div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
 						<label>Category</label>
 						<div class="row">
+							<input type="hidden" id="cat_id" value='{{$Products->category_id}}'>
+							<input type="hidden" id="sub_cat_id" value='{{$Products->sub_category_id}}'>
 							<div class="col-xs-6">
 								<select  class="form-control single " name="category" id="category_id" data-bind="category" >
-								 @if(!empty($categories)) 
+								@if(!empty($categories)) 
 								@foreach($categories as $ct)								
 								 <option value="{{$ct->category_id}}" @if($Products->category_id == $ct->category_id) selected @endif  >{{$ct->name}}</option>
 								@endforeach
 								@endif
 								</select>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div id="sub-category-div" class="form-group{{ $errors->has('sub_category_id') ? ' has-error' : '' }} ">
+						<label>Sub Category</label>
+						<div class="row">
+							<div class="col-xs-6">
+								<select class="form-control" name="sub_category_id" id="sub_category_id" >
+								
+								</select>
+							  
 							</div>
 						</div>
 					</div>
@@ -225,43 +238,88 @@
 				</div>
 			</form>
         </section>
-         
+        
 	</div>
 
-<script>
+	<script>
+		$(function() {
+			CKEDITOR.replace('description321');
+			$(".textarea").wysihtml5();
+		});
+		
+		$("#signupImgUpload").change(function() {
+			readURL(this);
+		});
+		
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#userImgPreview').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	</script>
 
-	$(function() {
-		CKEDITOR.replace('description321');
-		$(".textarea").wysihtml5();
+	<script>
+		$(function () {
+			$('.datepicker').datepicker({
+				autoclose: true
+			});
+			$('.datepicker1').datepicker({
+				autoclose: true
+			});
+		});
+	</script>
+
+	<script>
+	$(document).ready(function(){
+		
+		getCategory($('#cat_id').val());
+		
+		$('#category_id').change(function(){
+			getCategory($(this).val());
+		})
+		function getCategory(cat){
+			$.ajax({			
+				url: '/get-sub-category-list',			
+				type: 'POST',			
+				dataType: 'json',			
+				data: {			
+					category_id: cat,
+					_token: function() {
+						return $("input[name='_token']").val();
+					},
+				},
+				beforeSend: function() {
+					$(".bodypageloader").show();
+				},
+				success: function(response) {
+					$(".bodypageloader").hide();
+					$('#sub_category_id').html('');
+					$('#sub_category_id').append('<option value="">Sub Category</option>');
+					if(response != ''){
+						$.each(response, function (i, item) {
+							$('#sub_category_id').append($('<option>', { 
+								value: item.sub_category_id,
+								id:'subcatid_'+item.sub_category_id,
+								text : item.name
+							}));
+						});
+						
+						$('#subcatid_'+$('#sub_cat_id').val()).attr('selected','true');
+					}else{
+						$('#sub_category_id').append('<option value="">No Eligible Sub Category</option>');
+					}
+					$('#sub-category-div').css('display','block');
+				},
+				error:function(err) {
+					$(".bodypageloader").hide();
+				}
+			}); 
+		}
 	});
-       
-
-
-  $("#signupImgUpload").change(function() {
-    readURL(this);
-  });
-  function readURL(input) {
-
-   if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-     $('#userImgPreview').attr('src', e.target.result);
-    }
-    reader.readAsDataURL(input.files[0]);
-   }
-  }
-</script>
-
-<script>
-  $(function () {
-     $('.datepicker').datepicker({
-      autoclose: true
-    });
-  $('.datepicker1').datepicker({
-      autoclose: true
-    });
-  });
-</script>
+	</script>
   
 @endsection

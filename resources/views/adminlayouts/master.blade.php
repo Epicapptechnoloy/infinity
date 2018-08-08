@@ -34,6 +34,9 @@
   <link rel="stylesheet" href="{{ URL::asset('assets/plugins/timepicker/bootstrap-timepicker.min.css') }}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+  <!-- developer css -->
+  <link rel="stylesheet" type="text/css" href="{{ URL::asset('backend/customcss/developer.css') }}">
+
 <!-- jQuery 2.2.3 -->
 <script src="{{ URL::asset('assets/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -53,6 +56,9 @@
 </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
+<div class="bodypageloader" style="display:none;"></div>
+
 <div class="wrapper">
 
   @include('adminlayouts.partials._header')

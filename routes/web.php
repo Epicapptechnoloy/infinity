@@ -13,7 +13,6 @@
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::GET('/fetch-state','HomeController@fetchState');
 Route::GET('/fetch-city','HomeController@fetchCity');
@@ -48,9 +47,15 @@ Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('auth/google', 'Auth\AuthController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\AuthController@handleGoogleCallback');
 
+Route::GET('/market','Front\MarketController@market')->name('market');
+
+
 Route::group(['middleware' => ['auth:frontUser']], function() {  
 
 });	
+
+
+Route::POST('/get-sub-category-list','Admin\ProductController@getSubCategoryList');
 
 
 Route::GET('/admin','Admin\LoginController@showLoginForm')->name('admin');
@@ -170,6 +175,32 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
     
 	//add category process
     Route::POST('/add-category','Admin\CategoryController@Addcategory')->name('admin.add.category');
+	
+	
+	
+	
+	
+	//sub category list 
+	Route::GET('/sub-category-list','Admin\SubCategoryController@subCategoryList')->name('admin.sub-category-list');
+
+	//add sub category
+    Route::GET('/add-sub-category','Admin\SubCategoryController@AddSubCategoryForm')->name('admin.AddSubCategoryForm');
+	
+	
+	//edit-sub-category    
+    Route::GET('/edit-sub-category/{id}','Admin\SubCategoryController@editSubCategoryForm')->name('admin.sub-category.edit');
+    
+    //update-category    
+    Route::POST('/update-sub-category','Admin\SubCategoryController@updateSubCategory')->name('admin.sub-category.update');
+	
+	
+	 //delete-sub-category    
+    Route::GET('/sub-category/delete/{id}','Admin\SubCategoryController@destroySubCategory')->name('admin.sub-category.delete');
+    
+	//add sub category process
+    Route::POST('/add-sub-category','Admin\SubCategoryController@addSubCategory')->name('admin.add.sub-category');
+	
+	
 	
 	
 	

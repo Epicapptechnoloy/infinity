@@ -88,7 +88,7 @@
 			</ul>
         </li>
 		
-        <li class="treeview {{ (Request::path() == 'admin/category-list' || Route::current()->getName() == 'admin.category.edit') ? 'active' : '' }}">
+        <li class="treeview {{ (Request::path() == 'admin/category-list' || Request::path() == 'admin/add-category' || Route::current()->getName() == 'admin.category.edit') ? 'active' : '' }}">
 			<a href="#">
 				<i class="fa fa-folder"></i> <span>Manage Product Category</span>
 				<span class="pull-right-container">
@@ -100,6 +100,20 @@
 				<li class="{{ Request::path() == 'admin/add-category' ? 'active' : '' }}"><a href="/admin/add-category"><i class="fa fa-circle-o"></i>Add Category</a></li>        
 			</ul>
         </li>
+		
+		<li class="treeview {{ (Request::path() == 'admin/sub-category-list' || Request::path() == 'admin/add-sub-category' || Route::current()->getName() == 'admin.sub-category.edit') ? 'active' : '' }}">
+			<a href="#">
+				<i class="fa fa-folder"></i><span>Sub Category Management</span>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="{{ (Request::path() == 'admin/sub-category-list' || Route::current()->getName() == 'admin.sub-category.edit') ? 'active' : '' }}"><a href="/admin/sub-category-list"><i class="fa fa-circle-o"></i>Sub Category list</a></li>
+				<li class="{{ Request::path() == 'admin/add-sub-category' ? 'active' : '' }}"><a href="/admin/add-sub-category"><i class="fa fa-circle-o"></i>Add Sub Category</a></li>
+			</ul>
+        </li>
+		
 		
 		<li class="treeview {{ (Request::path() == 'admin/review-list' || Route::current()->getName() == 'admin.edit.review' || Route::current()->getName() == 'admin.view.review') ? 'active' : '' }}">
 			<a href="#">
