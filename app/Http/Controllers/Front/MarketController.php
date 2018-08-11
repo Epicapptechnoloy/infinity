@@ -31,7 +31,7 @@ class MarketController extends Controller
 		$data['categories'] = $this->marketRepository->getAllCategories();
 		//$data['subcategories'] = $this->marketRepository->getSubCategory();
 		//$data['products'] = $this->marketRepository->getAllProducts();	
-		
+		//dd($data);
         return view('front/market/category-filter', $data);
 		
     }

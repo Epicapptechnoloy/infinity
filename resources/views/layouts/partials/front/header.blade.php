@@ -89,7 +89,7 @@
 							</div>
 						</div>
 						<!-- primary-menu -->
-						@include('front.market.category-filter')
+						@include('front.shop.category-filter')
 										
 						 <!-- primary-menu --> 
 					</div>

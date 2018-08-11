@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Model\Admin;
 use App\Model\Orders;
+use App\Model\ProductColors;
+use App\Model\ProductSizes;
 use App\Model\Products;
 use App\Model\Settings;
 use App\Model\Countries;
@@ -80,7 +82,9 @@ class ProductController extends Controller
     public function AddProductForm(Request $request){
         $homeTitle = 'Add Product';
         $categories = Categories::all();
-        return view('admin.products.add-product',array('homeTitle'=>$homeTitle,'categories'=>$categories)); 
+        $productColors = ProductColors::all();
+        $productSizes = ProductSizes::all();
+        return view('admin.products.add-product',array('homeTitle'=>$homeTitle,'categories'=>$categories,'productColors'=>$productColors,'productSizes'=>$productSizes)); 
     }
     
 	/***********
@@ -92,7 +96,7 @@ class ProductController extends Controller
 	***return       : @return \Illuminate\Http\Response
 	*************/  
     public function AddProduct(Request $request){
-		
+	
         $homeTitle = 'Add Product';
         $products = new Products();
         $products->name = $request->name;        
@@ -101,8 +105,8 @@ class ProductController extends Controller
         $products->quantity = $request->quantity;
         $products->price = $request->price;
         $products->description = $request->description;
-        $products->size = $request->size;
-        $products->color = $request->color;
+        $products->size_id = $request->size;
+        $products->color_id = $request->color;
         $products->points = $request->points;
         $products->weight = $request->weight;
 		$products->category_id = $request->category;
@@ -200,6 +204,9 @@ class ProductController extends Controller
 		$categories = Categories::select('category_id', 'name')->where('status', 1)->get();
 		$subcategories = SubCategory::select('sub_category_id', 'name')->where('status', 1)->get();
 		
+		$productColors = ProductColors::all();
+        $productSizes = ProductSizes::all();
+		
 		$Products = DB::table('sb_product')
 			->select('sb_product.*','sb_product.status as productStatus','sb_product.name as productName','sb_product.image as productImage',
 			'sb_product.description as productDescription','sb_category.*',
@@ -209,7 +216,7 @@ class ProductController extends Controller
 			->leftJoin('sb_sub_category', 'sb_sub_category.sub_category_id', '=', 'sb_product.sub_category_id')
 			->where('product_id',base64_decode($request->product_id))->first();
 			
-        return view('admin.products.edit-product',array('homeTitle'=>$homeTitle,'Products'=>$Products,'categories'=>$categories)); 
+        return view('admin.products.edit-product',array('homeTitle'=>$homeTitle,'Products'=>$Products,'categories'=>$categories,'productColors'=>$productColors,'productSizes'=>$productSizes)); 
     }
 	
 	
@@ -242,8 +249,8 @@ class ProductController extends Controller
 			$Products->sku = $request->sku;
 			$Products->price = $request->price;
 			$Products->description = $request->description;
-			$Products->size = $request->size;
-			$Products->color = $request->color;
+			$Products->size_id = $request->size;
+			$Products->color_id = $request->color;
 			$Products->points = $request->points;
 			$Products->weight = $request->weight;
 			$Products->category_id = $request->category;
@@ -302,7 +309,6 @@ class ProductController extends Controller
            return json_encode($request->all());die;    
         }else{
 			$subCategoryList=SubCategory::where(['category_id'=>$request->category_id])->get()->toArray();
-			//echo"</pre>"; print_r($subCategoryList); die;
 			$res = array();
 			$i = 0;
 			foreach($subCategoryList as $subCategory){

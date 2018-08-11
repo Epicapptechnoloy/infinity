@@ -95,6 +95,7 @@ class AdminController extends Controller
 			$rules = array(
 				'fname' => 'Required|Min:3|Max:250',
 				'lname' => 'Required|Min:3|Max:250',
+				'number' => 'Required|Min:10|Max:10',
 			);
 			$validator = Validator::make($data, $rules);
 			if ($validator->fails())
@@ -106,7 +107,7 @@ class AdminController extends Controller
 				$admin->fname = $data['fname'];
 				$admin->lname = $data['lname'];
 				$admin->email = $data['email'];
-				$admin->telephone = $data['telephone'];					
+				$admin->telephone = $data['number'];					
 				$image = $request->file('images');
 				if($image){
 					$input['imagename'] = strtolower($request->fname).time().'.'.$image->getClientOriginalExtension();

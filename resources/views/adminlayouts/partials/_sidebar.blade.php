@@ -16,8 +16,8 @@
 			@endif
 		</div>
 		<div class="pull-left info">
-			<p>{{Auth::guard('admin')->user()->fname}} {{Auth::guard('admin')->user()->lname}}</p>
-			<a href="/admin/profile"><i class="fa fa-circle text-success"></i> Online</a>
+			<p><a href="/admin/profile">{{Auth::guard('admin')->user()->fname}} {{Auth::guard('admin')->user()->lname}}</a></p>
+			<i class="fa fa-circle text-success"></i> Online
 		</div>
 	</div>
 	<!-- search form -->
@@ -75,6 +75,35 @@
 				<li class="{{ Request::path() == 'admin/add-product' ? 'active' : '' }}"><a href="/admin/add-product"><i class="fa fa-circle-o"></i>Add Product</a></li>
 			</ul>
         </li>
+		
+		
+		<li class="treeview {{ (Request::path() == 'admin/color-list' || Request::path() == 'admin/add-color' || Route::current()->getName() == 'edit-color') ? 'active' : '' }}">
+			<a href="#">
+				<i class="fa fa-folder"></i><span>Manage Color</span>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="{{ (Request::path() == 'admin/color-list' || Route::current()->getName() == 'edit-color') ? 'active' : '' }}"><a href="/admin/color-list"><i class="fa fa-circle-o"></i>Color list</a></li>
+				<li class="{{ Request::path() == 'admin/add-color' ? 'active' : '' }}"><a href="/admin/add-color"><i class="fa fa-circle-o"></i>Add Color</a></li>
+			</ul>
+        </li>
+		
+		
+		<li class="treeview {{ (Request::path() == 'admin/size-list' || Request::path() == 'admin/add-size' || Route::current()->getName() == 'edit-size') ? 'active' : '' }}">
+			<a href="#">
+				<i class="fa fa-folder"></i><span>Manage Size</span>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="{{ (Request::path() == 'admin/size-list' || Route::current()->getName() == 'edit-size') ? 'active' : '' }}"><a href="/admin/size-list"><i class="fa fa-circle-o"></i>Size list</a></li>
+				<li class="{{ Request::path() == 'admin/add-size' ? 'active' : '' }}"><a href="/admin/add-size"><i class="fa fa-circle-o"></i>Add Size</a></li>
+			</ul>
+        </li>
+		
 		
 		<li class="treeview {{ (Request::path() == 'admin/import-product') ? 'active' : '' }}">
 			<a href="#">

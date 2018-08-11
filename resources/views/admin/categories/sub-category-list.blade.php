@@ -31,7 +31,8 @@
 			<thead>
 				<tr>
 					<th style="width:10%">Id</th>
-					<th style="width:20%">Name</th>
+					<th style="width:20%">Sub CategoryName</th>
+					<th style="width:20%">Category Name</th>
 					<th style="width:20%">Description</th>
 					<th style="width:20%">Status</th>
 					<th style="width:20%">Image</th>
@@ -43,10 +44,11 @@
                 @foreach($subcategories as $s_category)
                 <tr>
 					<td>{{++$i}}</td>
-					<td>{{ucfirst($s_category->name)}}</td>
-					<td>{!!$s_category->description!!}</td>               
+					<td>{{ucfirst($s_category->SubCategoryName)}}</td>
+					<td>{{ucfirst($s_category->categoryName)}}</td>
+					<td>{!!$s_category->SubCategoryDescription!!}</td>               
 					<td>
-						@if($s_category->status == 1)
+						@if($s_category->subCategoryStatus == 1)
 						  <span class="label label-success">Active</span>
 						@else
 						  <span class="label label-warning">Inactive</span>
@@ -54,9 +56,9 @@
 					</td>
 					<td>
 						@php 
-						$path = '/uploads/subcategory/image/'.$s_category->image ; 
+						$path = '/uploads/subcategory/image/'.$s_category->subCategoryImage ; 
 						@endphp
-						@if($s_category->image)
+						@if($s_category->subCategoryImage)
 						<span class="img-admin-Ad"><img style="width:50px; height:50px;" src="{{URL::asset($path) }}" width="50%" class="img-circle" alt=" Not-Found-Image"></span>
 						@else
 						N/A
@@ -67,8 +69,8 @@
 							<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
 							<ul class ="dropdown-menu" role="menu">
 							
-							  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{base64_encode($s_category->sub_category_id)}}">Delete</a></li>
-							  <li><a href="{{route('admin.sub-category.edit',[base64_encode($s_category->sub_category_id)])}}">Edit</a></li>
+							  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{base64_encode($s_category->subCategoryID)}}">Delete</a></li>
+							  <li><a href="{{route('admin.sub-category.edit',[base64_encode($s_category->subCategoryID)])}}">Edit</a></li>
 							</ul>
 						</div>
 					</td>

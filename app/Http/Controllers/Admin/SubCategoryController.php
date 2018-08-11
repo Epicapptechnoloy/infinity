@@ -45,20 +45,23 @@ class SubCategoryController extends Controller
 		
 		$sort_by = $request->get('sort-by');
 		$order_by = $request->get('order-by');
-		$subcategories = new SubCategory();
-        $homeTitle = 'SubCategory List'; 
+        $homeTitle = 'SubCategory List';
+		$subcategories = DB::table('sb_sub_category as SC')
+			->select('SC.name as SubCategoryName', 'SC.description as SubCategoryDescription', 'SC.image as subCategoryImage', 'SC.status as subCategoryStatus','SC.sub_category_id  as subCategoryID', 'C.name as categoryName')
+			->join('sb_category as C', 'C.category_id', '=', 'SC.category_id');
+
         if(!empty($request->s)){
-            $subcategories = $subcategories->where('name','like', '%'.$request->s.'%'); 
+            $subcategories = $subcategories->where('C.name','like', '%'.$request->s.'%')->orWhere('SC.name', 'like', '%' . $request->s . '%');
+ 		
         }
         if(!empty($request->status)){
 			if($request->status==1){
-			$subcategories = $subcategories->where('status',1);
+				$subcategories = $subcategories->where('SC.status',1);
 			}
 			else if ($request->status==2){
-			$subcategories = $subcategories->where('status',0);
+				$subcategories = $subcategories->where('SC.status',0);
 			}
 		}
-		
         if($sort_by == 'status' && $order_by == 'desc'){
             $subcategories->where('status', 1);
         }

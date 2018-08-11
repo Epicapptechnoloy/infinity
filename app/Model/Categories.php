@@ -4,6 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
+
 class Categories extends Authenticatable
 {
    
@@ -32,6 +34,10 @@ class Categories extends Authenticatable
         return $this->hasMany('App\Model\ProductToCategory');
     }
     
+	
+	public function SubCategory() {
+        return $this->hasMany('App\Model\SubCategory','category_id','category_id');
+    }
     
     
 }

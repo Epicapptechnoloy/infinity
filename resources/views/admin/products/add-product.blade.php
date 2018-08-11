@@ -101,37 +101,44 @@
 						</div>
 					</div>
 					
-					<div class="form-group">
-						<div class="form-group{{ $errors->has('size') ? ' has-error' : '' }}">
-						  <label>Size </label>
-							<div class="row">
-								<div class="col-xs-6">
-									<input name="size" type="text"  class="form-control"  autocomplete="off" placeholder="enter size" required>
-								</div>
-							</div>
-							@if ($errors->has('size'))
-							<span class="help-block">
-								<strong>{{ $errors->first('size') }}</strong>
-							</span>
-							@endif
+					<div class="form-group{{ $errors->has('color') ? ' has-error' : '' }} ">
+						<label>Select Color</label>
+						<div class="row">
+						<div class="col-xs-6">
+						<select class="form-control" name="color" id="color_id" >
+							<option value="0">Select Color</option>
+							@foreach($productColors as $color)
+							@php $Id = $color->color_id @endphp
+							<option value="{{$color->color_id}}" @if (old('color') == $Id) selected="selected" @endif>{{$color->color_name}}</option>
+							@endforeach
+						</select>
 						</div>
-					</div>
-					
-					
-					<div class="form-group">
-						<div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
-						  <label>Color </label>
-							<div class="row">
-								<div class="col-xs-6">
-									<input name="color" type="text"  class="form-control" autocomplete="off" placeholder="enter color" required>
-								</div>
-							</div>
-							@if ($errors->has('color'))
+						</div>
+						@if ($errors->has('color'))
 							<span class="help-block">
 								<strong>{{ $errors->first('color') }}</strong>
 							</span>
-							@endif
+						@endif
+					</div>
+					
+					<div class="form-group{{ $errors->has('size') ? ' has-error' : '' }} ">
+						<label>Select Size</label>
+						<div class="row">
+						<div class="col-xs-6">
+						<select class="form-control" name="size" id="size_id" >
+							<option value="0">Select Size</option>
+							@foreach($productSizes as $size)
+							@php $Id = $size->size_id @endphp
+							<option value="{{$size->size_id}}" @if (old('size') == $Id) selected="selected" @endif>{{$size->size_name}}</option>
+							@endforeach
+						</select>
 						</div>
+						</div>
+						@if ($errors->has('size'))
+							<span class="help-block">
+								<strong>{{ $errors->first('size') }}</strong>
+							</span>
+						@endif
 					</div>
 					
 					<div class="form-group">

@@ -77,35 +77,35 @@
                         @endif
                     </div>
 					
-					<div class="form-group{{ $errors->has('size') ? ' has-error' : '' }}">
-                        <label>Size</label>
-                        <div class="row">
-                            <div class="col-xs-6">
-                            <input name="size" type="text" class="form-control  input_width" value="{{$Products->size}}"  placeholder="enter size">
-                            </div>
-                        </div>
-                        @if ($errors->has('size'))
-							<span class="help-block">
-								<strong>{{ $errors->first('size') }}</strong>
-							</span>
-                        @endif
-                    </div>
-					
-					
 					<div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
-                        <label>Color</label>
-                        <div class="row">
-                            <div class="col-xs-6">
-                            <input name="color" type="text" class="form-control  input_width" value="{{$Products->color}}"  placeholder="enter color">
-                            </div>
-                        </div>
-                        @if ($errors->has('color'))
-							<span class="help-block">
-								<strong>{{ $errors->first('color') }}</strong>
-							</span>
-                        @endif
-                    </div>
+						<label>Color</label>
+						<div class="row">
+							<div class="col-xs-6">
+								<select  class="form-control single " name="color" id="color_id" data-bind="color" >
+								@if(!empty($productColors)) 
+								@foreach($productColors as $p_color)								
+								 <option value="{{$p_color->color_id}}" @if($Products->color_id == $p_color->color_id) selected @endif  >{{$p_color->color_name}}</option>
+								@endforeach
+								@endif
+								</select>
+							</div>
+						</div>
+					</div>
 					
+					<div class="form-group{{ $errors->has('size') ? ' has-error' : '' }}">
+						<label>Size</label>
+						<div class="row">
+							<div class="col-xs-6">
+								<select  class="form-control single " name="size" id="size_id" data-bind="size" >
+								@if(!empty($productSizes)) 
+								@foreach($productSizes as $p_size)								
+								 <option value="{{$p_size->size_id}}" @if($Products->size_id == $p_size->size_id) selected @endif  >{{$p_size->size_name}}</option>
+								@endforeach
+								@endif
+								</select>
+							</div>
+						</div>
+					</div>
 					
 					<div class="form-group{{ $errors->has('points') ? ' has-error' : '' }}">
                         <label>Points</label>

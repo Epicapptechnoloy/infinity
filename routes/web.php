@@ -47,7 +47,8 @@ Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('auth/google', 'Auth\AuthController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\AuthController@handleGoogleCallback');
 
-Route::GET('/market','Front\MarketController@market')->name('market');
+
+Route::GET('/shop','Front\ShopController@shop')->name('shop');
 
 
 Route::group(['middleware' => ['auth:frontUser']], function() {  
@@ -284,6 +285,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
      Route::post('/update-cms-page-staus','Admin\CmsController@UpdateCmsStatus')->name('update-cms-status');
      Route::any('/edit-cms-page/{id}','Admin\CmsController@editcmspage')->name('edit-cms-page');
 	
+	 Route::GET('/banner/delete/{id}','Admin\BannerController@destroy')->name('admin.banner.delete');
 	/***********
 	 * 
 	 * 
@@ -291,19 +293,35 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
     ************/
 	Route::get('/states','Admin\LocationController@statelist')->name('statelist');
     Route::get('/cities','Admin\LocationController@citylist')->name('citylist');
+	
+	
+	Route::GET('add-color','Admin\ColorController@AddColor')->name('addColor');
+	Route::POST('addColorProcess','Admin\ColorController@AddColorPost')->name('addColorProcess');
+	
+	Route::GET('color-list','Admin\ColorController@ColorList')->name('colorList');	
+	Route::GET('edit-color/{color_id}','Admin\ColorController@editColor')->name('editColor');
+	Route::POST('editColorProcess','Admin\ColorController@editColorPost')->name('editColorProcess');
+	Route::GET('/color/delete/{id}', 'Admin\ColorController@deleteColor')->name('deleteColor');
+	
+	Route::GET('add-size','Admin\SizeController@AddSize')->name('addSize');
+	Route::POST('addSizeProcess','Admin\SizeController@AddSizePost')->name('addSizeProcess');
+	
+	Route::GET('size-list','Admin\SizeController@SizeList')->name('sizeList');	
+	Route::GET('edit-size/{size_id}','Admin\SizeController@editSize')->name('editSize');
+	Route::POST('editSizeProcess','Admin\SizeController@editSizePost')->name('editSizeProcess');
+	Route::GET('/size/delete/{id}', 'Admin\SizeController@deleteSize')->name('deleteSize');
+	
 });	
 // END Of Admin Route of new Shopping 
 /* Front Routing Start Here */
 
 Route::GET('/home','Customer\HomeController@home');
 
-Route::GET('/','Customer\HomeController@home');
 
 
-/*  Route::get('/', function (){ 
-    $homeTitle = 'Raascals';
-    return view('homepage',array('homeTitle'=>$homeTitle));
-});  */
+Route::GET('/','Front\HomeController@home'); //This is use for home page
+
+
 
 //login,reg,&reset password routes 
 
@@ -311,11 +329,6 @@ Route::GET('/register','Customer\CustomerController@showLoginForm');
 Route::GET('/auth-process','Customer\CustomerController@showLoginForm')->name('login');
 Route::POST('/ProcessRegistration','Customer\CustomerController@ProcessRegistration')->name('ProcessRegistration');
 Route::POST('/ProcessLogin','Customer\CustomerController@ProcessLogin')->name('ProcessLogin');
-//Route::GET('/logout','Customer\CustomerController@logout')->name('logout');
-//Route::POST('/forgotpassword','Customer\CustomerController@postResetLinkEmail')->name('forgotpassword');
-//Route::GET('/forgotpassword','Customer\CustomerController@showLoginForm');
-//Route::get('/reset-password/{token}','Customer\CustomerController@resetPassword');
-//Route::POST('/process-reset-password','Customer\CustomerController@proccessResetPassword');
 
 
 // profile routes

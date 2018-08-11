@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 
@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\SocialAccountService;
 use App\Model\User;
 use App\Model\Products;
+use App\Model\Categories;
 use Socialite;
 use DB;
 use File;
@@ -36,76 +37,35 @@ class HomeController extends Controller
 	
 	public function home(){
 		$data = array();
-		$data['homeTitle'] = 'Infinity.com'; 
-		$data['categories'] = $this->marketRepository->getAllCategories();
-		//$data['subcategories'] = $this->marketRepository->getSubCategory();
-		//$data['products'] = $this->marketRepository->getAllProducts();
-		//dd($data);
-		return view('homepage', $data);
-       // return view('front/market/category-filter', $data);
+		$homeTitle = 'Infinity.com'; 
+		$Categories = Categories::with('SubCategory')->get();
+		
+		return view('homepage',array('homeTitle'=>$homeTitle,'data'=>$data,'c_data'=>$Categories));
 		
     }
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	/* public function home(Request $request)
-    {
-        $homeTitle = 'Infinity';
-		$products=Products::all();
-		$feature = array();
-		$promotin=array();
-		if(!empty($products)){
-			foreach($products as $product){
-				if($product->is_promotion==1){
-					$promotin[]=$product;
-				}
-				elseif($product->is_featured==1){
-					$feature[]=$product;
-				}
-			}
-			return view('homepage',array('homeTitle'=>$homeTitle,'feature'=>$feature,'promotin'=>$promotin));
-		}
-
-	} */	
-
-	public function showProductList($id){
+	
+	/* public function showProductList($id){
 		$homeTitle = 'showProductList';
 		$Products=new Products;
 		$products = $Products->getProductById($id);
-		//dd($products);	
-		 return view('customer.show-product',array('homeTitle'=>$homeTitle,'products'=>$products));
+		return view('customer.show-product',array('homeTitle'=>$homeTitle,'products'=>$products));
 	}	
     
 	public function postProduct(Request $request)
     {	
-		
 		$validation = Validator::make($request->all(), [
 			'size' 	=> 'required',
             'color' => 'required',
-           
         ]);
-		
-		
 	}
-	
-	
-	
 	
 	
 	public function processCart(Request $request)
     {
         $homeTitle = 'Cart';
 			$products=Products::all();
-			//dd($products);
 			return view('customer.cart',array('homeTitle'=>$homeTitle,'products'=>$products));
-	
 	}
-	
-	
 	
 	public function deleteProduct($id){
 		if(!empty($id)){
@@ -124,9 +84,8 @@ class HomeController extends Controller
 	public function processCheckOut(Request $request)
     {
         $homeTitle = 'Checkout';
-		//$products=Products::all();
 		return view('customer.checkout',array('homeTitle'=>$homeTitle));
 	
-	}	
+	}	 */
 
 }

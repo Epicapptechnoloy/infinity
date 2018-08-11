@@ -22,8 +22,8 @@ class Products extends Authenticatable
 	
 	 
     protected $fillable = [
-        'product_id', 'category_id','sub_category_id','name','model','sku','upc','ean','jan','isbn','mpn','quantity','image','manufacturer_id','shipping', 'price','size',
-		'color','points','date_available','weight','weight_class_id','length','width','height','subtract','minimum','sort_order','status','description','is_promotion','is_featured','viewed'
+        'product_id', 'category_id','sub_category_id','name','model','sku','upc','ean','jan','isbn','mpn','quantity','image','manufacturer_id','shipping', 'price','size_id',
+		'color_id','points','date_available','weight','weight_class_id','length','width','height','subtract','minimum','sort_order','status','description','is_promotion','is_featured','viewed'
     ];
     
     /**

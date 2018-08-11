@@ -63,8 +63,8 @@ class ImportController extends Controller
 	
      public function importProductProcess(Request $request){
 		$validation = Validator::make($request->all(), [            
-            'file'   => 'required',
-                
+            //'file'   => 'required',
+            'file' => 'required|mimes:xls,xlsx',  
         ]);
 		$flag=true;
 		if ($validation->fails()){ 

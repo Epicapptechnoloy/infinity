@@ -1,28 +1,31 @@
 
 <div class="col-md-12 pd-15 responsive_none">
 	<nav id="primary-menu">
+	
 		<ul class="main-menu text-center pull-right">
 		
 			<li><a href="/">Home</a> </li>
 			
+			
 			<li class="mega-parent"><a href="javascript:void(0);">Customised Gifts </a>
 				<div class="mega-menu-area clearfix bg_menu_">
 					<div class="mega-menu-link f-left">
+						@if(!empty($c_data))
+						@foreach($c_data as $cat)
 						<ul class="single-mega-item">
-							<li class="menu-title">GIFT ITEMS</li>
-							<li><a href="#">Pen</a></li>
-							<li><a href="#">Stone Plates</a></li>
-							<li><a href="#">Cushion Covers</a></li>
-							<li><a href="#">Towels & Bathrobes</a></li>
-							<li><a href="#">Shot Glasses</a></li>
-							<li><a href="#">Gift Tags</a></li>
-							<li><a href="#">Sagan Envelopes</a></li>
+							<li class="menu-title">{{$cat->name}}</li>
+							@if(!empty($cat->SubCategory))
+							@foreach($cat->SubCategory as $sc)
+							<li><a href="{{Route('shop')}}">{{$sc->name}}</a></li>
+							@endforeach
+							@endif
 						</ul>
-						
+						@endforeach
+						@endif
 					</div>
-					
 				</div>
 			</li>
+			
 		
 			<li class="mega-parent"><a href="javascript:void(0);">Mobile Covers </a>
 				<div class="mega-menu-area mega-menu-area-2 clearfix" style="padding-top:15px !important;">
