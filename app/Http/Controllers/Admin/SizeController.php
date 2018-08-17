@@ -57,7 +57,7 @@ class SizeController extends Controller
 	*************/ 
 	
 	public function AddSizePost(Request $request){
-		//dd($request->all());
+		
         $validation = Validator::make($request->all(), [            
             'size_name'   => 'required',
             'status'       => 'required',      
@@ -66,17 +66,12 @@ class SizeController extends Controller
             return redirect()->back()->withErrors($validation)->withInput($request->all());   
         }else{
 			try {
-				
 				DB::beginTransaction(); 
 				$Sizes = new ProductSizes();
-				
 				$Sizes->size_name = $request->size_name;        
-				
 				$Sizes->status = $request->status;
-				
 				$Sizes->save();				
 				DB::commit();
-				
 				$request->session()->flash('alert-success', 'Size was successful added!');
 				return redirect()->route("sizeList");
 			}catch(\Illuminate\Database\QueryException $e){
@@ -156,12 +151,6 @@ class SizeController extends Controller
 		} 
     }
 	
-	
-	/* public function deleteSize(Request $request,$size_id){
-		$Sizes = ProductSizes::where('size_id',$request->size_id)->delete(); 
-		$request->session()->flash('alert-success', 'Record has been  deleted successfully!');
-		return redirect()->route("sizeList");
-	} */
 	
 	
 	/***********

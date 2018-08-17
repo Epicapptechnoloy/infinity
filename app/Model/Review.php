@@ -32,6 +32,8 @@ class Review extends Authenticatable
         return $this->hasMany('App\Model\ProductToCategory');
     }
     
-    
+    public function getUser(){
+        return $this->belongsTo('App\Model\User', 'user_id');
+    }
     
 }

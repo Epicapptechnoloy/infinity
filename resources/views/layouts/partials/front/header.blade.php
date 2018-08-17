@@ -66,9 +66,11 @@
 											@endif	
 										</li> 
 										<li>
-											<a title="View Your Cart" class="shopping-cart" href="cart.html"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> </a>
+											<a title="View Your Cart" class="shopping-cart" href="{{ route('INFKart', ['sessionid' => \Session::getId()]) }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> </a>
 										</li>
-										<span class="cart-counter">0</span>
+										@if(!empty(Auth::guard('frontUser')->user()))
+										<span class="cart-counter">{{ \App\Helpers\Helpers::totaUserCart()}}</span>
+										@endif
 									</ul>
 								</div>
 							</div>
@@ -192,4 +194,9 @@
 		<!---/HEADER MENU--->
 	</header>
 	<!-- END HEADER --->
-	
+	<!--- LOADER CUSTOM--->
+	<div class="playerInfoContainer" style="display:none;">
+		<h4>Please wait... </h4>
+		<div class="custom_dott"></div>
+	</div>
+<!--- END LOADER CUSTOM--->

@@ -84,18 +84,20 @@ class AdminController extends Controller
 	
 	
     public function updateProfile(Request $request){
+		
         $homeTitle = 'Profile';  
 		$admin = Admin::find(Auth::user()->id);
         $title = 'Profile';
 		$method = $request->method();
 		if ($request->isMethod('post'))
 		{
+			
 			$data =Input::all();
 			$input = $request->all();
 			$rules = array(
 				'fname' => 'Required|Min:3|Max:250',
 				'lname' => 'Required|Min:3|Max:250',
-				'number' => 'Required|Min:10|Max:10',
+				'number' => 'Required|Min:10|numeric',
 			);
 			$validator = Validator::make($data, $rules);
 			if ($validator->fails())
@@ -174,5 +176,7 @@ class AdminController extends Controller
 			return redirect()->back()->withErrors('Current password does not match');   
 		}
 	}
-     
+	
+	
+	
 }

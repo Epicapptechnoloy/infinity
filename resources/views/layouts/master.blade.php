@@ -22,7 +22,8 @@
 			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/jquery.simpleGallery.css') }}">
 			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/jquery.simpleLens.css') }}">
 			<link rel="stylesheet" href="{{ URL::asset('assets/front/css/developer.css') }}">
-            
+            	<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
 
 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -45,14 +46,34 @@
 			<script src="{{ URL::asset('assets/front/js/detail.slider.js') }}"></script>
 			
 			<script src="{{ URL::asset('assets/front/js/resCarousel.js') }}"></script>
+			
 			<script src="{{ URL::asset('assets/front/js/aos.js') }}"></script>
+			
 			<script src="{{ URL::asset('assets/front/js/jquery.simpleGallery.js') }}"></script>
 			<script src="{{ URL::asset('assets/front/js/jquery.simpleLens.js') }}"></script>
 			<script type="text/javascript" src="{{ URL::asset('assets/front/custome/jquery.validate.min.js') }}"></script>
 			<script type="text/javascript" src="{{ URL::asset('assets/front/custome/validate.settings.js') }}"></script>
+			
+		
+			<!-- Latest compiled and minified JavaScript --> 
+			<script type="text/javascript" src="{{ URL::asset('assets/front/custome/jquery.rateyo.min.js') }}"></script>
+			
+			<script type="text/javascript" src="{{ URL::asset('assets/front/custom-js/common.js') }}"></script>	
+			<script type="text/javascript" src="{{ URL::asset('assets/front/custom-js/home.js') }}"></script>	
+			<!-- PAGE TITLE BANNER AREA -->
+			
+			
 			<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 			
 			<script> new WOW().init();</script>
+			
+			<script type="text/javascript">
+				var JS_args = {
+					_token: "{{ csrf_token() }}",
+					BASE_URL: "{{ URL::to('/') }}"
+				};
+			
+			</script>
 			
 	    </head>
 	<body>

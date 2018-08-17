@@ -44,6 +44,15 @@ class ColorController extends Controller
      */
 	 
 	 
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : AddColor
+	***Description  : This action is use to add color 
+	***Date         : 11-08-2018
+	***Params       : @color,
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
+	
     public function AddColor(Request $request){
         $homeTitle = 'Add Color';
         return view('admin.color.add-color',array('homeTitle'=>$homeTitle)); 
@@ -51,6 +60,14 @@ class ColorController extends Controller
 	
 	
 	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : AddColorPost
+	***Description  : This action is use to add size 
+	***Date         : 11-08-2018
+	***Params       : @color_name,color_code
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
 	
 	public function AddColorPost(Request $request){
 		
@@ -69,10 +86,8 @@ class ColorController extends Controller
 				$Colors->color_name = $request->color_name;        
 				$Colors->color_code = $request->color_code;        
 				$Colors->status = $request->status;
-				
 				$Colors->save();				
 				DB::commit();
-				
 				$request->session()->flash('alert-success', 'Color was successful added!');
 				return redirect()->route("colorList");
 			}catch(\Illuminate\Database\QueryException $e){
@@ -83,6 +98,14 @@ class ColorController extends Controller
 	} 
 	
 	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : ColorList
+	***Description  : This action is use to Color List 
+	***Date         : 11-08-2018
+	***Params       : @color_id,
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
 	
 	public function ColorList(Request $request) {
         $homeTitle = 'Color list'; 
@@ -94,7 +117,15 @@ class ColorController extends Controller
     }
 	
 	
-
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : editColor
+	***Description  : This action is use to edit Color
+	***Date         : 11-08-2018
+	***Params       : @color_id,
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
+	
 	public function editColor(Request $request){
 		$homeTitle = 'Edit Color';
 		$Colors = ProductColors::where('color_id',base64_decode($request->color_id))->first();
@@ -102,8 +133,16 @@ class ColorController extends Controller
     }
 	
 	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : editColorPost
+	***Description  : This action is use to add size 
+	***Date         : 11-08-2018
+	***Params       : @color_name,color_code
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
+	
 	public function editColorPost(Request $request){
-		
 		$validation = Validator::make($request->all(), [            
             'color_name'   => 'required',
             'color_code'   => 'required',
@@ -118,10 +157,8 @@ class ColorController extends Controller
 			$Colors->color_name = $request->color_name;
 			$Colors->color_code = $request->color_code;
 			$Colors->status = $request->status;
-			
 			$Colors->update();
 			DB::commit();
-			
 			$request->session()->flash('alert-success', 'Color Updated successfully!');
 			return redirect()->route("colorList");
 		}catch(\Illuminate\Database\QueryException $e){
@@ -130,20 +167,18 @@ class ColorController extends Controller
 		} 
     }
 	
-	/* 
-	public function deleteColor(Request $request,$color_id){
-		$Colors = ProductColors::where('color_id',$request->color_id)->delete(); 
-		$request->session()->flash('alert-success', 'Record has been  deleted successfully!');
-		return redirect()->route("colorList");
-	} */
-	
-
-	
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : deleteColor
+	***Description  : This action is use to delete color 
+	***Date         : 11-08-2018
+	***Params       : @id,
+	***return       : @return \Illuminate\Http\Response
+	*************/ 
     public function deleteColor($id,Request $request){
         $color = ProductColors::find(base64_decode($id));        
         if($color)
 			$color->delete();	
-							
 		\Session::flash('alert-success', 'Color deleted successfully');
         return redirect()->route("colorList");               
         

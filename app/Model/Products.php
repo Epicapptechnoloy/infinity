@@ -32,7 +32,32 @@ class Products extends Authenticatable
     public function image()
     {
         return $this->hasMany('App\Model\ProductImages');
-    }    
+    }
+
+	public function getColor(){
+        return $this->belongsTo('App\Model\ProductColors', 'color_id');
+    }
+	public function getCategory(){
+        return $this->belongsTo('App\Model\Categories', 'category_id');
+    }
+	public function getSize(){
+        return $this->belongsTo('App\Model\ProductSizes', 'size_id');
+    }
+	
+	
+    public function getReviewsTotal(){
+        return $this->hasMany('App\Model\Review', 'product_id')->selectRaw('SUM(rating) as total');
+    }
+	
+	public function getReviewsAvg(){
+        return $this->hasMany('App\Model\Review', 'product_id')->selectRaw('avg(rating) as avgrate');
+    }
+   
+	public function getReviews() {
+        return $this->hasMany('App\Model\Review','product_id');
+    }
+	
+   
    
 }
 

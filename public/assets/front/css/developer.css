@@ -11,3 +11,65 @@
     opacity: .8;
 }
 
+	
+.playerInfoContainer{
+	position:fixed;	
+	z-index:999999;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	width:100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	height:100%;
+}
+.playerInfoContainer h4{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	font-size:40px;
+	color:#fff;
+	
+}	
+.playerInfoContainer i{color:#fff !important;}
+
+.img_pos{
+	position:relative;
+}
+
+.availability {
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0 20px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.availability span i {
+    margin: 0 0 0 22px;
+    color: #02afef;
+}
+.availabilitycolor {
+   
+    color: #02afef;
+}
+
+.input-group-btn {
+    position: relative;
+    font-size: 0;
+    white-space: nowrap;
+}
+
+/* .NoProductfnd{color:#fff;position:relative;font-size: 26px;margin-top: 120px;
+    display: block;}
+.NoProductfnd:before {
+    position: absolute;
+    content: "\f071";
+    font-family: fontawesome; 
+    left: 50%;
+    top: 50%;
+    font-size: 40px;
+    transform: translate(-50%, -50%);
+    margin-top: -50px;
+}
+  */

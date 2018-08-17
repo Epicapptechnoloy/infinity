@@ -298,7 +298,15 @@ class ProductController extends Controller
     }
 
 
-
+	/***********
+	***Author       : Ajay Kumar
+	***Action       : getSubCategoryList
+	***Description  : This action is use to category  list
+	***Date         : 08-11-2018
+	***Params       : category_id
+	***return       : @return \Illuminate\Http\Response
+	*************/  
+	
 	public function getSubCategoryList(Request $request){
 		
 		$validation = Validator::make($request->all(), [
@@ -322,6 +330,7 @@ class ProductController extends Controller
 		
 		
     }
-
+	
+	
 
 }

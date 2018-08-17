@@ -12,8 +12,6 @@
 */
 
 
-
-
 Route::GET('/fetch-state','HomeController@fetchState');
 Route::GET('/fetch-city','HomeController@fetchCity');
 
@@ -47,11 +45,25 @@ Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('auth/google', 'Auth\AuthController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\AuthController@handleGoogleCallback');
 
+Route::GET('/product/{product_name}/{productId}','Front\ShopController@productDetail')->name('productDetail');
 
 Route::GET('/shop','Front\ShopController@shop')->name('shop');
 
+Route::POST('/checkstorelogin','Front\ShopController@checkLogin')->name('checkLogin');
+
+Route::POST('/getproducts','Front\ShopController@getproducts')->name('getproducts');
+
+
+
 
 Route::group(['middleware' => ['auth:frontUser']], function() {  
+
+	Route::GET('/checkout','Front\ShopController@checkout')->name('checkout');
+	Route::GET('/INFKart/{sessionid}','Front\ShopController@INFKart')->name('INFKart');
+	Route::POST('/updateINFKart','Front\ShopController@updateINFKart')->name('updateINFKart');
+	
+	Route::POST('/placeOrder','Front\ShopController@PlaceOrder')->name('placeOrder');
+
 
 });	
 
@@ -178,9 +190,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
     Route::POST('/add-category','Admin\CategoryController@Addcategory')->name('admin.add.category');
 	
 	
-	
-	
-	
 	//sub category list 
 	Route::GET('/sub-category-list','Admin\SubCategoryController@subCategoryList')->name('admin.sub-category-list');
 
@@ -200,9 +209,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
     
 	//add sub category process
     Route::POST('/add-sub-category','Admin\SubCategoryController@addSubCategory')->name('admin.add.sub-category');
-	
-	
-	
 	
 	
 	//banner list  
@@ -348,12 +354,10 @@ Route::get('/delete-product-details/{id}', 'Customer\HomeController@deleteProduc
 
 
 //cart routes
-Route::GET('/cart','Customer\HomeController@processCart')->name('cart');
+//Route::GET('/cart','Customer\HomeController@processCart')->name('cart');
 
 
-Route::GET('/checkout','Customer\HomeController@processCheckOut')->name('checkout');
-
-
+//Route::GET('/checkout','Customer\HomeController@processCheckOut')->name('checkout');
 
 
 /* Front Routing End Here */

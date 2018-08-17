@@ -65,74 +65,61 @@
 			<div class="row">
 			@include('front.shop.side-filters')
 
-				<div class="col-md-9 col-sm-9 col-xs-12">
-					<div class="shop-content"> 
-						<div class="shop-content"> 
-							<div class="row">
-								@if(count($products)>0)
-								@foreach($products as $p_data)
-								<div class="col-md-4 col-sm-6 col-xs-12">
-									<div class="shop-product item">
-									@php $path = '/uploads/product/image/'.$p_data->image ; 
-									@endphp 
-										<div class="product-box">
-											@if($p_data->image)
-											<a href="#"><img src="{{URL::asset($path) }}" alt=""></a>
-											@endif
-											<div class="cart-overlay">
-											</div>
-											<span class="sticker new"><strong>NEW</strong></span>
-										</div>
-										<div class="product-info">
-											<h4 class="product-title"><a href="#">{{$p_data->name}}</a></h4>
-											<div class="align-items">
-												<div class="pull-left">
-													<span class="price">{{$p_data->price}}</span>
-												</div>
-												<div class="pull-right">
-													<div class="reviews-icon">
-														<i class="i-color fa fa-star"></i>
-														<i class="i-color fa fa-star"></i>
-														<i class="i-color fa fa-star"></i>
-														<i class="i-color fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								@endforeach
-								@endif
+			<div class="col-md-9 col-sm-8 col-xs-12" id="storeProductList">
 								
-								
-							</div> 
-						</div>
-					</div>
-					
-					<!-- PAGINATION -->
-					<div class="pagination">
-						<div class="results-navigation pull-left">
-							<span>Showing: 1 - 6 Of 17</span>
-						</div>
-						<nav class="navigation pull-right">
-							<a class="next-page" href="javascript:void(0);"><i class="fa fa-angle-left"></i></a>
-							<span class="current page-num">1</span>
-							<a class="page-num" href="javascript:void(0);">2</a>
-							<a class="page-num" href="javascript:void(0);">3</a>
-							<div class="divider">...</div>
-							<a class="next-page" href="javascript:void(0);"><i class="fa fa-angle-right"></i></a>
-						</nav>
-					</div>
-					<!-- END PAGINATION -->
-					
-				</div>
+			</div>
+				
 			</div> 
 		</div> 
 	</div> 
 	<!-- END PAGE CONTENT -->
 	
-
+<script> 
+$.fn.getProductListAjax = function(url) { 
+	var searchdata = "_token="+JS_args._token;
+	if($.trim($("#formtype").val()) == "1"){
+		searchdata = $("#storeSearchForm").serialize();
+	}else if($.trim($("#formtype").val()) == "2"){
+		searchdata = $("#storeFilterForm").serialize();
+	}
+	 
+	$('.playerInfoContainer').show();
+	$.ajax({
+		url: url,
+		method: 'post',
+		dataType: 'html',
+		data: searchdata
+	}).done(function (data) {
+		$('.playerInfoContainer').hide();
+		$('#storeProductList').html(data);
+	}).fail(function () {
+		$.fn.alert('Alert','product could not be loaded.', 'Close');
+	});
+}
+$(document).ready(function () {
+	$("ul.tab-links li a").click(function() {
+		$("ul.tab-links li").removeClass("active");
+		$(this).parent().addClass("active");
+	}); 
+	
+	$.fn.getProductListAjax("{{ route('getproducts') }}");
+	$("#storeSearch").on("click", function(){
+		$("#formtype").val("1")
+		$.fn.getProductListAjax("{{ route('getproducts') }}");
+	});
+	$(".filtersearch").on("click", function(){
+		$("#formtype").val("2")
+		var filtertype = $(this).data('filter');
+		$("#product"+filtertype).val($(this).data('id'));
+		$.fn.getProductListAjax("{{ route('getproducts') }}");
+	});
+	$("#productprice").on("change", function(){
+		$("#formtype").val("2")
+		$.fn.getProductListAjax("{{ route('getproducts') }}");
+	});
+	
+}); 	
+</script>
 
 @endsection
 

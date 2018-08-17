@@ -6,12 +6,11 @@
 		
 			<li><a href="/">Home</a> </li>
 			
-			
 			<li class="mega-parent"><a href="javascript:void(0);">Customised Gifts </a>
 				<div class="mega-menu-area clearfix bg_menu_">
 					<div class="mega-menu-link f-left">
-						@if(!empty($c_data))
-						@foreach($c_data as $cat)
+						@if(!empty($Categories))
+						@foreach($Categories as $cat)
 						<ul class="single-mega-item">
 							<li class="menu-title">{{$cat->name}}</li>
 							@if(!empty($cat->SubCategory))

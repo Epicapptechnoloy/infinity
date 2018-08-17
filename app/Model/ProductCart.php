@@ -21,13 +21,19 @@ class ProductCart extends Authenticatable
      */
 	
     protected $fillable = [
-        'cart_id', 'user_id','product_id','user_session_id','qty','total_price','created_at','updated_at'
+        'cart_id', 'user_id','product_id','user_session_id','qty','total_price','color','size','created_at','updated_at'
     ];
     
     /**
      * Get the doctor record.
      */
-      
+	protected $hidden = [];
+	public $timestamps = false; 
+	 
+	 
+    public function getProduct(){
+        return $this->belongsTo('App\Model\Products', 'product_id');
+    }  
    
 }
 

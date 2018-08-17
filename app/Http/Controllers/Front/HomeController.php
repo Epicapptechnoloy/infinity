@@ -39,53 +39,8 @@ class HomeController extends Controller
 		$data = array();
 		$homeTitle = 'Infinity.com'; 
 		$Categories = Categories::with('SubCategory')->get();
-		
-		return view('homepage',array('homeTitle'=>$homeTitle,'data'=>$data,'c_data'=>$Categories));
+		return view('homepage',array('homeTitle'=>$homeTitle,'data'=>$data,'Categories'=>$Categories));
 		
     }
 	
-	/* public function showProductList($id){
-		$homeTitle = 'showProductList';
-		$Products=new Products;
-		$products = $Products->getProductById($id);
-		return view('customer.show-product',array('homeTitle'=>$homeTitle,'products'=>$products));
-	}	
-    
-	public function postProduct(Request $request)
-    {	
-		$validation = Validator::make($request->all(), [
-			'size' 	=> 'required',
-            'color' => 'required',
-        ]);
-	}
-	
-	
-	public function processCart(Request $request)
-    {
-        $homeTitle = 'Cart';
-			$products=Products::all();
-			return view('customer.cart',array('homeTitle'=>$homeTitle,'products'=>$products));
-	}
-	
-	public function deleteProduct($id){
-		if(!empty($id)){
-			$paroducts=Products::where('product_id', $id)->first();
-		}
-		if($paroducts->image){
-			$dir='public/assets/front/img/'.$paroducts->image;
-	        File::delete($dir);
-	    } 
-        $paroducts->delete();
-       
-		return redirect()->route("cart"); 
-	}
-	
-
-	public function processCheckOut(Request $request)
-    {
-        $homeTitle = 'Checkout';
-		return view('customer.checkout',array('homeTitle'=>$homeTitle));
-	
-	}	 */
-
 }
