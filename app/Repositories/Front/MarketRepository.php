@@ -8,6 +8,7 @@ use App\Model\SubCategory;
 use App\Model\ProductCart;
 use App\Model\ProductColors;
 use App\Model\ProductSizes;
+use App\Model\UserBillingAddress;
 use App\Model\Review;
 use DB;
 

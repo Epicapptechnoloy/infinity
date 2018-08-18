@@ -105,7 +105,6 @@
 									@foreach($productColors as $p_color)
 										<ul class="select" id="color">
 											<input type="radio" name="color" value="{!! $p_color->color_name !!}" checked />{{ $p_color->color_name}} <br />
-											
 										</ul>
 									@endforeach
 									@endif
@@ -115,10 +114,8 @@
 									<h5 class="pd-sub-title">Select Size</h5>
 									@if(count($productSizes) > 0)
 									@foreach($productSizes as $p_size)
-									
 									<div class="select" id="size">
 										<input type="radio" name="size" value="{!! $p_size->size_name !!}" checked />{{ $p_size->size_name}} <br/>
-										
 									</div>
 									@endforeach
 									@endif
@@ -131,7 +128,6 @@
 											<span class="btn min button cl-decrease">-</span>
 										</div>
 										<input type="text" name="qty" id="qty" value="1" maxlength="3"/>
-										
 										
 										<div class="input-group-btn">
 											<span class="btn plus button cl-increase">+</span>
@@ -170,7 +166,6 @@
 									<td>Category</td>
 									<td>{{$product->getCategory->name}}</td>
 								</tr>
-								
 								<tr class="odd">
 									<td>Price</td>
 									<td>{{ ($product->price + 0) }}</td>
@@ -178,7 +173,6 @@
 							</tbody>
 						</table>
 					</div>
-					
 					<div class="pro-info-tab tab-pane" id="reviews">
 						
 					</div>
@@ -186,8 +180,6 @@
 			</div>			
 		</div>
 		
-		
-	
 	<!-- RELATED PRODUCTS -->
 <script>
 	$.fn.checkStoreLogin = function() {
@@ -196,13 +188,14 @@
 			method: 'post',
 			dataType: 'json',
 			data: $("#productCheckForm").serialize()
+			
 		}).done(function (response) {
-			console.log(response);
+			console.log(response.success);
 			if(response.success){
 				if(response.status == 200){
-					
-					window.location.href = '{{ url("/") }}';
-					$("#LoginModalPopups").modal("show");
+				
+					window.location.href = '{{ route("INFKart", ["sessionid" => \Session::getId()]) }}';
+				
 				}else{
 					
 					$("#LoginModalPopups").modal("show");
@@ -246,9 +239,6 @@
 			$.fn.checkStoreLogin();
 		});
 	}); 
-
-
-
 
 	$(function () {
 	 

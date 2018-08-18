@@ -6,7 +6,7 @@
 	<div class="row sldrfullpge">
 		<div class="col-md-12">
 			<ul class="breadcrumb">
-				<li> <a href="index.html"> <i class="fa fa-home"></i>Home</a></li>
+				<li> <a href="/"> <i class="fa fa-home"></i>Home</a></li>
 				<li class="active">My Account</li>
 			</ul>
 		</div>

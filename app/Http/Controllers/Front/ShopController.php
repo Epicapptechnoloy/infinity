@@ -94,9 +94,11 @@ class ShopController extends Controller
 		//$data['userBalance'] = $userBalance;
 		$data['Categories'] = $this->marketRepository->getAllCategories();
 		$data['billingAddrs'] = $this->marketRepository->getBillingAdress($userId);
-		$data['product'] = ProductCart::where('user_id',\Auth::guard('frontUser')->user()->user_id)->where('user_session_id',\Session::getId())->groupBy('user_session_id')->sum('total_price');
+		$data['product'] = ProductCart::where('user_id',\Auth::guard('frontUser')->user()->id)->where('user_session_id',\Session::getId())->groupBy('user_session_id')->sum('total_price');
+		
 		$countries = \App\Model\Countries::select('country_id', 'country_code', 'country_name')->where('status', 1)->orderBy('country_name', 'DESC');
 		$data['countries'] = $countries->get();
+		
 		
 		return view('front/shop/product-checkout', $data);
 	}
@@ -262,28 +264,21 @@ class ShopController extends Controller
 			else
 			{
 				$product = \App\Model\Products::where("status", 1)->where("product_id", $productId)->first();
-				
-				
 				if(count(['$product']) == 1)
 				{
-				
 					$totalPrice = $qty * $product->price;
 					$sessioncart = array(
-							'product_id' => $productId,
-							'qty' => $qty,
-							'total_price' => $totalPrice
-							);
-					
+						'product_id' => $productId,
+						'qty' => $qty,
+						'total_price' => $totalPrice
+						);
 					if ($request->session()->has('userSessionCart')) 
 					{
-						
 						$request->session()->push('userSessionCart', $sessioncart);	
 					}	
 					else
 					{
-					
 						$request->session()->put('userSessionCart', $sessioncart);
-						
 					}
 					$request->session()->put('redirectTo', 'checkout');
 					$request->session()->put('redirectTo', 'checkout');
