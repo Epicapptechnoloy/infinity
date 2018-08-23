@@ -172,7 +172,7 @@ $(document).ready(function(){
 			
 			if(response.success){ 
 				
-				var adress_var ="<div class='address' id='address_div_id_"+response.data.address_id+">";
+				var adress_var ="";
 				adress_var +="<span class='font-bold'>"+response.data.first_name+" "+response.data.last_name+"</span>";
 				adress_var += "<span><br>"+response.data.phone+"</span>";
 				adress_var += "<span><br>"+response.data.address1+"</span>";
@@ -182,13 +182,13 @@ $(document).ready(function(){
 				adress_var += "<br>";
 				adress_var += "<span class='btn  btn-secondary  btn-sm text-uppercase' 'mt10'><a class='EditAddress' href='javascript:void(0);'  data-id='"+response.data.address_id+"' id='EditAddress'><span class='J_editAdd'>Edit</span></a></span>";
 				
-				adress_var += "<span class='btn btn-secondary btn-sm text-uppercase mt10'><a class='DeleteAddressBook' href='javascript:void(0);'  data-id='"+response.data.address_id+"'  title='Delete Address' data-toggle='modal' data-target='#deleteAddressModal'><span class='J_delAdd'>Remove</span></a></span>";
+				adress_var += "<span class='btn  btn-secondary  btn-sm text-uppercase' 'mt10'><a class='DeleteAddressBook' href='javascript:void(0);'  data-id='"+response.data.address_id+"'  title='Delete Address' data-toggle='modal' data-target='#deleteAddressModal'><span class='J_delAdd'>Remove</span></a></span>";
 				
-				adress_var += "</div>";
+				//adress_var += "</div>";
 				
 				
-				$('#address_div_id_'+response.data.address_id).html('');
-				console.log($('#address_div_id_'+response.data.address_id).html(adress_var));
+				$('#address_div_id_'+response.data.address_id).html(adress_var);
+				//console.log($('#address_div_id_'+response.data.address_id).html(adress_var));
 				console.log(adress_var);
 				
 				$('.close_modal').click();

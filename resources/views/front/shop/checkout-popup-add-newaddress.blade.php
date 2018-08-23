@@ -173,14 +173,14 @@
 			
 			if(response.success){
 				
-				var adress_var ="<div  class='col-lg-6 col-md-12 col-12' id='delete_address__id_"+response.data.address_id+">";
+				var adress_var ="<div  class='col-lg-6 col-md-12 col-12' id='delete_address__id_"+response.data.address_id+"'>";
 				adress_var += "<div>";
-				adress_var += "<div class='addbx active'>";
+				adress_var += "<div  class='addbx active'>";
 				adress_var += "<div class='pull-left'>";
-				adress_var += "<input type='radio' name='address' id='current_address__id_"+response.data.address_id+" class='ckbox' value="+response.data.address_id+" 'checked'>";
+				adress_var += "<input type='radio' name='address' id='current_address__id_"+response.data.address_id+"' class='ckbox' value='"+response.data.address_id+"' checked>";
 				adress_var += "<label>&nbsp; </label>";	
 				adress_var += "</div>";	
-				adress_var +="<div class='address' id='address_div_id_"+response.data.address_id+">";
+				adress_var +="<div class='address' id='address_div_id_"+response.data.address_id+"'>";
 				adress_var += "<span class='font-bold'>"+response.data.first_name+" "+response.data.last_name+"</span>";
 				adress_var += "<span>";
 				adress_var +="<br>"+response.data.phone+"</span>";
@@ -195,7 +195,7 @@
 				adress_var += "<br>";
 				adress_var += "<span class='btn  btn-secondary  btn-sm text-uppercase' 'mt10'><a class='EditAddress' href='javascript:void(0);'  data-id='"+response.data.address_id+"' id='EditAddress'><span class='J_editAdd'>Edit</span></a></span>";
 				
-				adress_var += "<span class='btn btn-secondary btn-sm text-uppercase mt10'><a class='DeleteAddressBook' href='javascript:void(0);'  data-id='"+response.data.address_id+"'  title='Delete Address' data-toggle='modal' data-target='#deleteAddressModal'><span class='J_delAdd'>Remove</span></a></span>";
+				adress_var += "<span class='btn  btn-secondary  btn-sm text-uppercase' 'mt10'><a class='DeleteAddressBook' href='javascript:void(0);'  data-id='"+response.data.address_id+"'  title='Delete Address' data-toggle='modal' data-target='#deleteAddressModal'><span class='J_delAdd'>Remove</span></a></span>";
 				adress_var += "</div>";
 				adress_var += "</div>";
 				adress_var += "</div>";
