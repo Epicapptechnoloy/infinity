@@ -8,7 +8,7 @@
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+|delivery-address
 */
 
 
@@ -66,7 +66,8 @@ Route::group(['middleware' => ['auth:frontUser']], function() {
 	
     Route::GET('/checkoutPopups','Front\ShopController@checkoutPopups')->name('checkoutPopups');
 	
-	Route::GET('/checkout','Front\ShopController@checkout')->name('checkout');
+	Route::GET('/delivery-address','Front\ShopController@DeliveryAddress')->name('delivery-address');
+	
 	Route::GET('/INFKart/{sessionid}','Front\ShopController@INFKart')->name('INFKart');
 	Route::POST('/updateINFKart','Front\ShopController@updateINFKart')->name('updateINFKart');
 	
@@ -347,7 +348,7 @@ Route::GET('/','Front\HomeController@home'); //This is use for home page
 //login,reg,&reset password routes 
 
 Route::GET('/register','Customer\CustomerController@showLoginForm');
-Route::GET('/auth-process','Customer\CustomerController@showLoginForm')->name('login');
+Route::GET('/auth-process','Customer\CustomerController@showLoginForm')->name('auth-process');
 Route::POST('/ProcessRegistration','Customer\CustomerController@ProcessRegistration')->name('ProcessRegistration');
 Route::POST('/ProcessLogin','Customer\CustomerController@ProcessLogin')->name('ProcessLogin');
 

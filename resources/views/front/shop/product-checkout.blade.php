@@ -6,7 +6,7 @@
 		<div class="row sldrfullpge">
 			<div class="col-md-12">
 				<ul class="breadcrumb">
-					<li> <a href="/">MY CART</a></li>     
+					<li> <a href="{{ route('INFKart', ['sessionid' => \Session::getId()]) }}">MY CART</a></li>     
 					<li class="active">DELIVERY</li>
 					<li>PAYMENT</li>
 				</ul>
@@ -83,17 +83,17 @@
 							<div class="headingregular common-color"> Billing Details</div>
 							<div class="sidebox">
 								<ul>
-									<li>Cart Total <span class="font-bold">Rs. 499</span></li>
-									<li>Discount Coupon <span data-v-19d9842e=""> 0 </span></li>
+									<li>Cart Total <span class="font-bold">Rs.{{$product + 0}}</span></li>
+									<li>Discount Coupon <span> 0 </span></li>
 									<!---->
-									<li>Reward Points <span data-v-19d9842e=""> 0 </span></li>
-									<li>Gift Voucher <span data-v-19d9842e=""> 0 </span></li>
-									<li>Gift Wrap<span data-v-19d9842e=""> 0 </span></li>
+									<li>Reward Points <span> 0 </span></li>
+									<li>Gift Voucher <span> 0 </span></li>
+									<li>Gift Wrap<span> 0 </span></li>
 									<li>Shipping Charges
 										<!---->
 									</li>
-									<li>GST<span data-v-19d9842e="">Rs. 25</span></li>
-									<li class="font-bold">Total Payable<span data-v-19d9842e="">Rs. 524</span></li>
+									{{--<li>GST<span data-v-19d9842e="">Rs. 25</span></li>--}}
+									<li class="font-bold">Total Payable<span data-v-19d9842e="">Rs.{{$product + 0}}</span></li>
 								</ul>
 							</div>
 						</div>

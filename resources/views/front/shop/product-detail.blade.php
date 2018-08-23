@@ -192,13 +192,13 @@
 		}).done(function (response) {
 			console.log(response.success);
 			if(response.success){
-				if(response.status == 200){
+				if(response.status == 401){
 				
-					window.location.href = '{{ route("INFKart", ["sessionid" => \Session::getId()]) }}';
+					window.location.href = '{{ route("auth-process") }}';
 				
 				}else{
+					window.location.href = '{{ route("auth-process") }}';
 					
-					$("#LoginModalPopups").modal("show");
 				}
 			}else{
 				$.fn.alert('Unable to checkout',response.message, 'Close');

@@ -226,7 +226,7 @@ class ShopController extends Controller
 	
 	
 	
-	public function checkout(Request $request){
+	public function DeliveryAddress(Request $request){
 			
 		$data = array();
 		$data['homeTitle'] = 'infinity.com'; 
@@ -405,9 +405,11 @@ class ShopController extends Controller
 			}
 			else
 			{
+				
 				$product = \App\Model\Products::where("status", 1)->where("product_id", $productId)->first();
 				if(count(['$product']) == 1)
 				{
+					
 					$totalPrice = $qty * $product->price;
 					$sessioncart = array(
 						'product_id' => $productId,
@@ -416,18 +418,24 @@ class ShopController extends Controller
 						);
 					if ($request->session()->has('userSessionCart')) 
 					{
+						
 						$request->session()->push('userSessionCart', $sessioncart);	
 					}	
 					else
 					{
+						
 						$request->session()->put('userSessionCart', $sessioncart);
 					}
+				
 					$request->session()->put('redirectTo', 'checkout');
-					$request->session()->put('redirectTo', 'checkout');
-					return $this->ajaxResponse(true, '', null, 200);
+					
+					
+					return $this->ajaxResponse(true, '', null, 401);
+					
 				}
 				else
 				{
+					
 					return $this->ajaxResponse(false, "This product is not avalable.");
 				}	
 			}

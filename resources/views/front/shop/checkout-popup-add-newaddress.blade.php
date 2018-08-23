@@ -99,13 +99,13 @@
 					</label>
 				</div>
 				<input type="hidden" class="J_addressId" name=" " value="">     				
-				<div data-v-9b1377ca="" class="modal-footer">
-					<div data-v-9b1377ca="" class="row">
-						<div data-v-9b1377ca="" class="col-md-6 col-6">
-							<button data-v-9b1377ca="" type="button" class="btn btn-secondary btn-block  J_editAddCancel close_modal" data-dismiss="modal">Cancel</button>
+				<div class="modal-footer">
+					<div class="row">
+						<div class="col-md-6 col-6">
+							<button type="button" class="btn btn-secondary btn-block  J_editAddCancel close_modal" data-dismiss="modal">Cancel</button>
 						</div> 
-						<div data-v-9b1377ca="" class="col-md-6 col-6">
-							<button data-v-9b1377ca="" type="button" class="btn btn-red btn-block" data-default="0" id="saveUserAddressBook">Save</button>
+						<div class="col-md-6 col-6">
+							<button type="button" class="btn btn-red btn-block" data-default="0" id="saveUserAddressBook">Save</button>
 						</div>
 					</div>
 				</div>											

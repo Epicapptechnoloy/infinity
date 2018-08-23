@@ -131,7 +131,7 @@
 						</tbody>
 					</table>
 					<div class="proceed-to-checkout section mt-30">
-						<a href="/checkout">
+						<a href="/delivery-address">
 						<button type="button" id="Checkout" class="btn btn-primary checkout-btn">Proceed to Checkout <i id="hideDef" class="fa fa-spinner fa-pulse"></i> </button></a>
 					</div>
 				</div>

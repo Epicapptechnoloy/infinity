@@ -160,7 +160,7 @@ $(document).ready(function(){
 	
 	$.fn.updateAddressInformation = function(){
 		$(".editaddressHolder").prepend('<div class="bodypageloader"></div>');
-		//$(".bodypageloader").show();
+		
 		$(".error-msg").hide();
 		$.ajax({
 			url: JS_args.BASE_URL+'/edit-address-book',
@@ -184,8 +184,6 @@ $(document).ready(function(){
 				
 				adress_var += "<span class='btn  btn-secondary  btn-sm text-uppercase' 'mt10'><a class='DeleteAddressBook' href='javascript:void(0);'  data-id='"+response.data.address_id+"'  title='Delete Address' data-toggle='modal' data-target='#deleteAddressModal'><span class='J_delAdd'>Remove</span></a></span>";
 				
-				//adress_var += "</div>";
-				
 				
 				$('#address_div_id_'+response.data.address_id).html(adress_var);
 				//console.log($('#address_div_id_'+response.data.address_id).html(adress_var));
@@ -193,7 +191,15 @@ $(document).ready(function(){
 				
 				$('.close_modal').click();
 				
-			}	
+			} else{
+				if(response.status == 422){
+					$.each(response.message, function(i, v){
+						$('#editaddressBookForm p.p'+i).html(v).show();
+					});
+				}else{
+					$.fn.alertPopup("Error", "Oops !", "OK");	
+				}
+			}	 		
 		}).fail(function () {	
 			$(".bodypageloader").hide();
 			$.fn.alertPopup("Error", "Oops !", "OK");

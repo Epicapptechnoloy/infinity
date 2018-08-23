@@ -77,4 +77,10 @@
     color: red;
     font-size: 12px;
 }  
-  
+ /* REGISTER AND LOGIN PAGE */
+.loginHolder1 .signinHolder{
+    -webkit-box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24);
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24);} 
+.bgform{background: #e6e7e8;padding:40px 0;}
+.title-LogOn{margin-bottom:20px;}
+/* REGISTER AND LOGIN END PAGE */ 
