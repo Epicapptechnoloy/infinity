@@ -57,7 +57,7 @@ class RegisterController extends Controller
      * @return User
      */
     public function signupProcess(Request $request){
-		//dd($request->all());
+		
 		$validation = Validator::make($request->all(), [
 			'first_name'   	=> 'required',
 			'last_name'   	=> 'required',

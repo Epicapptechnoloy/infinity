@@ -143,7 +143,7 @@ class LoginController extends Controller
     }
 	
 	public function signupProcess(Request $request){
-		
+	
 		$validation = Validator::make($request->all(), [
 			'first_name'   	=> 'required',
 			'last_name'   	=> 'required',

@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
-
+use App\Model\Countries;
+use App\Model\States;
 use DB;
 use Crypt;
 use Hash;
@@ -89,5 +90,22 @@ class AjaxController extends Controller
 			
         }
     }
+	
+	
+	public function getStateList(Request $request){
+		
+		$validation = Validator::make($request->all(), [
+			'country_id'   => 'required'
+		]);
+		
+		if ($validation->fails()) { 
+           return json_encode($request->all());die;    
+        }else{
+			$stateList=States::where(['country_id'=>$request->country_id,'status'=>1])->get();
+			
+			return json_encode($stateList); die;  
+		}
+    }
+	
 	
 }

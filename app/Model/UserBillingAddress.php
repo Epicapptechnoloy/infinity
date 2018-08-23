@@ -19,6 +19,7 @@ class UserBillingAddress extends Authenticatable
     protected $fillable = [
         'user_id', 'address', 'city', 'state_id', 'zip', 'country_id', 'phone', 'name', 'status', 
 		'address1', 'address2', 'created_at', 'updated_at'
+		
     ];
 
     /**

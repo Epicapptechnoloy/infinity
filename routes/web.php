@@ -55,15 +55,30 @@ Route::POST('/getproducts','Front\ShopController@getproducts')->name('getproduct
 
 
 
+Route::GET('/get-state-list','Front\AjaxController@getStateList');
 
-Route::group(['middleware' => ['auth:frontUser']], function() {  
 
+
+Route::group(['middleware' => ['auth:frontUser']], function() {
+
+
+	Route::post('/save-address-book', 'Front\ShopController@saveAddressBook')->name('saveAddressBook');
+	
+    Route::GET('/checkoutPopups','Front\ShopController@checkoutPopups')->name('checkoutPopups');
+	
 	Route::GET('/checkout','Front\ShopController@checkout')->name('checkout');
 	Route::GET('/INFKart/{sessionid}','Front\ShopController@INFKart')->name('INFKart');
 	Route::POST('/updateINFKart','Front\ShopController@updateINFKart')->name('updateINFKart');
 	
 	Route::POST('/placeOrder','Front\ShopController@PlaceOrder')->name('placeOrder');
-
+	
+	Route::get('/edit-address-form', 'Front\ShopController@getAddressInformation')->name('getAddressInformation');
+	
+	//Route::get('/edit-address-form', 'Front\UserController@getAddressInformation')->name('getAddressInformation');
+	
+	Route::post('/edit-address-book', 'Front\ShopController@editAddressBook')->name('editAddressBook');
+	
+	Route::POST('/delete-address-book', 'Front\ShopController@deleteAddressBook')->name('deleteAddressBook');
 
 });	
 

@@ -73,3 +73,8 @@
     margin-top: -50px;
 }
   */
+.error-msg {
+    color: red;
+    font-size: 12px;
+}  
+  

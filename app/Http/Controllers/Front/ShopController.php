@@ -11,6 +11,9 @@ use App\Model\ProductCart;
 use App\Model\Products;
 use App\Model\Orders;
 use App\Model\OrderDetails;
+use App\Model\Countries;
+use App\Model\States;
+use App\Model\UserBillingAddress;
 use DB;
 use Session;
 use Auth;
@@ -27,12 +30,13 @@ class ShopController extends Controller
 	
 	private function ajaxResponse($success, $message, $exception = null, $code = 200) {
         return response()->json(array(
-                    'success' => $success,
-                    'message' => $message,
-                    'exception' => $exception,
-                    'status' => $code
+			'success' => $success,
+			'message' => $message,
+			'exception' => $exception,
+			'status' => $code
         ));
     }
+	
 	
 	public function shop(){
 		$data = array();
@@ -84,6 +88,144 @@ class ShopController extends Controller
         return view('front/shop/product-detail', $data);
     }
 	
+	
+	public function checkoutPopups()
+    {
+		
+		$data = array();
+		$data['countries'] = Countries::select('country_id', 'country_name')->where('status', 1)->orderBy('country_name', 'DESC')->get();	
+        $data['homeTitle'] = 'infinity.com'; 
+        return view('front/shop/checkout-popup-add-newaddress',$data);
+    }
+	
+	
+	public function getAddressInformation(Request $request) {
+		$data = array();
+		$billingAddress = new UserBillingAddress();
+		$billingAddress = $billingAddress->find($request->address_id);
+		
+		$data['billingAddress'] = $billingAddress;
+		$data['countries'] = Countries::select('country_id', 'country_name')->where('status', 1)->orderBy('country_name', 'DESC')->get();
+		$data['states'] = States::select('id', 'name')->where('status', 1)->get();
+		return view('front/shop/edit-address-form', $data);
+	}
+	
+	
+	public function editAddressBook(Request $request){
+		try {
+			
+			$billingAddrId =$request->address_id;
+			
+				$validation = Validator::make($request->all(), [
+						'first_name' => 'required',
+						'last_name' => 'required',
+						'number' => 'required',
+						'address' => 'required',
+						'address2' => 'required',
+						'city' => 'required',
+						'postal_code' => 'required',
+						'country_id' => 'required',
+						'state_id' => 'required',
+				]);
+				if ($validation->fails()) {
+					return $this->ajaxResponse(false, $validation->errors(), null, 422);
+				}
+				
+				$billingAddress = new UserBillingAddress();
+				
+				$billingAddress = $billingAddress->find($billingAddrId);
+				
+				$billingAddress->first_name = $request->first_name;
+				$billingAddress->last_name = $request->last_name;
+				$billingAddress->phone = $request->number;
+				$billingAddress->address = $request->address;
+				$billingAddress->address1 = $request->address2;
+				$billingAddress->address2 = $request->landmark;
+				$billingAddress->city = $request->city;
+				$billingAddress->zip = $request->postal_code;
+				$billingAddress->country_id = $request->country_id;
+				$billingAddress->state_id = $request->state_id;
+				$billingAddress->status = '1';
+				$billingAddress->save();
+				
+				$response = array(
+					'success' => true,
+					'data' => $billingAddress,
+					'message' => 'Edit succesfully',
+				);
+				return json_encode($response);
+				
+        } catch (Exception $ex) {
+            return $this->ajaxResponse(false, $ex->getMessage());
+        }
+		
+    }
+	
+	public function deleteAddressBook(Request $request){
+		
+		if(!empty($request->id)){
+			$UserBillingAddress = UserBillingAddress::where('address_id',$request->id)->first();
+			$status = $UserBillingAddress->delete();
+			if(!empty($status)){
+				$response = array(
+					'success' => true,
+					'id' => $request->id,
+					'message' => 'Deleted Successfully',
+				);
+				return json_encode($response);
+			}else{
+				return 0;
+			}
+		}
+		
+	}
+	 
+	
+	public function saveAddressBook(Request $request) {
+		
+		try {
+			$validation = Validator::make($request->all(), [
+				'first_name' => 'required',
+				'last_name' => 'required',
+				'address' => 'required',
+				'address2' => 'required',
+				'number' => 'required',
+				'city' => 'required',
+				'postal_code' => 'required',
+				'country_id' => 'required',
+				'state_id' => 'required',
+			]);
+			if ($validation->fails()) {
+				return $this->ajaxResponse(false, $validation->errors(), null, 422);
+			}
+			$billingAddress = new UserBillingAddress();
+			$billingAddress->user_id=\Auth::guard('frontUser')->user()->id;
+			$billingAddress->first_name = $request->first_name;
+			$billingAddress->last_name = $request->last_name;
+			$billingAddress->phone = $request->number;
+			$billingAddress->address = $request->address;
+			$billingAddress->address1 = $request->address2;
+			$billingAddress->address2 = $request->landmark;
+			$billingAddress->city = $request->city;
+			$billingAddress->zip = $request->postal_code;
+			$billingAddress->country_id = $request->country_id;
+			$billingAddress->state_id = $request->state_id;
+			$billingAddress->status = '1';
+			$billingAddress->save();
+			
+			$response = array(
+				'success' => true,
+				'data' => $billingAddress,
+				'message' => 'Added succesfully',
+			);
+			return json_encode($response);
+        }catch (Exception $ex) {
+            return $this->ajaxResponse(false, $ex->getMessage());
+        }
+	}
+	
+	
+	
 	public function checkout(Request $request){
 			
 		$data = array();
@@ -94,12 +236,12 @@ class ShopController extends Controller
 		//$data['userBalance'] = $userBalance;
 		$data['Categories'] = $this->marketRepository->getAllCategories();
 		$data['billingAddrs'] = $this->marketRepository->getBillingAdress($userId);
-		$data['product'] = ProductCart::where('user_id',\Auth::guard('frontUser')->user()->id)->where('user_session_id',\Session::getId())->groupBy('user_session_id')->sum('total_price');
-		
+		$data['product'] = ProductCart::where('user_id',\Auth::guard('frontUser')->user()->id)->sum('total_price');
 		$countries = \App\Model\Countries::select('country_id', 'country_code', 'country_name')->where('status', 1)->orderBy('country_name', 'DESC');
 		$data['countries'] = $countries->get();
 		
-		
+		$data['BillingAddress']=UserBillingAddress::where('user_id',$userId)->get();
+		//dd($data);
 		return view('front/shop/product-checkout', $data);
 	}
 	
