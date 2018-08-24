@@ -95,7 +95,7 @@ class ShopController extends Controller
 		$data = array();
 		$data['countries'] = Countries::select('country_id', 'country_name')->where('status', 1)->orderBy('country_name', 'DESC')->get();	
         $data['homeTitle'] = 'infinity.com'; 
-        return view('front/shop/checkout-popup-add-newaddress',$data);
+        return view('front/shop/new-delivery-address',$data);
     }
 	
 	
@@ -107,7 +107,7 @@ class ShopController extends Controller
 		$data['billingAddress'] = $billingAddress;
 		$data['countries'] = Countries::select('country_id', 'country_name')->where('status', 1)->orderBy('country_name', 'DESC')->get();
 		$data['states'] = States::select('id', 'name')->where('status', 1)->get();
-		return view('front/shop/edit-address-form', $data);
+		return view('front/shop/edit-delivery-address-form', $data);
 	}
 	
 	

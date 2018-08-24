@@ -197,7 +197,7 @@
 					window.location.href = '{{ route("auth-process") }}';
 				
 				}else{
-					window.location.href = '{{ route("auth-process") }}';
+					window.location.href ="{{ route('INFKart', ['sessionid' => \Session::getId()]) }}";
 					
 				}
 			}else{

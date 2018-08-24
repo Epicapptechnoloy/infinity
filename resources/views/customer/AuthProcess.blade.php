@@ -85,12 +85,12 @@
 	<div class="sldrfullpge">
 		<div class="bgform">
 			<div class="container text-center">   
-			<div class="row">   
-				<div class="col-md-5 col-md-offset-4">   
-				
-					<div class="loginHolder1"> 
-						<section class="signinHolder"> 
-                            <h4 class="title-LogOn">Login with the Infinity.com</h4>						
+				<div class="row">   
+					<div class="col-md-5 col-md-offset-4">   
+
+						<div class="loginHolder1"> 
+							<section class="signinHolder"> 
+							<h4 class="title-LogOn">Login with the Infinity.com</h4>						
 							<!-- login form -->
 							<form class="loginformpop" role="form"  method="post" action="" id="login-form" novalidate="novalidate">
 							{{ csrf_field() }}
@@ -144,11 +144,10 @@
 									</aside>
 								</div> 
 							</form>
-							
-							<form class="forgotformpop"  method="post" role="form" action="{{route('user.forgotPassword')}}">
+
+							<form  class="forgotformpop"  method="post" role="form" action="{{route('user.forgotPassword')}}" id="">
 							{{ csrf_field() }}
-								<div class="inputsecHolder" id="forgot-pass" style="display: none;">
-								
+							<div class="inputsecHolder" id="forgot-pass" style="display: none;">
 									<ul class="loginpopup-ul tab-links">
 									   <li id="" class="pull-left active2 forgetbck"> <a class="tringle" href="javascript:void(0);">Forgot Password</a></li>
 									   <li id="login-btnforget" class="pull-right outact"><a href="javascript:void(0);">Login </a></li> 
@@ -160,7 +159,7 @@
 												<p>We’ll send you a link to reset your password</p>
 												<div class="form-group{{ $errors->has('emai11') ? ' has-error' : '' }}">
 												<span class="EntertextHldr">Enter your E-mail Address</span>
-												<input type="text" class="required email" id="email" placeholder="Enter your e-mail address" name="">
+												<input type="text" class="required email" id="email" placeholder="Enter your e-mail address" name="emai11">
 												@if ($errors->has('emai11'))
 													<span class="help-block">
 														<strong>{{ $errors->first('emai11') }}</strong>
@@ -175,7 +174,7 @@
 								</div>
 							</form>
 							<!-- end forget password -->
-							
+
 							<!-- regiter fram -->
 							<form class="registerformpop" method="post" role="form" action="{{route('user.signupProcess')}}"  novalidate="novalidate" enctype="multipart/form-data"> 
 								{{ csrf_field() }}
@@ -257,17 +256,14 @@
 									</aside>
 								</div> 
 							</form>
-						</section>
+							</section>
 						<!-- end regiter fram -->			
-					</div>  
-
-
-				
+						</div>  
+						</div> 
+					</div> 
 				</div> 
-			</div> 
-		</div> 
-	  </div>
-  </div>
-  
+			</div>
+		</div>
+	</div>
   <!-- END PAGE CONTENT --> 
 </html>

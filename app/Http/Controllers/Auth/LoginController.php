@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Model\User;
 use Socialite;
 use Auth;
 use Exception;
@@ -49,7 +49,7 @@ class LoginController extends Controller
 	
 	public function redirectToFacebook()
     {
-		//dd(Socialite::driver('facebook')->redirect());
+		
         return Socialite::driver('facebook')->redirect();
     }
 	
@@ -62,10 +62,10 @@ class LoginController extends Controller
             return redirect('auth/facebook');
         }
         $authUser = $this->findOrCreateUser($user);
-
+		
         Auth::login($authUser, true);
-
-        return redirect()->route('home');
+		
+        return redirect()->intended(url('/'));
     }
 
 	

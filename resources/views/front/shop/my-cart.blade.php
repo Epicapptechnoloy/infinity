@@ -14,8 +14,7 @@
 </div>
 <!-- END BREADCRUMB -->
 	
- 
-	 <!-- MAIN CONTENT -->
+<!-- MAIN CONTENT -->
 <section class=""> 
 	<div class="container pd-15">
 	@if(count($products) > 0)
