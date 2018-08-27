@@ -1,9 +1,9 @@
-<form role="form" action="{{route('admin.coupan-list')}}" method="get">
+<form role="form" action="{{route('admin.coupon-list')}}" method="get">
 	<div class="row">
 		<div class="col-md-4">
 			<div class="form-group">
-				<label>Filter by Discounts Or Offers Code :</label>
-				<input value="{{$params->s}}" class="form-control" type="text" name="s" autocomplete="off" placeholder="Filter by Discounts Or Offers Code ..." >
+				<label>Filter by Discounts Or Coupon Code :</label>
+				<input value="{{$params->s}}" class="form-control" type="text" name="s" autocomplete="off" placeholder="Filter by Discounts Or Coupon Code ..." >
 			</div>
 		</div>
 		<div class="col-md-2">

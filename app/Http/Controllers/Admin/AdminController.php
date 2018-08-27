@@ -14,6 +14,7 @@ use App\Model\Coupans;
 use App\Model\Settings;
 use App\Model\Countries;
 use App\Model\States;
+use App\Model\Coupons;
 use File;
 use App\Model\Blogs;
 use DB;
@@ -43,14 +44,14 @@ class AdminController extends Controller
         $Arr = array();
         $homeTitle = 'Admin\'s Dashboard';
         $customers = User::orderBy('id','desc')->limit(5)->get();
-        $coupans= Coupans::orderBy('coupon_id','desc')->limit(5)->get();
+        $coupons= Coupons::orderBy('coupon_id','desc')->limit(5)->get();
         $products= Products::orderBy('product_id','desc')->limit(5)->get();
 		$orders = DB::table('sb_order')
 			->select('sb_order.*','sb_order.created_at as orderDate','users.*',
 				'users.name as userName')
 			->leftJoin('users', 'users.id', '=', 'sb_order.user_id')->orderBy('order_id','desc')->limit(5)->get(); 
         return view('admin.home',array('homeTitle'=>$homeTitle,'data'=>$Arr,'customers'=>$customers,'orders'=>$orders,
-		'coupans'=>$coupans,'products'=>$products,'totalOrders'=>Orders::all()->count(),
+		'coupons'=>$coupons,'products'=>$products,'totalOrders'=>Orders::all()->count(),'totalCoupons'=>Coupons::all()->count(),
 		'totalProducts'=>Products::all()->count(),'totalUser'=>User::all()->count()))
 		->with('i', ($request->input('page', 1) - 1) * env('RECORD_PER_PAGE'));
 		

@@ -21,14 +21,14 @@
     @include('adminlayouts.message')
     <section class="content"> 
 		<section class="content"> 
-			<form role="form" action="#" method="post"  enctype="multipart/form-data">
+			<form role="form" action="{{route('admin.add.coupon')}}" method="post"  enctype="multipart/form-data">
 					  {{ csrf_field() }}
 				<div class="box-body">
 					<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-						<label>Name </label>
+						<label>Coupan Name </label>
 							<div class="row">
 								<div class="col-xs-6">
-								<input name="name" type="text"  class="form-control" autocomplete="off" placeholder="enter name" required>
+								<input name="name" type="text"  class="form-control" autocomplete="off" placeholder="enter name" >
 							</div>
 						</div>
 						@if ($errors->has('name'))
@@ -40,10 +40,10 @@
 				   
 				 
 					<div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-						<label>Code </label>
+						<label>Coupon Code </label>
 						<div class="row">
 							<div class="col-xs-6">
-								<input name="code" type="text"  class="form-control" autocomplete="off" placeholder="enter code" required>
+								<input name="code" type="text"  class="form-control" autocomplete="off" placeholder="enter code" >
 							</div>
 						</div>
 						  @if ($errors->has('code'))
@@ -58,7 +58,7 @@
 						<label>Discount </label>
 						<div class="row">
 							<div class="col-xs-6">
-								<input name="discount" type="text"  class="form-control" autocomplete="off" placeholder="enter discount" required>
+								<input name="discount" type="text"  class="form-control" autocomplete="off" placeholder="enter discount" >
 							</div>
 						</div>
 						@if ($errors->has('discount'))
@@ -68,11 +68,12 @@
 						@endif
 					</div>
 					
+					
 					<div class="form-group{{ $errors->has('minimum_order') ? ' has-error' : '' }}">
-						<label>Minimum Order </label>
+						<label>Minimum Order Price</label>
 						<div class="row">
 							<div class="col-xs-6">
-								<input name="minimum_order" type="text"  class="form-control" autocomplete="off" placeholder="enter Minimum Order" required>
+								<input name="minimum_order" type="text"  class="form-control" autocomplete="off" placeholder="enter Minimum Order" >
 							</div>
 						</div>
 						@if ($errors->has('minimum_order'))
@@ -82,101 +83,68 @@
 						@endif
 					</div>
 				  
-			   
-					<div class="form-group{{ $errors->has('total_discount') ? ' has-error' : '' }}">
-						<label>Total Discount</label>
+					<div class="form-group{{ $errors->has('category') ? ' has-error' : '' }} ">
+						<label>Select Category</label>
 						<div class="row">
-							<div class="col-xs-6">
-								<input name="total_discount" type="text"  class="form-control" autocomplete="off" placeholder="Enter Total Discount" required>
-							</div>
+						<div class="col-xs-6">
+						<select class="form-control" name="category" id="category_id" >
+							<option value="0">Select Category</option>
+							@foreach($categories as $category)
+							@php $Id = $category->category_id @endphp
+							<option value="{{$category->category_id}}" @if (old('category') == $Id) selected="selected" @endif>{{$category->name}}</option>
+							@endforeach
+						</select>
 						</div>
-						@if ($errors->has('total_discount'))
-						<span class="help-block">
-							<strong>{{ $errors->first('total_discount') }}</strong>
-						</span>
-						@endif
-					</div>
-				  
-				  
-					<div class="form-group{{ $errors->has('ctype') ? ' has-error' : '' }} ">
-						  <label>Select Type</label>
-						 <div class="row">
-						   <div class="col-xs-6">
-							 <select class="form-control" name="ctype" id="ctype" >
-								<option value="0">Select Type</option>
-								<option value="1">Flat</option>
-								<option value="2">Percentage</option>
-							   
-							  </select>
-							</div>
 						</div>
-						@if ($errors->has('ctype'))
+						@if ($errors->has('category'))
 							<span class="help-block">
-								<strong>{{ $errors->first('ctype') }}</strong>
+								<strong>{{ $errors->first('category') }}</strong>
 							</span>
 						@endif
 					</div>
-				  
-					<div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
-							<label>Start Date:</label>
-
-							<div class="row">
-								<div class="col-xs-6">
-								  <div class='input-group date' >
-									  <input type='text' name="startdate" class="form-control" id='datepicker' autocomplete="off" placeholder="Start Date:"/>
-									  <span class="input-group-addon">
-										  <span class="glyphicon glyphicon-calendar"></span>
-									  </span>
-								  </div>
-								</div>
-							<!-- /.input group -->
-						  </div>
+					
+					<div class="form-group{{ $errors->has('validfrom') ? ' has-error' : '' }}">
+						<label>Valid From:</label>
+						<div class="row">
+							<div class="col-xs-6">
+							  <div class='input-group date' >
+								  <input type='text' name="validfrom" class="form-control" id='datepicker' autocomplete="off" placeholder="Valid Date:"/>
+								  <span class="input-group-addon">
+									  <span class="glyphicon glyphicon-calendar"></span>
+								  </span>
+							  </div>
+							</div>
+						<!-- /.input group -->
+						</div>
+						@if ($errors->has('validfrom'))
+						<span class="help-block">
+							<strong>{{ $errors->first('validfrom') }}</strong>
+						</span>
+						@endif
 					  <!-- /.form group -->
 					</div>
 				  
-					<div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
-						<label>End Date:</label>
-						 <div class="row">
+					<div class="form-group{{ $errors->has('validto') ? ' has-error' : '' }}">
+						<label>Valid To:</label>
+						<div class="row">
 							 <div class="col-xs-6">
 								<div class='input-group date' >
-								  <input type='text' name="enddate" class="form-control" id='datepicker1' autocomplete="off" placeholder="End Date:"/>
+								  <input type='text' name="validto" class="form-control" id='datepicker1' autocomplete="off" placeholder="End Date:"/>
 								  <span class="input-group-addon">
 									  <span class="glyphicon glyphicon-calendar"></span>
 								  </span>
 							  </div>
 						   </div><!-- col group-->
 						   <!-- /row-->
-						 </div>
+						</div>
+						@if ($errors->has('validto'))
+						<span class="help-block">
+							<strong>{{ $errors->first('validto') }}</strong>
+						</span>
+						@endif
 						<!-- /.form group -->
 					</div>
-						
-				
-					<div class="form-group{{ $errors->has('uses_total') ? ' has-error' : '' }}">
-						<label>Uses total</label>
-							<div class="row">
-								<div class="col-xs-6">
-									<input name="uses_total" type="text"  class="form-control" autocomplete="off"  placeholder="enter Uses total" required>
-								</div>
-							</div>
-						@if ($errors->has('uses_total'))
-						<span class="help-block">
-							<strong>{{ $errors->first('uses_total') }}</strong>
-						</span>
-					  @endif
-					</div>
-					<div class="form-group{{ $errors->has('uses_per_customer') ? ' has-error' : '' }}">
-							<label>Uses Per Customer </label>
-						<div class="row">
-						  <div class="col-xs-6">
-						  <input name="uses_per_customer" type="text"  class="form-control" autocomplete="off" placeholder="enter Uses Per Customer" required>
-						  </div>
-								</div>
-						  @if ($errors->has('uses_per_customer'))
-											<span class="help-block">
-							  <strong>{{ $errors->first('uses_per_customer') }}</strong>
-						  </span>
-						  @endif
-					</div>
+					
 					<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 						<label for="exampleInputreason1">Description</label>
 							<div class="row">
@@ -190,7 +158,8 @@
 							</span>
 						@endif	
 					</div>
-					<div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} ">
+					
+					<div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} ">
 						  <label>Status</label>
 						  <div class="row">
 						  <div class="col-xs-6">
@@ -206,9 +175,7 @@
 						</div>
 						</div>
 					</div>
-					<div class='form-group'>
-						<input type="file" name="image" id="fileToUpload" class = 'btn btn-default btn-file' multiple>
-					</div>            
+					         
 				</div>
 				<div class="box-footer">
 					<button type="submit" class="btn btn-primary">Submit</button>

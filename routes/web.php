@@ -267,24 +267,24 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function()
 	
 	
 	  //coupan list  
-    Route::GET('/coupan-list','Admin\CoupanController@coupanList')->name('admin.coupan-list');
+    Route::GET('/coupon-list','Admin\CouponController@couponList')->name('admin.coupon-list');
         
 	//add coupan
-    Route::GET('/add-coupan','Admin\CoupanController@AddCoupanForm')->name('admin.AddCoupanForm');
+    Route::GET('/add-coupon','Admin\CouponController@AddCouponForm')->name('admin.AddCouponForm');
 	
 	//add coupan process
-    Route::POST('/add-coupan','Admin\CoupanController@AddCoupan')->name('admin.add.coupan');
+    Route::POST('/add-coupon','Admin\CouponController@AddCoupon')->name('admin.add.coupon');
 	//add coupan process
-    Route::GET('/coupan/{id}','Admin\CoupanController@show')->name('admin.coupan.show');
+    Route::GET('/coupon/{id}','Admin\CouponController@show')->name('admin.coupon.show');
     
     //add edit coupan
-    Route::GET('/coupan/edit/{id}','Admin\CoupanController@edit')->name('admin.coupan.edit');
+    Route::GET('/coupon/edit/{id}','Admin\CouponController@edit')->name('admin.coupon.edit');
 	
 	//add UPDATE coupan
-    Route::POST('/update-coupan','Admin\CoupanController@update')->name('admin.coupan.update');
+    Route::POST('/update-coupon','Admin\CouponController@update')->name('admin.coupon.update');
 	
 	//coupan destroy  
-    Route::GET('/coupan/delete/{id}','Admin\CoupanController@destroy')->name('admin.coupan.destroy');
+    Route::GET('/coupon/delete/{id}','Admin\CouponController@destroy')->name('admin.coupon.destroy');
     	 
 	 
 	//add wishlist

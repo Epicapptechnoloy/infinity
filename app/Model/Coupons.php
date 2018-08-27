@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class Coupans extends Authenticatable
+class Coupons extends Authenticatable
 {
     protected $primaryKey = 'coupon_id';
     /**
@@ -21,8 +21,8 @@ class Coupans extends Authenticatable
      */
 	
     protected $fillable = [
-        'name', 'code', 'type','discount','description','image','logged','shipping','total','min_total',
-		'date_start','date_end','uses_total','uses_customer','status'
+        'name', 'coupon_code', 'type','discount','amount_limit','description','logged','shipping','total','min_total',
+		'valid_from','valid_to','uses_total','uses_customer','status'
     ];
     
 }

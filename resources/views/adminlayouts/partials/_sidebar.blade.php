@@ -76,6 +76,19 @@
 			</ul>
         </li>
 		
+		<li class="treeview {{ (Request::path() == 'admin/coupon-list' || Request::path() == 'admin/add-coupon' || Route::current()->getName() == 'editCoupon' || Route::current()->getName() == 'admin.view-coupon') ? 'active' : '' }}">
+			<a href="#">
+				<i class="fa fa-folder"></i><span>Manage Coupon</span>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+			<ul class="treeview-menu">
+				<li class="{{ (Request::path() == 'admin/coupon-list' || Route::current()->getName() == 'editCoupon' || Route::current()->getName() == 'admin.view-coupon') ? 'active' : '' }}"><a href="/admin/coupon-list"><i class="fa fa-circle-o"></i>Coupon list</a></li>
+				<li class="{{ Request::path() == 'admin/add-coupon' ? 'active' : '' }}"><a href="/admin/add-coupon"><i class="fa fa-circle-o"></i>Add Coupon</a></li>
+			</ul>
+        </li>
+		
 		
 		<li class="treeview {{ (Request::path() == 'admin/color-list' || Request::path() == 'admin/add-color' || Route::current()->getName() == 'edit-color') ? 'active' : '' }}">
 			<a href="#">

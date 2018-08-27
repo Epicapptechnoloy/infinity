@@ -42,38 +42,29 @@
 							  $page = 1;                      
 							@endphp
 						  
-							<th>Coupan Id</th>
 							<th>Name</th>
-							<th>Code</th>
+							<th>Coupon Code</th>
 							<th>Discount</th>
-							<th>Minimum Order</th>
-							<th>Total Discount</th>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Uses total</th>
-							<th>Uses Per Customer</th>                  
+							<th>Minimum Order Price</th>
+							<th>Valid From</th>
+							<th>Valid To</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						@if(count($coupans) > 0)
-							@foreach($coupans as $coupan)
-
+						@if(count($coupons) > 0)
+							@foreach($coupons as $coupon)
 							<tr>
 								<td>{{++$i}}</td>
-								<td>{{ $coupan->coupon_id}}</td>
-								<td>{{ucfirst($coupan->name)}}</td>
-								<td>{{$coupan->code}}</td>               
-								<td>{{$coupan->discount}}</td>               
-								<td>{{$coupan->min_total}}</td>              
-								<td>{{$coupan->total}}</td>               
-								<td>{{$coupan->date_start}}</td>              
-								<td>{{$coupan->date_end}}</td>               
-								<td>{{$coupan->uses_total}}</td>               
-								<td>{{$coupan->uses_customer}}</td>               
+								<td>{{ucfirst($coupon->name)}}</td>
+								<td>{{$coupon->coupon_code}}</td>               
+								<td>Rs. {{$coupon->discount}}</td>               
+								<td>Rs. {{$coupon->amount_limit}}</td>              
+								<td>{!!date("d M Y ",strtotime($coupon->valid_from))!!}</td>              
+								<td>{!!date("d M Y ",strtotime($coupon->valid_to))!!}</td>               
 								<td>
-									@if($coupan->status == 1)
+									@if($coupon->status == 1)
 										<span class="label label-success">Active</span>
 									@else
 										<span class="label label-warning">Inactive</span>
@@ -83,22 +74,22 @@
 									<div class="btn-group">
 										<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
 										<ul class ="dropdown-menu" role="menu">
-										  <li><a href="{{ $url = route('admin.coupan.show', [$coupan->coupon_id]) }}">View</a></li>
-										  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{$coupan->coupon_id}}">Delete</a></li>
-										  <li><a href="{{ route('admin.coupan.edit',[$coupan->coupon_id]) }}">Edit</a></li>
+										  <li><a href="{{ $url = route('admin.coupon.show', [$coupon->coupon_id]) }}">View</a></li>
+										  <li><a class="confirmDialog" href="javascript:void(0);" recordId="{{$coupon->coupon_id}}">Delete</a></li>
+										  <li><a href="{{ route('admin.coupon.edit',[$coupon->coupon_id]) }}">Edit</a></li>
 										</ul>
 									</div>
 								</td>                
 							</tr>
 						@endforeach
 						@else
-							<tr ><td colspan="7">No record.</td></tr>
+						<tr ><td colspan="7">No record.</td></tr>
 						@endif
 					</tbody>
 				</table>
 				<div class="row">
 					<div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">
-						{{ $coupans->appends(request()->except('page'))->links() }}
+						{{ $coupons->appends(request()->except('page'))->links() }}
 					</div>
 				</div>
 			</div>
@@ -118,22 +109,8 @@ $(document).ready(function(){
 
   // if user click on the go button
   $('#SureGo').click(function(){ 
-	  window.location.replace(APP_URL+"/admin/coupan/delete/"+$('#c_id').val());         
-          //~ $.ajax({
-               //~ type:'GET',
-               //~ url:'customer/delete/'+$('#rec_id').val(),
-               //~ data:'_token = <?php echo csrf_token() ?>',
-               //~ success:function(data){
-                  //~ $('#popUpinfo').modal('hide');
-                  
-                  //~ if(data.error == 0){
-                    //~ $('#msgContainer').html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Success!</h4><p>'+data.message+'</p>');
-                  //~ }else{
-                        //~ $('#msgContainer').html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Alert!</h4><p>'+data.message+'</p>');
-                  //~ }
-                  //~ $('#RecordNo_'+$('#rec_id').val()).remove();
-               //~ }
-            //~ });
+	  window.location.replace(APP_URL+"/admin/coupon/delete/"+$('#c_id').val());         
+          
   });
     
 });

@@ -57,6 +57,17 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
 			<!-- small box -->
+			<!-- small box -->
+			<div class="small-box bg-red">
+				<div class="inner">
+					<h3></h3>
+					<p>Discount And Offers({{$totalCoupons}})</p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-person-add"></i>
+				</div>
+				<a href="{{ route('admin.coupon-list') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+			</div>
         </div>
         <!-- ./col -->
     </div>
@@ -185,9 +196,9 @@
 				<table class="table no-margin">
 					<thead>
 						<tr>
-							<th>D_ID</th>
+							<th>C_ID</th>
 							<th>Name</th>
-							<th>Code</th>
+							<th>Coupon Code</th>
 							<th>Discount</th>
 							<th>Start Date</th>
 							<th>End Date</th>
@@ -195,17 +206,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php if(count($coupans) > 0): ?>    
-							<?php foreach($coupans as $coupan): ?>                                    
+						<?php if(count($coupons) > 0): ?>    
+							<?php foreach($coupons as $coupon): ?>                                    
 								<tr>
-									<td><?=$coupan->coupon_id?></td>
-									<td><?=$coupan->name?></td>
-									<td><?=$coupan->code?></td>
-									<td><?=$coupan->discount?></td>
-									<td><?=date("d M Y h:i A",strtotime($coupan->date_start))?></td>
-									<td><?=date("d M Y h:i A",strtotime($coupan->date_end))?></td>
+									<td><?=$coupon->coupon_id?></td>
+									<td><?=$coupon->name?></td>
+									<td><?=$coupon->coupon_code?></td>
+									<td><?=$coupon->discount?></td>
+									<td><?=date("d M Y ",strtotime($coupon->valid_from))?></td>
+									<td><?=date("d M Y ",strtotime($coupon->valid_to))?></td>
 									<td>
-										@if($coupan->status == 1)                      
+										@if($coupon->status == 1)                      
 											<span class="label label-success">Active</span>
 										@else
 											<span class="label label-danger">Expired</span>
@@ -226,8 +237,8 @@
 			<!-- /.table-responsive -->
 		</div>
 		<div class="box-footer clearfix">
-			<a href="{{ route('admin.AddCoupanForm') }}" class="btn btn-sm btn-info btn-flat pull-left">Add New Discount And Offers</a>
-			<a href="{{ route('admin.coupan-list') }}" class="btn btn-sm btn-default btn-flat pull-right">View All Discount And Offers</a>
+			<a href="{{ route('admin.AddCouponForm') }}" class="btn btn-sm btn-info btn-flat pull-left">Add New Discount And Offers</a>
+			<a href="{{ route('admin.coupon-list') }}" class="btn btn-sm btn-default btn-flat pull-right">View All Discount And Offers</a>
 		</div>     
 		<!-- /.box-body -->
 	</div>
