@@ -76,7 +76,7 @@
 			</ul>
         </li>
 		
-		<li class="treeview {{ (Request::path() == 'admin/coupon-list' || Request::path() == 'admin/add-coupon' || Route::current()->getName() == 'editCoupon' || Route::current()->getName() == 'admin.view-coupon') ? 'active' : '' }}">
+		<li class="treeview {{ (Request::path() == 'admin/coupon-list' || Request::path() == 'admin/add-coupon' || Route::current()->getName() == 'admin.coupon.edit' || Route::current()->getName() == 'admin.coupon.show') ? 'active' : '' }}">
 			<a href="#">
 				<i class="fa fa-folder"></i><span>Manage Coupon</span>
 				<span class="pull-right-container">
@@ -84,7 +84,7 @@
 				</span>
 			</a>
 			<ul class="treeview-menu">
-				<li class="{{ (Request::path() == 'admin/coupon-list' || Route::current()->getName() == 'editCoupon' || Route::current()->getName() == 'admin.view-coupon') ? 'active' : '' }}"><a href="/admin/coupon-list"><i class="fa fa-circle-o"></i>Coupon list</a></li>
+				<li class="{{ (Request::path() == 'admin/coupon-list' || Route::current()->getName() == 'admin.coupon.edit' || Route::current()->getName() == 'admin.coupon.show') ? 'active' : '' }}"><a href="/admin/coupon-list"><i class="fa fa-circle-o"></i>Coupon list</a></li>
 				<li class="{{ Request::path() == 'admin/add-coupon' ? 'active' : '' }}"><a href="/admin/add-coupon"><i class="fa fa-circle-o"></i>Add Coupon</a></li>
 			</ul>
         </li>
@@ -170,18 +170,7 @@
 			</ul>
         </li>
 		
-		<li class="treeview {{ (Request::path() == 'admin/coupan-list' || Route::current()->getName() == 'admin.coupan.show' || Route::current()->getName() == 'admin.coupan.edit') ? 'active' : '' }}">
-			<a href="#">
-            <i class="fa fa-folder"></i> <span>Manage Discount And Offers</span>
-				<span class="pull-right-container">
-					<i class="fa fa-angle-left pull-right"></i>
-				</span>
-			</a>
-			<ul class="treeview-menu">
-				<li class="{{ (Request::path() == 'admin/coupan-list' || Route::current()->getName() == 'admin.coupan.show' || Route::current()->getName() == 'admin.coupan.edit') ? 'active' : '' }}"><a href="/admin/coupan-list"><i class="fa fa-circle-o"></i>Discount And Offers List</a></li>
-				<li class="{{ Request::path() == 'admin/add-coupan' ? 'active' : '' }}"><a href="/admin/add-coupan"><i class="fa fa-circle-o"></i>Add Discount And Offers</a></li>        
-			</ul>
-        </li>
+		
 		
         <li class="treeview {{ Request::path() == 'admin/wishlist' || Request::path() == 'admin/wishlist' ? 'active' : '' }}">
 			<a href="#">
